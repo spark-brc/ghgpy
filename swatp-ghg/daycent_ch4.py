@@ -15,14 +15,25 @@ at 0.5 based on the reactions.
 """
 
 import math
+import numpy as np
 
 
 class ghg(object):
     def __init__(self, model_dir):
         self.model_dir = model_dir
         self.fac_c_subt_to_ch4 = 0.5
+        self.beta1, self.Rh, self.fracToExduates, self.send_cont_frac = self.read_parms()
 
-    def c_soil(self, beta1, SI, Rh):
+
+    def read_parms(self):
+        beta1 = 1
+        Rh = 1
+        fracToExduates = 0.5
+        send_cont_frac= 0.5
+
+        return beta1, Rh, fracToExduates, send_cont_frac
+
+    def c_soil(self):
         """The first step in modeling methanogenesis is to estimate 
         the amount of carbon substrate available for CH4 production. 
         DayCent's methanogenesis submodel includes soil organic matter degradation and 
@@ -39,13 +50,13 @@ class ghg(object):
                         (above- and below-ground structural and metabolic litter and 
                         above- and below-ground SOC pools) (g CO2^-C m^-2 d^-1)
         """
+        si = self.SI()
 
-
-        self.c_soil_ = self.fac_c_subt_to_ch4 * beta1 * SI * Rh
+        self.c_soil_ = self.fac_c_subt_to_ch4 * self.beta1 * si * self.Rh
         return self.c_soil_
 
 
-    def SI(self, send_cont_frac=0.5):
+    def SI(self):
         """calculate soil texture index
 
         Args:
@@ -55,7 +66,7 @@ class ghg(object):
         Returns:
             float: soil texture index
         """
-        self.si_ = 0.325+2.25*send_cont_frac
+        self.si_ = 0.325+2.25* self.send_cont_frac
         return self.si_
     
 
@@ -116,9 +127,15 @@ class ghg(object):
         rice paddies as discussed in Huang et al. (2004).
 
         Args:
-            beta1 (_type_): _description_
+            beta1 (float): A fraction (β1) is defined to quantify 
+                        the amount of substrate available for methanogens based on 
+                        the simulation of heterotrophic respiration by the DayCent model.
+                        β1 (CO2CH4, fix.100) is the fraction of Rh converted to CH4 under 
+                        anaerobic conditions;
             SI (_type_): _description_
-            Rh (_type_): _description_
+            Rh (float): Rh is heterotrophic respiration from decomposition of organic matter
+                        (above- and below-ground structural and metabolic litter and 
+                        above- and below-ground SOC pools) (g CO2^-C m^-2 d^-1)
             waterlevel (_type_): _description_
             eh_t (_type_): _description_
             deh (float, optional): _description_. Defaults to 0.16.
@@ -127,13 +144,8 @@ class ghg(object):
             beh_drain (int, optional): _description_. Defaults to 300.
 
         Returns:
-            _type_: _description_
+            float, mV: current eh
         """
-
-
-        
-
-
 
 
         c_soil = self.c_soil(beta1, SI, Rh)
@@ -150,3 +162,51 @@ class ghg(object):
         return eh_now        
 
 
+    def ch4ep(self, fp, ch4prod):
+        """CH4 emission rates through the rice plants (CH4EP) (g CH4-C m^-2d^-1) were simulated
+
+        Args:
+            fp (float): fraction of CH4 emitted via rice plants
+            ch4prod (float): CH4Prod is total methane production (g CH4-C m^-2d^-1)
+        Returns:
+            float: transport of CH4 via ebullition to the atmosphere (CH4Ebl)
+        """
+
+        ch4ep_ = fp * ch4prod
+        return ch4ep_
+
+
+    def fp(self, aglivc, tmxbio, mxch4f=0.55):
+        """ get the fraction of CH4 emitted via rice plants
+
+        Args:
+            aglivc (float, g C m^-2): the amount of above-ground live C for the crop as simulated by DayCent (g C m^-2)
+            tmxbio (float, g biomass m^-2): the maximum aboveground biomass at the end of growing season
+            mxch4f (float, optional): MaXimum Fraction of CH4 production emitted by plants. Defaults to 0.55.
+
+        Returns:
+            float: the fraction of CH4 emitted via rice plants
+        """
+        # the multiplier 2.5 (g biomass/g C) converts C to biomass (g biomass m^-2)
+        fp_ = mxch4f * (1.0 - (aglivc * 2.5/tmxbio))**0.25
+
+        return fp_
+    
+    def ch4ebl(self, methzr, tsoil, ch4prod, ch4ep, mo, mrtblm, bglivc):
+        """transport of CH4 via ebullition to the atmosphere (CH4Ebl) was also adopted from Huang et al. (2004)
+
+        Args:
+            methzr (float): fraction of CH4 emitted via bubbles when there is zero fine root biomass
+            tsoil (_type_): 
+            ch4prod (_type_): _description_
+            ch4ep (_type_): _description_
+            mo (float, gC m^-2d^-1): Mo was set to 0.0015 gC m^-2d^-1 (Huang et al. 2004) but is set to 0.002 in DayCent
+            mrtblm (float, g biomass m-2): the root biomass that starts to reduce CH4 bubble formation (g biomass m-2)
+            bglivc (float, g C m^-2): the amount of fine root C for the crop as simulated by DayCent (g C m^-2)
+
+        Returns:
+            float: transport of CH4 via ebullition to the atmosphere (CH4Ebl)
+        """
+        
+        ch4ebl_ = methzr * (ch4prod - ch4ep - mo) * min(np.log(tsoil), 1.0) * (mrtblm/(bglivc*2.5))
+        return ch4ebl_
