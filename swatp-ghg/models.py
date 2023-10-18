@@ -18,11 +18,18 @@ import math
 import numpy as np
 
 
-class ghg(object):
+class DC(object):
     def __init__(self, model_dir):
         self.model_dir = model_dir
         self.fac_c_subt_to_ch4 = 0.5
         self.beta1, self.Rh, self.fracToExduates, self.send_cont_frac = self.read_parms()
+
+
+
+    def ch4prod(self, alpha1, feh, c_soil, ft, c_root):
+        ch4prod_ = alpha1 * feh * (c_soil + ft * c_root)
+
+
 
 
     def read_parms(self):
@@ -208,5 +215,7 @@ class ghg(object):
             float: transport of CH4 via ebullition to the atmosphere (CH4Ebl)
         """
         
+        # the multiplier 2.5 (g biomass/g C) converts C to biomass
+        # CH4 ebullition is reduced when Tsoil < 2.718282 °C.
         ch4ebl_ = methzr * (ch4prod - ch4ep - mo) * min(np.log(tsoil), 1.0) * (mrtblm/(bglivc*2.5))
         return ch4ebl_
