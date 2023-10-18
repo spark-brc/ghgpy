@@ -11,7 +11,9 @@ class DCparms(object):
         self.co2_to_ch4 = 0.5
         self.frCH4emit = 0.55
         self.frac_to_exd = 0.45 # range(0 - 1)
-        
+        self.tmxbio = 1260 # (rice)
+        self.q10 = 3.0
+
 
 
 

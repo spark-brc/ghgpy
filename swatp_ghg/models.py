@@ -16,29 +16,33 @@ at 0.5 based on the reactions.
 
 import math
 import numpy as np
+from parms import DCparms
 
 
-class DC(object):
+class DCmodel(object):
     def __init__(self, model_dir):
         self.model_dir = model_dir
         self.fac_c_subt_to_ch4 = 0.5
-        self.beta1, self.Rh, self.fracToExduates, self.send_cont_frac = self.read_parms()
+        # self.beta1, self.Rh, self.fracToExduates, self.send_cont_frac = self.read_parms()
+        self.parms = DCparms()
 
 
 
     def ch4prod(self, alpha1, feh, c_soil, ft, c_root):
+        
+
         ch4prod_ = alpha1 * feh * (c_soil + ft * c_root)
 
 
 
 
-    def read_parms(self):
-        beta1 = 1
-        Rh = 1
-        fracToExduates = 0.5
-        send_cont_frac= 0.5
+    # def read_parms(self):
+    #     beta1 = 1
+    #     Rh = 1
+    #     fracToExduates = 0.5
+    #     send_cont_frac= 0.5
 
-        return beta1, Rh, fracToExduates, send_cont_frac
+    #     return beta1, Rh, fracToExduates, send_cont_frac
 
     def c_soil(self):
         """The first step in modeling methanogenesis is to estimate 
@@ -90,7 +94,7 @@ class DC(object):
         self.c_root_ = frac_to_exudates * self.si_ * root_c_prod
         return self.c_root_
     
-    def f_temp(self, t_soil, q10=3.0):
+    def f_temp(self, t_soil):
         """estimate the influence of soil temperature. To simulate CH4 production, 
         we adopted the approach by (Huang et al. 1998) and (Huang et al. 2004).
 
@@ -103,7 +107,7 @@ class DC(object):
         Returns:
             _type_: _description_
         """
-
+        q10 = self.parms.q10
 
         if t_soil >= 30:
             self.f_t = q10 **((t_soil-30)/10)
