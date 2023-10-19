@@ -2,6 +2,7 @@
 class DCparms(object):
     
     def __init__(self):
+        self.alpha1 = # a conversion factor of carbohydrate decomposition to CO2 and CH4 (dimensionless)
         self.aeh = 0.23 # range: 
         self.deh = 0.16 # range:
         self.beh_flood = -250 # Lower limit value for Eh during flooding course (mv)

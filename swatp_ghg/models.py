@@ -111,6 +111,8 @@ class DCmodel(object):
 
         if t_soil >= 30:
             self.f_t = q10 **((t_soil-30)/10)
+        else:
+            self.f_t = 1.0
         return self.f_t
 
 
@@ -126,10 +128,11 @@ class DCmodel(object):
         """
         if eh_t <= -150:
             feh_t = math.exp(-1.7*(150+eh_t)/150)
+        return feh_t
+
 
     def get_eh(
-            self, beta1, SI, Rh, waterlevel, eh_t,
-            deh=0.16, aeh=0.23, beh_flood=-250, beh_drain=300):
+            self, beta1, SI, Rh, waterlevel, eh_t):
         """DEh and AEh (DEH and AEH, fix.100) are differential coefficients that 
         were estimated as 0.16 and 0.23, respectively. 
         The BEhflood (BEHFL, fix.100) is set at a low-limit value of -250 mV, 

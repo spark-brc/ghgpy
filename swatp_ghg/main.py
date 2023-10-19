@@ -12,7 +12,7 @@ from models import DCmodel
 
 def run(wd):
     m1 = DCmodel(wd)
-    print(m1.f_temp(25))
+
 
 
 
