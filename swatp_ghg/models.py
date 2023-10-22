@@ -13,26 +13,39 @@ Hence, a conversion factor C6H12O6_to_CH4 on a mole weight basis of carbohydrate
 at 0.5 based on the reactions.
 
 """
-
+import os
 import math
 import numpy as np
 from parms import DCparms
-
+import pandas as pd
 
 class DCmodel(object):
     def __init__(self, model_dir):
         self.model_dir = model_dir
-        self.fac_c_subt_to_ch4 = 0.5
-        # self.beta1, self.Rh, self.fracToExduates, self.send_cont_frac = self.read_parms()
+        # self.beta1, self.Rh, self.fracToExduates, self.sand_cont = self.read_parms()
         self.parms = DCparms()
 
 
+    def ch4prod(self, sand_cont, eh_t, t_soil, root_c_prod):
+        """CH4 production was simulated based on carbon substrate supply and 
+        associated influence of Eh and temperature
 
-    def ch4prod(self, alpha1, feh, c_soil, ft, c_root):
-        
+        Args:
+            eh_t (float, mV): initial redox potential
+            sand_cont (float):  the average sand content fraction (sand, 0.0 - 1.0) in the top 10 cm of soil
+            t_soil (float, ◦C): average soil temperature in the top 10 cm of soil (◦C)
+            root_c_prod (float, gC m^-2 d^-1): the previous day's fine root production estimated by 
+                                    the plant production submodel in DayCent (gC m^-2 d^-1)
 
-        ch4prod_ = alpha1 * feh * (c_soil + ft * c_root)
-
+        Returns:
+            float, g CH4-C m^-2d^-1: CH4Prod is the CH4 production rate (g CH4-C m^-2d^-1)
+        """
+        ch4prod_ = (
+            self.parms.cvfr_cho_to_ch4 * 
+            self.feh(eh_t) * 
+            (self.c_soil(sand_cont) + self.f_temp(t_soil) * self.c_root(sand_cont, root_c_prod))
+            )
+        return ch4prod_
 
 
 
@@ -40,11 +53,11 @@ class DCmodel(object):
     #     beta1 = 1
     #     Rh = 1
     #     fracToExduates = 0.5
-    #     send_cont_frac= 0.5
+    #     sand_cont= 0.5
 
-    #     return beta1, Rh, fracToExduates, send_cont_frac
+    #     return beta1, Rh, fracToExduates, sand_cont
 
-    def c_soil(self):
+    def c_soil(self, sand_cont):
         """The first step in modeling methanogenesis is to estimate 
         the amount of carbon substrate available for CH4 production. 
         DayCent's methanogenesis submodel includes soil organic matter degradation and 
@@ -61,27 +74,26 @@ class DCmodel(object):
                         (above- and below-ground structural and metabolic litter and 
                         above- and below-ground SOC pools) (g CO2^-C m^-2 d^-1)
         """
-        si = self.SI()
 
-        self.c_soil_ = self.fac_c_subt_to_ch4 * self.beta1 * si * self.Rh
-        return self.c_soil_
+        c_soil_ = self.parms.cvcf_oc_to_co2 * self.parms.frToCH4 * self.soil_index(sand_cont) * self.parms.hr
+        return c_soil_
 
 
-    def SI(self):
+    def soil_index(self, sand_cont):
         """calculate soil texture index
 
         Args:
-            send_cont_frac (float): index which is a function of the average sand content fraction 
+            sand_cont (float): index which is a function of the average sand content fraction 
             (sand, 0.0 - 1.0) in the top 10 cm of soil
 
         Returns:
             float: soil texture index
         """
-        self.si_ = 0.325+2.25* self.send_cont_frac
-        return self.si_
+        soil_index_ = 0.325+2.25* sand_cont
+        return soil_index_
     
 
-    def c_root(self, frac_to_exudates, root_c_prod):
+    def c_root(self, root_c_prod, sand_cont):
         """The rate of rhizodeposition (Croot, gC m^-2 d^-1) is calculated using 
         the following equation.
 
@@ -91,8 +103,11 @@ class DCmodel(object):
             root_c_prod (_type_): the previous day's fine root production estimated by 
             the plant production submodel in DayCent (gC m^-2 d^-1)
         """
-        self.c_root_ = frac_to_exudates * self.si_ * root_c_prod
-        return self.c_root_
+        si = self.soil_index(sand_cont)
+
+
+        c_root_ = self.parms.frac_to_exd * si * root_c_prod
+        return c_root_
     
     def f_temp(self, t_soil):
         """estimate the influence of soil temperature. To simulate CH4 production, 
@@ -109,11 +124,12 @@ class DCmodel(object):
         """
         q10 = self.parms.q10
 
-        if t_soil >= 30:
-            self.f_t = q10 **((t_soil-30)/10)
+        if t_soil > 30:
+            t_soil = 30
+            f_t = q10 **((t_soil-30)/10)
         else:
-            self.f_t = 1.0
-        return self.f_t
+            f_t = q10 **((t_soil-30)/10)
+        return f_t
 
 
     def feh(self, eh_t):
@@ -126,13 +142,16 @@ class DCmodel(object):
             t is the number of days after flooding began or 
             since drainage occurred in the cycle.
         """
-        if eh_t <= -150:
+        if eh_t >= -150:
+            feh_t = math.exp(-1.7*(150+eh_t)/150)
+        else:
+            eh_t = -150
             feh_t = math.exp(-1.7*(150+eh_t)/150)
         return feh_t
 
 
     def get_eh(
-            self, beta1, SI, Rh, waterlevel, eh_t):
+            self, sand_cont, waterlevel, eh_init):
         """DEh and AEh (DEH and AEH, fix.100) are differential coefficients that 
         were estimated as 0.16 and 0.23, respectively. 
         The BEhflood (BEHFL, fix.100) is set at a low-limit value of -250 mV, 
@@ -162,15 +181,12 @@ class DCmodel(object):
         """
 
 
-        c_soil = self.c_soil(beta1, SI, Rh)
-
-
-
+        c_soil = self.c_soil(sand_cont)
 
         if waterlevel == "flooding":
-            eh_now = eh_t - (deh * (aeh + min(1, c_soil)) * (eh_t - beh_flood))
+            eh_now = eh_init - (self.parms.deh * (self.parms.aeh + min(1, c_soil)) * (eh_init - self.parms.beh_flood))
         elif waterlevel == "draining":
-            eh_now = eh_t - (deh * (aeh + 0.7) * (eh_t - beh_drain))
+            eh_now = eh_init - (self.parms.deh * (self.parms.aeh + 0.7) * (eh_init - self.parms.beh_drain))
         else: # water added via rain and irrigation events
             eh_now = -20
         return eh_now        
@@ -190,7 +206,7 @@ class DCmodel(object):
         return ch4ep_
 
 
-    def fp(self, aglivc, tmxbio, mxch4f=0.55):
+    def fp(self, aglivc, tmxbio):
         """ get the fraction of CH4 emitted via rice plants
 
         Args:
@@ -202,11 +218,11 @@ class DCmodel(object):
             float: the fraction of CH4 emitted via rice plants
         """
         # the multiplier 2.5 (g biomass/g C) converts C to biomass (g biomass m^-2)
-        fp_ = mxch4f * (1.0 - (aglivc * 2.5/tmxbio))**0.25
+        fp_ = self.parms.frCH4emit_p * (1.0 - (aglivc * 2.5/tmxbio))**0.25
 
         return fp_
     
-    def ch4ebl(self, methzr, tsoil, ch4prod, ch4ep, mo, mrtblm, bglivc):
+    def ch4ebl(self, tsoil, ch4prod, ch4ep, mo, mrtblm, bglivc):
         """transport of CH4 via ebullition to the atmosphere (CH4Ebl) was also adopted from Huang et al. (2004)
 
         Args:
@@ -224,5 +240,15 @@ class DCmodel(object):
         
         # the multiplier 2.5 (g biomass/g C) converts C to biomass
         # CH4 ebullition is reduced when Tsoil < 2.718282 °C.
-        ch4ebl_ = methzr * (ch4prod - ch4ep - mo) * min(np.log(tsoil), 1.0) * (mrtblm/(bglivc*2.5))
+        ch4ebl_ = self.parms.frCH4emit_b * (ch4prod - ch4ep - mo) * min(np.log(tsoil), 1.0) * (mrtblm/(bglivc*2.5))
         return ch4ebl_
+    
+    def read_inputs(self):
+        input_df = pd.read_csv(
+            os.path.join(self.model_dir, "input_ghg.csv"),
+            index_col=0, parse_dates=True, na_values=[-9999, ""])
+        return input_df
+    
+    def ch4_outputs(self):
+        outfile = "ch4_output.csv"
+        df = pd.DataFrame()
