@@ -1,4 +1,4 @@
-﻿date      ,ch4_obd,eh,tsoil,waterlevel,site,condition
+﻿date,ch4_obd,eh,tsoil,waterlevel,site,condition
 6/3/2022,0.013,-125,19.7,2.5,kimjae,flooding
 6/10/2022,0.074,-57,20.2,2.5,kimjae,flooding
 6/17/2022,0.092,-120,21.6,4.5,kimjae,flooding

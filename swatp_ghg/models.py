@@ -245,8 +245,9 @@ class DCmodel(object):
     
     def read_inputs(self):
         input_df = pd.read_csv(
-            os.path.join(self.model_dir, "input_ghg.csv"),
-            index_col=0, parse_dates=True, na_values=[-9999, ""])
+            os.path.join(
+                self.model_dir, "input_ghg.csv"), na_values=[-9999, ""],
+                index_col=0, parse_dates=True)
         return input_df
     
     def ch4_outputs(self):

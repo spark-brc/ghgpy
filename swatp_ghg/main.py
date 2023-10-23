@@ -12,13 +12,18 @@ from models import DCmodel
 from utils import ObjFns
 import pandas as pd
 import os
-from analyzer import plot_one_one
+from analyzer import plot_one_one, plot_oom
+
+
+SFMT = lambda x: "{0:<10s} ".format(str(x))
+IFMT = lambda x: "{0:<10d} ".format(int(x))
+FFMT = lambda x: "{0:<15.10E} ".format(float(x))
 
 
 def run(wd):
     m1 = DCmodel(wd)
     sand_cont = 0.3
-    root_c_prod = 4.8
+    root_c_prod = 6
 
     indf = m1.read_inputs()
     indf.dropna(axis=0, inplace=True)
@@ -38,64 +43,60 @@ def run(wd):
     outdf.to_csv(os.path.join(wd,"ch4_output.csv"))
 
 
-
 def run_multi_cont(wd):
     m1 = DCmodel(wd)
     sand_cont = 0.3
-    root_c_prod = 4.8
-
+    root_c_prod = 3
     indf = m1.read_inputs()
     indf.dropna(axis=0, inplace=True)
-
-    outdf = pd.DataFrame(
-        columns=['ch4prod','ch4ep','ch4ebl', 'cont'],
-        index=indf.index)
-    outdf.index.name = "date"
-
     conts = indf["condition"].unique()
-
-    testdf = pd.DataFrame()
+    dff = pd.DataFrame()
     for cont in conts:
-
-        df = indf.loc[indf["condition"]==cont]
+        contdf = indf.loc[indf["condition"]==cont]
         ch4prods = []
-        for i in df.index:
-            # print(df.loc[i])
+        for i in contdf.index:
+            # print(contdf.loc[i])
             ch4prod = m1.ch4prod(
-                sand_cont, float(df.loc[i, "eh"]), 
-                float(df.loc[i, "tsoil"]), root_c_prod)
-            
+                sand_cont, float(contdf.loc[i, "eh"]), 
+                float(contdf.loc[i, "tsoil"]), root_c_prod)
             ch4prods.append(ch4prod)
-        gett = pd.DataFrame({"ch4prod":ch4prods}, index=df.index)
-        gett['cont'] = cont
-        testdf = pd.concat([testdf, gett], axis=0)
-    print(testdf)
-            
-    #         outdf.loc[i, "ch4prod"] = ch4prod
-    #         outdf.loc[i, "cont"] = cont
-    #     outdf = pd.concat([outdf, outdf], axis=0)
-    testdf.to_csv(
-        os.path.join(wd,"ch4_output_cont.csv"),
-        )
-
-
-
-
+        getdf = pd.DataFrame({"ch4prod":ch4prods}, index=contdf.index)
+        getdf['cont'] = cont
+        dff = pd.concat([dff, getdf], axis=0)
+    dff.insert(0, "date", dff.index.date)         
+    with open(os.path.join(wd, "ch4_multi.out"), "w") as f:
+        f.write("# created by swatp-ghg\n")
+        f.write(dff.loc[:, ["date", "ch4prod", "cont"]].to_string(
+                                                        col_space=0,
+                                                        formatters=[SFMT, FFMT, SFMT],
+                                                        index=False,
+                                                        header=True,
+                                                        justify="left"))
 
     # outdf.index = outdf.index.strftime("%Y-%m-%d")
 
-def vis(wd):
+def viz(wd):
     m1 = DCmodel(wd)
-    sim = pd.read_csv(
-        os.path.join(wd, "ch4_output.csv"), index_col=0, parse_dates=True,)
     obd =  m1.read_inputs()
-    so_df = pd.concat([sim.ch4prod, obd.ch4_obd], axis=1).dropna(axis=0)
+    obd["date"] = obd.index
+    obd["new_idx"] = obd.loc[:, "date"].astype(str) + "-"+ obd.loc[:, "condition"]
+    # sim = pd.read_csv(
+    #     os.path.join(wd, "ch4_output.csv"), index_col=0, parse_dates=True,)
+    simm = pd.read_csv(
+        os.path.join(wd, "ch4_multi.out"), sep=r"\s+", comment="#")
+    simm["new_idx"] = simm.loc[:, "date"] + "-"+ simm.loc[:, "cont"]
+    so_df = simm.merge(obd, how='inner', on='new_idx')
+
+    # print(obd)
+    # print(simm)
+    # so_df = pd.concat([simm.ch4prod, obd.ch4_obd], axis=1).dropna(axis=0)
     os.chdir(wd)
-    plot_one_one(so_df)
+    # plot_one_one(so_df)
+    plot_oom(so_df)
 
+    print(so_df)
 
-
-    return so_df
+    # return so_df
 
 
 
@@ -113,6 +114,8 @@ def vis(wd):
 if __name__ == "__main__":
     wd = "D:\\Projects\\Models\\swatp-ghg\\models"
     run_multi_cont(wd)
+    viz(wd)
+    # run_multi_cont(wd)
     # so_df = vis(wd)
     
 
