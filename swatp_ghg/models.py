@@ -16,7 +16,7 @@ at 0.5 based on the reactions.
 import os
 import math
 import numpy as np
-from parms import DCparms
+from parms import DCparms, DNDCparms
 import pandas as pd
 
 class DCmodel(object):
@@ -206,7 +206,7 @@ class DCmodel(object):
         return ch4ep_
 
 
-    def fp(self, aglivc, tmxbio):
+    def fp(self, aglivc):
         """ get the fraction of CH4 emitted via rice plants
 
         Args:
@@ -218,11 +218,11 @@ class DCmodel(object):
             float: the fraction of CH4 emitted via rice plants
         """
         # the multiplier 2.5 (g biomass/g C) converts C to biomass (g biomass m^-2)
-        fp_ = self.parms.frCH4emit_p * (1.0 - (aglivc * 2.5/tmxbio))**0.25
+        fp_ = self.parms.mxch4f * (1.0 - (aglivc * 2.5/self.parms.tmxbio))**0.25
 
         return fp_
     
-    def ch4ebl(self, tsoil, ch4prod, ch4ep, mo, mrtblm, bglivc):
+    def ch4ebl(self, tsoil, ch4prod, ch4ep, bglivc):
         """transport of CH4 via ebullition to the atmosphere (CH4Ebl) was also adopted from Huang et al. (2004)
 
         Args:
@@ -240,7 +240,12 @@ class DCmodel(object):
         
         # the multiplier 2.5 (g biomass/g C) converts C to biomass
         # CH4 ebullition is reduced when Tsoil < 2.718282 °C.
-        ch4ebl_ = self.parms.frCH4emit_b * (ch4prod - ch4ep - mo) * min(np.log(tsoil), 1.0) * (mrtblm/(bglivc*2.5))
+        ch4ebl_ = (
+            self.parms.frCH4emit_b * 
+            (ch4prod - ch4ep - self.parms.mo) * 
+            min(np.log(tsoil), 1.0) * 
+            (self.parms.mrtblm/(bglivc*2.5))
+            )
         return ch4ebl_
     
     def read_inputs(self):
@@ -250,6 +255,78 @@ class DCmodel(object):
                 index_col=0, parse_dates=True)
         return input_df
     
-    def ch4_outputs(self):
-        outfile = "ch4_output.csv"
-        df = pd.DataFrame()
+
+class MERES(object):
+    def __init__(self, model_dir):
+        self.model_dir =  model_dir
+        self.parms = DNDCparms()
+
+    def ch4prod(self, pch4prod, o2conc):
+        """Actual CH4 production (PCH4, mol m-3 s-1) in a given soil layer
+
+        Args:
+            pch4prod (float, mol C m-3 s-1): potential CH4 production
+            o2conc (float, mol m-3): concentration of O2
+
+        Returns:
+            float: Actual CH4 production (PCH4, mol m-3 s-1)
+        """
+        ch4prod_ = pch4prod / (1 + (self.parms.eta *o2conc))
+        return ch4prod_
+
+
+
+    def c_root(self, root_wt):
+        """the rate of root exudation (g\ C\ m^{-2}d^{-1}) is calculated as 
+        the product of organic compounds per unit of root biomass 
+        (depending on the crop growth stage) and 
+        the root weight in each soil layer based on results from Lu et al. (1999).
+
+        Args:
+            root_wt (float, kg\ DM\ {ha}^{-1})): existing root dry weight in each soil layer per day
+
+        Returns:
+            float: the rate of root exudation
+        """
+        return 0.4*0.02* root_wt
+    
+    def pch4prod(self, aex, subst_c_prod):
+        """potential CH4 production (PCH4*, mol C m-3 s-1)
+
+        Args:
+            aex (float, mol Ceq m-3): alternative electron acceptors in oxidized form ({AEX}_{ox})
+            subst_c_prod (_type_): the rate of substrate-C production (mol Ceq m-3 s-1)
+
+        Returns:
+            float, mol C m-3 s-1: potential CH4 production 
+        """
+        if aex > self.parms.c_aex:
+            pch4prod_ = 0.0
+        elif aex > 0.0 and aex < self.parms.c_aex:
+            pch4prod_ = min(0.2 * (1-(aex/self.parms.c_aex)), subst_c_prod)
+        elif aex == 0:
+            pch4prod_ = subst_c_prod
+        return pch4prod_
+
+    def ch4oxid(self, phc4prod, ch4conc, o2conc):
+        """_summary_
+
+        Args:
+            phc4prod (_type_): _description_
+            ch4conc (_type_): _description_
+            o2conc (_type_): _description_
+
+        Returns:
+            _type_: _description_
+        """
+        ch4oxid_ = (
+            phc4prod * 
+            (ch4conc/(self.parms.k1 + ch4conc)) * 
+            (o2conc/(self.parms.k1 + o2conc))
+        ) 
+        return ch4oxid_
+
+
+
+
+class DNDC(object):

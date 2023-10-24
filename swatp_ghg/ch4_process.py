@@ -277,7 +277,7 @@ def SI(send_cont_frac):
 
     Args:
         send_cont_frac (float): index which is a function of the average sand content fraction 
-        (sand, 0.0 – 1.0) in the top 10 cm of soil
+        (sand, 0.0 - 1.0) in the top 10 cm of soil
 
     Returns:
         float: soil texture index

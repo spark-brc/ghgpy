@@ -1,6 +1,8 @@
 import numpy as np
 import datetime
 import os
+from models import DCmodel
+import pandas as pd
 
 class ObjFns:
     def __init__(self) -> None:
@@ -78,3 +80,30 @@ class ObjFns:
             ))
         )
         return round(rsq_, 4)
+    
+class PostPr(object):
+    # get sim CH4 emission and obd
+    def __init__(self, wd):
+        self.wd = wd
+        os.chdir(self.wd)
+
+    def get_ch4_so_df(self):
+        # m1 = DCmodel(self.wd)
+        # obd =  m1.read_inputs()
+        # obd["date"] = obd.index
+        # obd["new_idx"] = obd.loc[:, "date"].astype(str) + "-"+ obd.loc[:, "condition"]
+        # sim = pd.read_csv(
+        #     os.path.join(wd, "ch4_output.csv"), index_col=0, parse_dates=True,)
+        simm = pd.read_csv(
+            os.path.join(self.wd, "ch4_multi.out"), sep=r"\s+", comment="#")
+        simm["new_idx"] = simm.loc[:, "date"] + "-"+ simm.loc[:, "cont"]
+        # so_df = simm.merge(obd, how='inner', on='new_idx')
+        return simm
+
+        
+if __name__ == "__main__":
+    wd = "D:\\Projects\\Models\\swatp-ghg\\models"
+    df = PostPr(wd).get_ch4_so_df()
+    print(df.columns)
+    rrr = ObjFns.rsq(df.ch4e_tot.values, df.ch4_obd.values)
+    print(rrr)

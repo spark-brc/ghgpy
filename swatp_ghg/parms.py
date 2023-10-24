@@ -22,14 +22,23 @@ class DCparms(object):
         self.zero_root_frac = 0.7 # (0-1)
         self.ch4rootlim = 1.0 
         self.co2_to_ch4 = 0.5
-        self.frCH4emit_p = 0.55 # MaXimum Fraction of CH4 production emitted by plants. (MXCH4F)
+        self.mxch4f = 0.55 # MaXimum Fraction of CH4 production emitted by plants. (MXCH4F)
         self.frac_to_exd = 0.45 # range(0 - 1)
         self.tmxbio = 1260 # (rice)
         self.q10 = 3.0
         self.frCH4emit_b = 0.7 # the fraction of CH4 emitted via bubbles
+        self.mo = 0.002 # Mo was set to 0.0015 gC m−2d−1 (Huang et al. 2004) but is set to 0.002 in DayCent
+        self.mrtblm = 1.0 # Root biomass that when exceeded starts to reduce methane bubble formation (g biomass m-2)
 
 
 
-
+class DNDCparms(object):
+    def __init__(self):
+        self.c_aex = 24.0 # the critical concentration of the oxidized alternative electron acceptor pool (mol Ceq m-3)
+        self.eta = 400 # parameter (units: m3 mol-1) representing the sensitivity of methanogenesis to 
+                        # the concentration of O2 ([O2], mol m-3), 
+                        # A value of 400 m3 mol-1 was used for η (Arah & Stephen, 1998).
+        self.k1 = 0.1 # k1 and k2 are Michaelis-Menten constants (units: mol m-3) for 
+                        # a dual-substrate reaction.
 
 
