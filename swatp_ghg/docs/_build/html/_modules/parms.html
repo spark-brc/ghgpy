@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>parms &mdash; swatp-ghg documentation 0.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=7026087e"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            swatp-ghg documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">swatp-ghg documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">parms</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for parms</h1><div class="highlight"><pre>
+<span></span>
+<div class="viewcode-block" id="DCparms">
+<a class="viewcode-back" href="../parms.html#parms.DCparms">[docs]</a>
+<span class="k">class</span> <span class="nc">DCparms</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cvfr_cho_to_ch4</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># conversion factor of carbohydrate decomposition to CO2 and CH4 (dimensionless) </span>
+                                    <span class="c1"># C6H12O6_to_CH4 (alpha1)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cvcf_oc_to_co2</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># conversion coefficient on a mole weight basis of organic carbon to CO2 </span>
+                                    <span class="c1">#calculated as 0.5 (alpha2)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frToCH4</span> <span class="o">=</span> <span class="mf">0.15</span> <span class="c1"># the fraction of heterotrophic respiration converted to CH4 under anaerobic conditions</span>
+                            <span class="c1"># beta1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frToExudate</span> <span class="o">=</span> <span class="mf">0.45</span> <span class="c1"># fraction of root carbon production contributing to rhizodeposition (fracToExudates)</span>
+                            <span class="c1"># range 0.35-0.6 beta2 FREXUD 0.0 - 1.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hr</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="c1"># Rh is heterotrophic respiration from decomposition of organic matter </span>
+                        <span class="c1">#(above- and below-ground structural and metabolic litter and above- and below-ground SOC pools) </span>
+                        <span class="c1"># (g CO2-C m−2 d−1)</span>
+                        <span class="c1"># NOTE: is this daily simulated input or parameter?</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aeh</span> <span class="o">=</span> <span class="mf">0.23</span> <span class="c1"># range: </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">deh</span> <span class="o">=</span> <span class="mf">0.16</span> <span class="c1"># range:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beh_flood</span> <span class="o">=</span> <span class="o">-</span><span class="mi">250</span> <span class="c1"># Lower limit value for Eh during flooding course (mv)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beh_drain</span> <span class="o">=</span> <span class="mi">300</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eh_rain_irr</span> <span class="o">=</span> <span class="o">-</span><span class="mi">20</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zero_root_frac</span> <span class="o">=</span> <span class="mf">0.7</span> <span class="c1"># (0-1)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ch4rootlim</span> <span class="o">=</span> <span class="mf">1.0</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">co2_to_ch4</span> <span class="o">=</span> <span class="mf">0.5</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mxch4f</span> <span class="o">=</span> <span class="mf">0.55</span> <span class="c1"># MaXimum Fraction of CH4 production emitted by plants. (MXCH4F)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frac_to_exd</span> <span class="o">=</span> <span class="mf">0.45</span> <span class="c1"># range(0 - 1)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tmxbio</span> <span class="o">=</span> <span class="mi">1260</span> <span class="c1"># (rice)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q10</span> <span class="o">=</span> <span class="mf">3.0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frCH4emit_b</span> <span class="o">=</span> <span class="mf">0.7</span> <span class="c1"># the fraction of CH4 emitted via bubbles</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mo</span> <span class="o">=</span> <span class="mf">0.002</span> <span class="c1"># Mo was set to 0.0015 gC m−2d−1 (Huang et al. 2004) but is set to 0.002 in DayCent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mrtblm</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="c1"># Root biomass that when exceeded starts to reduce methane bubble formation (g biomass m-2)</span></div>
+
+
+
+
+<div class="viewcode-block" id="DNDCparms">
+<a class="viewcode-back" href="../parms.html#parms.DNDCparms">[docs]</a>
+<span class="k">class</span> <span class="nc">DNDCparms</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">c_aex</span> <span class="o">=</span> <span class="mf">24.0</span> <span class="c1"># the critical concentration of the oxidized alternative electron acceptor pool (mol Ceq m-3)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eta</span> <span class="o">=</span> <span class="mi">400</span> <span class="c1"># parameter (units: m3 mol-1) representing the sensitivity of methanogenesis to </span>
+                        <span class="c1"># the concentration of O2 ([O2], mol m-3), </span>
+                        <span class="c1"># A value of 400 m3 mol-1 was used for η (Arah &amp; Stephen, 1998).</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k1</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="c1"># k1 and k2 are Michaelis-Menten constants (units: mol m-3) for </span></div>
+
+                        <span class="c1"># a dual-substrate reaction.</span>
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Seonggyu Park.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

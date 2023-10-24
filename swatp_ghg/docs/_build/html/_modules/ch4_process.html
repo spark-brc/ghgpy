@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ch4_process &mdash; swatp-ghg documentation 0.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=7026087e"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            swatp-ghg documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">swatp-ghg documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">ch4_process</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ch4_process</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Copyright 2023 by Seonggyu Park </span>
+<span class="sd">This file is part of SWAT+GHG tool.</span>
+<span class="sd">:author: Seonggyu Park</span>
+<span class="sd">This module contains a framework to summarize </span>
+<span class="sd">- Decomposition</span>
+<span class="sd">    - Rhizodeposition</span>
+<span class="sd">    - Electron Acceptors</span>
+<span class="sd">- Oxidation</span>
+<span class="sd">- Ebullition</span>
+<span class="sd">- Diffusion</span>
+<span class="sd">- Aerenchyma</span>
+<span class="sd">processes.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="Decomposition">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.Decomposition">[docs]</a>
+<span class="k">class</span> <span class="nc">Decomposition</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    FOM (crop residues, green manure, and more stable organic or humic pool (HUM))</span>
+<span class="sd">    The CERES-Rice model requires input data (FOM): </span>
+<span class="sd">    .. Amount of straw added,</span>
+<span class="sd">    .. C/N</span>
+<span class="sd">    .. Depth of incorporation</span>
+<span class="sd">    .. root residue from previous crop</span>
+
+<span class="sd">    Initialization of the HUM pool is calculated from the soil organic carbon as specified in the soil data file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        MERES Decay rate (Seligman and Keulen, 1981)</span>
+<span class="sd">        daily decay rate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dr_carb</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1"># carbohydrate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dr_cel</span> <span class="o">=</span> <span class="mf">0.05</span> <span class="c1"># cellulose</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dr_lig</span> <span class="o">=</span> <span class="mf">0.0095</span> <span class="c1"># lignin</span>
+
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DayCent Decomposition rate</span>
+<span class="sd">        per week</span>
+<span class="sd">        Ki: state variables</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k01</span> <span class="o">=</span> <span class="mf">0.076</span> <span class="c1"># structural soil surface litter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k02</span> <span class="o">=</span> <span class="mf">0.28</span> <span class="c1"># metaboilc soil surface litter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k03</span> <span class="o">=</span> <span class="mf">0.094</span> <span class="c1"># structural soil litter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k04</span> <span class="o">=</span> <span class="mf">0.35</span> <span class="c1"># metaboilc soil litter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k05</span> <span class="o">=</span> <span class="mf">0.14</span> <span class="c1"># active soil fraction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k06</span> <span class="o">=</span> <span class="mf">0.0038</span> <span class="c1"># slow soil fraction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k07</span> <span class="o">=</span> <span class="mf">0.00013</span> <span class="c1"># passive soil fraction</span>
+
+<div class="viewcode-block" id="Decomposition.actual_dr">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.Decomposition.actual_dr">[docs]</a>
+    <span class="k">def</span> <span class="nf">actual_dr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Qp</span><span class="p">):</span> <span class="c1">#dQp/dt, kg C ha^-1 d^-1</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Eq:</span>
+<span class="sd">            dQp/dt = QpRp(max) * f(Ts) * g(theta_s) * h(k_s)</span>
+<span class="sd">        .. Qp (kg C ha-1): amount of organic matter in pool p on the day</span>
+<span class="sd">        .. Rp(max): decay constants</span>
+<span class="sd">        .. f(Ts): dimesionless multiplier for soil temperature (C)</span>
+<span class="sd">        .. g(theta_s): dimesionless multiplier for soil moisture (m3 water m^-3 soil)</span>
+<span class="sd">        .. h(k_s): pool C/N (kg C kg^-1 N)</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            _type_: float</span>
+<span class="sd">            The total amount of carbon released by decay of organic matter on a given day</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">Rps</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dr_carb</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dr_cel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dr_lig</span><span class="p">]</span>
+        <span class="n">tot_Op</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">Rp</span> <span class="ow">in</span> <span class="n">Rps</span><span class="p">:</span>  
+            <span class="n">dOp</span> <span class="o">=</span> <span class="n">Qp</span> <span class="o">*</span> <span class="n">Rp</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dr_temp</span><span class="p">()</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dr_moisture</span><span class="p">()</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">dr_cnpool</span><span class="p">()</span>
+            <span class="n">tot_Op</span> <span class="o">+=</span> <span class="n">dOp</span>
+        <span class="k">return</span> <span class="n">tot_Op</span></div>
+
+    
+<div class="viewcode-block" id="Decomposition.decomp_rate">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.Decomposition.decomp_rate">[docs]</a>
+    <span class="k">def</span> <span class="nf">decomp_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        DayCent model</span>
+<span class="sd">        eq:</span>
+<span class="sd">            \sfrac{{dC}_i}{d_t}=K_i * M_d * T_d * C_i</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="Decomposition.dr_temp">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.Decomposition.dr_temp">[docs]</a>
+    <span class="k">def</span> <span class="nf">dr_temp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> </div>
+
+    
+<div class="viewcode-block" id="Decomposition.dr_moisture">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.Decomposition.dr_moisture">[docs]</a>
+    <span class="k">def</span> <span class="nf">dr_moisture</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> </div>
+
+    
+<div class="viewcode-block" id="Decomposition.dr_cnpool">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.Decomposition.dr_cnpool">[docs]</a>
+    <span class="k">def</span> <span class="nf">dr_cnpool</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span></div>
+
+
+<div class="viewcode-block" id="Decomposition.rel_Cdecay">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.Decomposition.rel_Cdecay">[docs]</a>
+    <span class="k">def</span> <span class="nf">rel_Cdecay</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="rhizoDeposit">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.rhizoDeposit">[docs]</a>
+<span class="k">class</span> <span class="nc">rhizoDeposit</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The contribution to CH4 production of organic matter originating from </span>
+<span class="sd">    living rice plants through root exudates and root death, </span>
+<span class="sd">    collectively referred to as rhizodeposition.</span>
+
+<span class="sd">    - The peak in emission rates commonly observed toward the end of the growing season was ascribed by </span>
+<span class="sd">    these authors to be due to the increase in decaying root tissue or root exudates after flowering.</span>
+
+
+<span class="sd">    Args:</span>
+<span class="sd">        object (_type_): _description_</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        beta_2 is the fraction of root carbon production contributing to rhizodeposition, </span>
+<span class="sd">        which was set to an intermediate value of 0.45 from a range of 0.35–0.6 described in Cao et al. (1995).</span>
+<span class="sd">        Args:</span>
+<span class="sd">            RC (_type_): _description_</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beta2</span> <span class="o">=</span> <span class="mf">0.45</span>
+
+
+<div class="viewcode-block" id="rhizoDeposit.root_exudation">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.rhizoDeposit.root_exudation">[docs]</a>
+    <span class="k">def</span> <span class="nf">root_exudation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">w_root</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        In MERES, the rate of root exudation (g\ C\ m^{-2}d^{-1}) is calculated as </span>
+<span class="sd">        the product of organic compounds per unit of root biomass (depending on the crop growth stage) and </span>
+<span class="sd">        the root weight in each soil layer based on results from Lu et al. (1999).        </span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            w_root (float, Kg DM ha^-1): existing root dry weight</span>
+<span class="sd">            Root death is assumed to be a constant 2% of existing root dry weight </span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float: the rate of root exudation (g C m^{-2}d^{-1})</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="n">rCroots</span> <span class="o">=</span> <span class="mf">0.4</span> <span class="o">*</span> <span class="mf">0.02</span> <span class="o">*</span> <span class="n">w_root</span>
+        <span class="k">return</span> <span class="n">rCroots</span></div>
+
+    
+<div class="viewcode-block" id="rhizoDeposit.root_exud_dc">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.rhizoDeposit.root_exud_dc">[docs]</a>
+    <span class="k">def</span> <span class="nf">root_exud_dc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">RC</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            RC (_type_): _description_</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">Croot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta2</span> <span class="o">*</span> <span class="n">RC</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="electAcceptor">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.electAcceptor">[docs]</a>
+<span class="k">class</span> <span class="nc">electAcceptor</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Unless Oxygen (O2) is depleted in the soil, O2 acts as the sole electron acceptor for microbial respiration. </span>
+<span class="sd">    After rice soil is flooded, dissolved O2 in the floodwater and soil is consumed rapidly. </span>
+<span class="sd">    The need for electron acceptors by anaerobic organisms results in </span>
+<span class="sd">    the reduction of a number of other oxidized species of ions in the soil. </span>
+<span class="sd">    Reductions of NO3- to NO2-, N2O to N2, Mn4+ to Mn2+, Fe3+ to Fe2+, SO42- to S2- all resulting in </span>
+<span class="sd">    the production of CO2, and finally CO2 to CH4, occur sequentially, </span>
+<span class="sd">    provided available carbon sources exist (Patrick and Delaune, 1977). </span>
+<span class="sd">    CH4 production will occur after most of the soil&#39;s NO3-, N2O, Mn4+, Fe3+, and </span>
+<span class="sd">    SO42- ions have been reduced.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        object (_type_): _description_</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<div class="viewcode-block" id="electAcceptor.aex_ox_meres">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.electAcceptor.aex_ox_meres">[docs]</a>
+    <span class="k">def</span> <span class="nf">aex_ox_meres</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The MERES model assumed the presence in the soil of a pool of alternative electron acceptors in </span>
+<span class="sd">        oxidized form ({AEX}_{ox}), which reacts with the substrate C from decomposition to form CO2, </span>
+<span class="sd">        becoming reduced in the process ({AEX}_{red}). </span>
+<span class="sd">        It specifies the quantity of AEA present in moles of C equivalents m-3, </span>
+<span class="sd">        assuming a 1:1 stoichiometric relationship between substrate C and the AEA, i.e.,</span>
+<span class="sd">        \left({CH}_2O\right)+{AEX}_{ox}\rightarrow{CO}_2+{AEX}_{red}+{2H}^+</span>
+<span class="sd">        - </span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+
+    
+<div class="viewcode-block" id="electAcceptor.pCH4_aex">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.electAcceptor.pCH4_aex">[docs]</a>
+    <span class="k">def</span> <span class="nf">pCH4_aex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aex_ox</span><span class="p">,</span> <span class="n">rSC</span><span class="p">,</span> <span class="n">aea_ox_max</span><span class="o">=</span><span class="mf">24.0</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">aex_ox</span> <span class="o">&gt;</span> <span class="n">aea_ox_max</span><span class="p">:</span>
+            <span class="n">pCH4</span> <span class="o">=</span> <span class="mi">0</span> 
+        <span class="k">elif</span> <span class="n">aea_ox_max</span> <span class="o">&gt;</span> <span class="n">aex_ox</span><span class="p">:</span>
+            <span class="n">pCH4</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="mf">0.2</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">aex_ox</span><span class="o">/</span><span class="n">aea_ox_max</span><span class="p">),</span> <span class="n">rSC</span><span class="p">])</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Oxidation">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.Oxidation">[docs]</a>
+<span class="k">class</span> <span class="nc">Oxidation</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    MERES</span>
+<span class="sd">    - uses the Michaelis-Menten equation to simulate the rate of CH4 oxidation (QCH4, mol m-3 s-1) by the methanotrophic bacteria.</span>
+<span class="sd">    - Eq: Q_{CH4}=P_{CH4} * \ast\bullet[CH4](k1+[CH4])∙[O2](k1+[O2])</span>
+<span class="sd">    .. P_ch4a: potential rate of methanogenesis defined previously, mol/(m^3*s)</span>
+<span class="sd">    .. bracket_ch4: concentration of CH4, mol/m^3</span>
+<span class="sd">    .. bracket_o2: concentration of O2, mol/m3</span>
+<span class="sd">    .. k1: 0.33, Michaelis-Menten constants (units: mol m-3) for a dual-substrate reaction.</span>
+<span class="sd">    .. k2: 0.44, Michaelis-Menten constants (units: mol m-3) for a dual-substrate reaction.</span>
+<span class="sd">    .. k3: 0.22, Michaelis-Menten constants (units: mol m-3) for a dual-substrate reaction.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k1</span> <span class="o">=</span> <span class="mf">0.33</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k2</span> <span class="o">=</span> <span class="mf">0.44</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k3</span> <span class="o">=</span> <span class="mf">0.22</span>
+
+<div class="viewcode-block" id="Oxidation.ox_ch4">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.Oxidation.ox_ch4">[docs]</a>
+    <span class="k">def</span> <span class="nf">ox_ch4</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p_ch4</span><span class="p">,</span> <span class="n">conc_ch4</span><span class="p">,</span> <span class="n">conc_o2</span><span class="p">):</span>
+        <span class="n">q_ch4</span> <span class="o">=</span> <span class="n">p_ch4</span> <span class="o">*</span> <span class="p">(</span><span class="n">conc_ch4</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k1</span><span class="o">+</span><span class="n">conc_ch4</span><span class="p">)</span> <span class="o">*</span> <span class="n">conc_o2</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k2</span> <span class="o">+</span> <span class="n">conc_o2</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">q_ch4</span> </div>
+</div>
+
+
+
+<div class="viewcode-block" id="Ebullition">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.Ebullition">[docs]</a>
+<span class="k">class</span> <span class="nc">Ebullition</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    MERES</span>
+<span class="sd">    .. E: rate of ebullition, mol/(m^3*s)</span>
+<span class="sd">    .. y_w: concentration of the substance in solution, mol/m^3</span>
+<span class="sd">    .. y_wa: solubility of the substance in water, mol/m^3</span>
+<span class="sd">            Values of y_wa (at 25 °C) used were 1.23 mol m^-3 and </span>
+<span class="sd">            1.31 mol m^-3 for O2 and CH4, respectively.      </span>
+<span class="sd">    .. k_e: a constant (units: s) equal to the timestep of the simulation.</span>
+<span class="sd">            As the time-step in the SWAT+ model is 1 d, </span>
+<span class="sd">            k_e takes a value of 86400s.</span>
+<span class="sd">    - Currently, there is no temperature dependence of y_wa included in the model, </span>
+<span class="sd">        but this could be incorporated in future versions.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_wa</span><span class="o">=</span><span class="mf">1.23</span><span class="p">,</span> <span class="n">k_e</span><span class="o">=</span><span class="mi">86400</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_wa</span> <span class="o">=</span> <span class="n">y_wa</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k_e</span> <span class="o">=</span> <span class="n">k_e</span>
+
+<div class="viewcode-block" id="Ebullition.e_ch4">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.Ebullition.e_ch4">[docs]</a>
+    <span class="k">def</span> <span class="nf">e_ch4</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_w</span><span class="p">):</span>
+        <span class="n">e_ch4</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">y_w</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_wa</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">k_e</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">e_ch4</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Aerenchyma">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.Aerenchyma">[docs]</a>
+<span class="k">class</span> <span class="nc">Aerenchyma</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    MERES</span>
+<span class="sd">    - assumes that the conductance of the plant pathway is proportional to the root length density </span>
+<span class="sd">    (Lv, cm root cm-3 soil) present in each soil layer, </span>
+<span class="sd">    such that λ= λr Lv, where λr represents the specific conductivity (units: m air (m root)-1) of </span>
+<span class="sd">    the root system. </span>
+<span class="sd">    Thus, the flux (F, mol m-3 s-1) for each substance (O2 or CH4) is given by    </span>
+<span class="sd">    - Eq: F=\lambda_r(L_v * {10}^4)D_a(y_{a0}-y_a)</span>
+<span class="sd">    .. λ: the conductance of the pathway through the plant, m air m-3 soil</span>
+<span class="sd">    .. λr: specific conductivity (units: m air (m root)-1) of the root system.</span>
+<span class="sd">    .. L_v: the root length density (Lv, cm root cm-3 soil) present in each soil layer</span>
+<span class="sd">    .. D_a: the diffusivity of the respective substance through air, m2 s^-1</span>
+<span class="sd">    .. y_a0: concentration of the respective substance in </span>
+<span class="sd">            the atmosphere (O2: 7.76 mol m^-3; CH4: 7.5 * 10-5 mol m^-3),</span>
+<span class="sd">    .. y_a: concentration in the gaseous phase in each soil layer.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_a0_o2</span> <span class="o">=</span> <span class="mf">7.76</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_a0_ch4</span> <span class="o">=</span> <span class="mf">7.5</span> <span class="o">*</span> <span class="mf">0.00001</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">D_a_o2</span> <span class="o">=</span> <span class="mf">2.02</span> <span class="o">*</span> <span class="mf">0.00001</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">D_a_ch4</span> <span class="o">=</span> <span class="mf">1.06</span> <span class="o">*</span> <span class="mf">0.00001</span>
+
+<div class="viewcode-block" id="Aerenchyma.a_ch4">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.Aerenchyma.a_ch4">[docs]</a>
+    <span class="k">def</span> <span class="nf">a_ch4</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_a</span><span class="p">,</span> <span class="n">l_v</span><span class="p">):</span>
+        <span class="n">a_ch4</span> <span class="o">=</span> <span class="n">y_a</span> <span class="o">*</span> <span class="p">(</span><span class="n">l_v</span> <span class="o">*</span> <span class="mi">10000</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">D_a_ch4</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_a0_ch4</span> <span class="o">-</span> <span class="n">y_a</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">a_ch4</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="c_soil">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.c_soil">[docs]</a>
+<span class="k">def</span> <span class="nf">c_soil</span><span class="p">(</span><span class="n">conv_fac</span><span class="p">,</span> <span class="n">SI</span><span class="p">,</span> <span class="n">beta_1</span><span class="p">,</span> <span class="n">Rh</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The first step in modeling methanogenesis is to estimate </span>
+<span class="sd">    the amount of carbon substrate available for CH4 production. </span>
+<span class="sd">    DayCent&#39;s methanogenesis submodel includes soil organic matter degradation and </span>
+<span class="sd">    rhizodeposition as the sources of carbon.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        conv_fac (float): _description_</span>
+<span class="sd">        SI (_type_): _description_</span>
+<span class="sd">        beta_1 (float): _description_</span>
+<span class="sd">        Rh (_type_): _description_</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        _type_: _description_</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">c_soil</span> <span class="o">=</span> <span class="n">conv_fac</span> <span class="o">*</span> <span class="n">beta_1</span> <span class="o">*</span> <span class="n">SI</span> <span class="o">*</span> <span class="n">Rh</span>
+    <span class="k">return</span> <span class="n">c_soil</span></div>
+
+
+<div class="viewcode-block" id="SI">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.SI">[docs]</a>
+<span class="k">def</span> <span class="nf">SI</span><span class="p">(</span><span class="n">send_cont_frac</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;calculate soil texture index</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        send_cont_frac (float): index which is a function of the average sand content fraction </span>
+<span class="sd">        (sand, 0.0 - 1.0) in the top 10 cm of soil</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: soil texture index</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">SI</span> <span class="o">=</span> <span class="mf">0.325</span><span class="o">+</span><span class="mf">2.25</span><span class="o">*</span><span class="n">send_cont_frac</span>
+    <span class="k">return</span> <span class="n">SI</span></div>
+
+
+
+
+
+
+<div class="viewcode-block" id="c_root">
+<a class="viewcode-back" href="../ch4_process.html#ch4_process.c_root">[docs]</a>
+<span class="k">def</span> <span class="nf">c_root</span><span class="p">(</span><span class="n">conv_fac_exudate</span><span class="p">,</span> <span class="n">rootCprod</span><span class="p">,</span> <span class="n">send_cont_frac</span><span class="p">):</span>
+    <span class="n">conv_fac_exudate</span> <span class="o">*</span> <span class="n">SI</span><span class="p">(</span><span class="n">send_cont_frac</span><span class="p">)</span> <span class="o">*</span> <span class="n">rootCprod</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Seonggyu Park.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

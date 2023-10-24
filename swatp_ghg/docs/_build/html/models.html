@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>models module &mdash; swatp-ghg documentation 0.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=7026087e"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            swatp-ghg documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">models module</a><ul>
+<li><a class="reference internal" href="#models.DCmodel"><code class="docutils literal notranslate"><span class="pre">DCmodel</span></code></a><ul>
+<li><a class="reference internal" href="#models.DCmodel.c_root"><code class="docutils literal notranslate"><span class="pre">DCmodel.c_root()</span></code></a></li>
+<li><a class="reference internal" href="#models.DCmodel.c_soil"><code class="docutils literal notranslate"><span class="pre">DCmodel.c_soil()</span></code></a></li>
+<li><a class="reference internal" href="#models.DCmodel.ch4ebl"><code class="docutils literal notranslate"><span class="pre">DCmodel.ch4ebl()</span></code></a></li>
+<li><a class="reference internal" href="#models.DCmodel.ch4ep"><code class="docutils literal notranslate"><span class="pre">DCmodel.ch4ep()</span></code></a></li>
+<li><a class="reference internal" href="#models.DCmodel.ch4prod"><code class="docutils literal notranslate"><span class="pre">DCmodel.ch4prod()</span></code></a></li>
+<li><a class="reference internal" href="#models.DCmodel.f_temp"><code class="docutils literal notranslate"><span class="pre">DCmodel.f_temp()</span></code></a></li>
+<li><a class="reference internal" href="#models.DCmodel.feh"><code class="docutils literal notranslate"><span class="pre">DCmodel.feh()</span></code></a></li>
+<li><a class="reference internal" href="#models.DCmodel.fp"><code class="docutils literal notranslate"><span class="pre">DCmodel.fp()</span></code></a></li>
+<li><a class="reference internal" href="#models.DCmodel.get_eh"><code class="docutils literal notranslate"><span class="pre">DCmodel.get_eh()</span></code></a></li>
+<li><a class="reference internal" href="#models.DCmodel.read_inputs"><code class="docutils literal notranslate"><span class="pre">DCmodel.read_inputs()</span></code></a></li>
+<li><a class="reference internal" href="#models.DCmodel.soil_index"><code class="docutils literal notranslate"><span class="pre">DCmodel.soil_index()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#models.MERES"><code class="docutils literal notranslate"><span class="pre">MERES</span></code></a><ul>
+<li><a class="reference internal" href="#models.MERES.c_root"><code class="docutils literal notranslate"><span class="pre">MERES.c_root()</span></code></a></li>
+<li><a class="reference internal" href="#models.MERES.ch4oxid"><code class="docutils literal notranslate"><span class="pre">MERES.ch4oxid()</span></code></a></li>
+<li><a class="reference internal" href="#models.MERES.ch4prod"><code class="docutils literal notranslate"><span class="pre">MERES.ch4prod()</span></code></a></li>
+<li><a class="reference internal" href="#models.MERES.pch4prod"><code class="docutils literal notranslate"><span class="pre">MERES.pch4prod()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">swatp-ghg documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">models module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/models.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-models">
+<span id="models-module"></span><h1>models module<a class="headerlink" href="#module-models" title="Link to this heading"></a></h1>
+<p>Hartman, M.D., Parton, W.J., Grosso, S.J.D., Easter, M., Hendryx, J., Hilinski, T., Kelly, R., 
+Keough, C.A., Killian, K., Lutz, S., Marx, E., McKeown, R., Ogle, S., Ojima, D.S., Paustian, K., 
+Swan, A., Williams, S., n.d. 
+The Daily Century Ecosystem, Soil Organic Matter, Nutrient Cycling, Nitrogen Trace Gas, 
+and Methane Model User Manual, Scientific Basis, and Technical Documentation.</p>
+<p>Anaerobic carbohydrate fermentation and methanogenesis occur through the following reactions, 
+2(CH2O) → CO2+ CH4 (Conrad 1989, Matthews et al. 2000) or C6H12O6→ 3CO2+ 3CH4 (Huang et al. 1998). 
+Both of these equations illustrate that the carbon substrate producing CH4 also produces 
+the same carbon equivalent of CO2. 
+Hence, a conversion factor C6H12O6_to_CH4 on a mole weight basis of carbohydrate to CH4 is set 
+at 0.5 based on the reactions.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="models.DCmodel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">models.</span></span><span class="sig-name descname"><span class="pre">DCmodel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models.html#DCmodel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.DCmodel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="models.DCmodel.c_root">
+<span class="sig-name descname"><span class="pre">c_root</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_c_prod</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sand_cont</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models.html#DCmodel.c_root"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.DCmodel.c_root" title="Link to this definition"></a></dt>
+<dd><p>The rate of rhizodeposition (Croot, gC m^-2 d^-1) is calculated using 
+the following equation.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>frac_to_exudates (float): the fraction of root carbon production contributing to 
+rhizodeposition (range of 0.35-0.6 described in Cao et al. (1995))
+root_c_prod (_type_): the previous day’s fine root production estimated by 
+the plant production submodel in DayCent (gC m^-2 d^-1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.DCmodel.c_soil">
+<span class="sig-name descname"><span class="pre">c_soil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sand_cont</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models.html#DCmodel.c_soil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.DCmodel.c_soil" title="Link to this definition"></a></dt>
+<dd><p>The first step in modeling methanogenesis is to estimate 
+the amount of carbon substrate available for CH4 production. 
+DayCent’s methanogenesis submodel includes soil organic matter degradation and 
+rhizodeposition as the sources of carbon.</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>beta1 (float): A fraction (β1) is defined to quantify </dt><dd><p>the amount of substrate available for methanogens based on 
+the simulation of heterotrophic respiration by the DayCent model.
+β1 (CO2CH4, fix.100) is the fraction of Rh converted to CH4 under 
+anaerobic conditions;</p>
+</dd>
+</dl>
+<p>SI (_type_): _description_
+Rh (float): Rh is heterotrophic respiration from decomposition of organic matter</p>
+<blockquote>
+<div><p>(above- and below-ground structural and metabolic litter and 
+above- and below-ground SOC pools) (g CO2^-C m^-2 d^-1)</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.DCmodel.ch4ebl">
+<span class="sig-name descname"><span class="pre">ch4ebl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tsoil</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ch4prod</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ch4ep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bglivc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models.html#DCmodel.ch4ebl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.DCmodel.ch4ebl" title="Link to this definition"></a></dt>
+<dd><p>transport of CH4 via ebullition to the atmosphere (CH4Ebl) was also adopted from Huang et al. (2004)</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>methzr (float): fraction of CH4 emitted via bubbles when there is zero fine root biomass
+tsoil (_type_): 
+ch4prod (_type_): _description_
+ch4ep (_type_): _description_
+mo (float, gC m^-2d^-1): Mo was set to 0.0015 gC m^-2d^-1 (Huang et al. 2004) but is set to 0.002 in DayCent
+mrtblm (float, g biomass m-2): the root biomass that starts to reduce CH4 bubble formation (g biomass m-2)
+bglivc (float, g C m^-2): the amount of fine root C for the crop as simulated by DayCent (g C m^-2)</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: transport of CH4 via ebullition to the atmosphere (CH4Ebl)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.DCmodel.ch4ep">
+<span class="sig-name descname"><span class="pre">ch4ep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ch4prod</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models.html#DCmodel.ch4ep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.DCmodel.ch4ep" title="Link to this definition"></a></dt>
+<dd><p>CH4 emission rates through the rice plants (CH4EP) (g CH4-C m^-2d^-1) were simulated</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>fp (float): fraction of CH4 emitted via rice plants
+ch4prod (float): CH4Prod is total methane production (g CH4-C m^-2d^-1)</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: transport of CH4 via ebullition to the atmosphere (CH4Ebl)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.DCmodel.ch4prod">
+<span class="sig-name descname"><span class="pre">ch4prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sand_cont</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eh_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_soil</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_c_prod</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models.html#DCmodel.ch4prod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.DCmodel.ch4prod" title="Link to this definition"></a></dt>
+<dd><p>CH4 production was simulated based on carbon substrate supply and 
+associated influence of Eh and temperature</p>
+<dl>
+<dt>Args:</dt><dd><p>eh_t (float, mV): initial redox potential
+sand_cont (float):  the average sand content fraction (sand, 0.0 - 1.0) in the top 10 cm of soil
+t_soil (float, ◦C): average soil temperature in the top 10 cm of soil (◦C)
+root_c_prod (float, gC m^-2 d^-1): the previous day’s fine root production estimated by</p>
+<blockquote>
+<div><p>the plant production submodel in DayCent (gC m^-2 d^-1)</p>
+</div></blockquote>
+</dd>
+<dt>Returns:</dt><dd><p>float, g CH4-C m^-2d^-1: CH4Prod is the CH4 production rate (g CH4-C m^-2d^-1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.DCmodel.f_temp">
+<span class="sig-name descname"><span class="pre">f_temp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_soil</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models.html#DCmodel.f_temp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.DCmodel.f_temp" title="Link to this definition"></a></dt>
+<dd><p>estimate the influence of soil temperature. To simulate CH4 production, 
+we adopted the approach by (Huang et al. 1998) and (Huang et al. 2004).</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>t_soil (float): the average soil temperature in the top 10 cm of soil (◦C)
+q10 (float, optional): a temperature coefficient representing the change of a biological or 
+chemical system as a consequence of increasing the temperature by 10°C, 
+and was assumed to be a value of 3.0 (Huang et al. 1998). Defaults to 3.0.</p>
+</dd>
+<dt>Returns:</dt><dd><p>_type_: _description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.DCmodel.feh">
+<span class="sig-name descname"><span class="pre">feh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eh_t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models.html#DCmodel.feh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.DCmodel.feh" title="Link to this definition"></a></dt>
+<dd><p>FEh, a reduction factor for soil redox potential (Eh) (mV), is 
+estimated using the following equations from Huang et al. (1998) and 
+Huang et al. (2004):</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>eh_t (float, mV): Eht represents the Eh value at time t, and 
+t is the number of days after flooding began or 
+since drainage occurred in the cycle.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.DCmodel.fp">
+<span class="sig-name descname"><span class="pre">fp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aglivc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models.html#DCmodel.fp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.DCmodel.fp" title="Link to this definition"></a></dt>
+<dd><p>get the fraction of CH4 emitted via rice plants</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>aglivc (float, g C m^-2): the amount of above-ground live C for the crop as simulated by DayCent (g C m^-2)
+tmxbio (float, g biomass m^-2): the maximum aboveground biomass at the end of growing season
+mxch4f (float, optional): MaXimum Fraction of CH4 production emitted by plants. Defaults to 0.55.</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: the fraction of CH4 emitted via rice plants</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.DCmodel.get_eh">
+<span class="sig-name descname"><span class="pre">get_eh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sand_cont</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waterlevel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eh_init</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models.html#DCmodel.get_eh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.DCmodel.get_eh" title="Link to this definition"></a></dt>
+<dd><p>DEh and AEh (DEH and AEH, fix.100) are differential coefficients that 
+were estimated as 0.16 and 0.23, respectively. 
+The BEhflood (BEHFL, fix.100) is set at a low-limit value of -250 mV, 
+and Behdrain (BEHDR, fix.100) is set to an upper-limit value of 300 mV (Cao et al. 1995, Huang et al. 2004). 
+Soil Eh is a constant value of -20 mV when intermittent irrigation is used in 
+rice paddies as discussed in Huang et al. (2004).</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>beta1 (float): A fraction (β1) is defined to quantify </dt><dd><p>the amount of substrate available for methanogens based on 
+the simulation of heterotrophic respiration by the DayCent model.
+β1 (CO2CH4, fix.100) is the fraction of Rh converted to CH4 under 
+anaerobic conditions;</p>
+</dd>
+</dl>
+<p>SI (_type_): _description_
+Rh (float): Rh is heterotrophic respiration from decomposition of organic matter</p>
+<blockquote>
+<div><p>(above- and below-ground structural and metabolic litter and 
+above- and below-ground SOC pools) (g CO2^-C m^-2 d^-1)</p>
+</div></blockquote>
+<p>waterlevel (_type_): _description_
+eh_t (_type_): _description_
+deh (float, optional): _description_. Defaults to 0.16.
+aeh (float, optional): _description_. Defaults to 0.23.
+beh_flood (int, optional): _description_. Defaults to -250.
+beh_drain (int, optional): _description_. Defaults to 300.</p>
+</dd>
+<dt>Returns:</dt><dd><p>float, mV: current eh</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.DCmodel.read_inputs">
+<span class="sig-name descname"><span class="pre">read_inputs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/models.html#DCmodel.read_inputs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.DCmodel.read_inputs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.DCmodel.soil_index">
+<span class="sig-name descname"><span class="pre">soil_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sand_cont</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models.html#DCmodel.soil_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.DCmodel.soil_index" title="Link to this definition"></a></dt>
+<dd><p>calculate soil texture index</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>sand_cont (float): index which is a function of the average sand content fraction 
+(sand, 0.0 - 1.0) in the top 10 cm of soil</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: soil texture index</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="models.MERES">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">models.</span></span><span class="sig-name descname"><span class="pre">MERES</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models.html#MERES"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.MERES" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="models.MERES.c_root">
+<span class="sig-name descname"><span class="pre">c_root</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_wt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models.html#MERES.c_root"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.MERES.c_root" title="Link to this definition"></a></dt>
+<dd><p>the rate of root exudation (gCm^{-2}d^{-1}) is calculated as 
+the product of organic compounds per unit of root biomass 
+(depending on the crop growth stage) and 
+the root weight in each soil layer based on results from Lu et al. (1999).</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>root_wt (float, kgDM{ha}^{-1})): existing root dry weight in each soil layer per day</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: the rate of root exudation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.MERES.ch4oxid">
+<span class="sig-name descname"><span class="pre">ch4oxid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phc4prod</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ch4conc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o2conc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models.html#MERES.ch4oxid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.MERES.ch4oxid" title="Link to this definition"></a></dt>
+<dd><p>_summary_</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>phc4prod (_type_): _description_
+ch4conc (_type_): _description_
+o2conc (_type_): _description_</p>
+</dd>
+<dt>Returns:</dt><dd><p>_type_: _description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.MERES.ch4prod">
+<span class="sig-name descname"><span class="pre">ch4prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pch4prod</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o2conc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models.html#MERES.ch4prod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.MERES.ch4prod" title="Link to this definition"></a></dt>
+<dd><p>Actual CH4 production (PCH4, mol m-3 s-1) in a given soil layer</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>pch4prod (float, mol C m-3 s-1): potential CH4 production
+o2conc (float, mol m-3): concentration of O2</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: Actual CH4 production (PCH4, mol m-3 s-1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="models.MERES.pch4prod">
+<span class="sig-name descname"><span class="pre">pch4prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subst_c_prod</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/models.html#MERES.pch4prod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#models.MERES.pch4prod" title="Link to this definition"></a></dt>
+<dd><p>potential CH4 production (PCH4*, mol C m-3 s-1)</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>aex (float, mol Ceq m-3): alternative electron acceptors in oxidized form ({AEX}_{ox})
+subst_c_prod (_type_): the rate of substrate-C production (mol Ceq m-3 s-1)</p>
+</dd>
+<dt>Returns:</dt><dd><p>float, mol C m-3 s-1: potential CH4 production</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Seonggyu Park.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

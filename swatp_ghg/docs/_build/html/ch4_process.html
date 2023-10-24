@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ch4_process module &mdash; swatp-ghg documentation 0.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=7026087e"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            swatp-ghg documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">ch4_process module</a><ul>
+<li><a class="reference internal" href="#ch4_process.Aerenchyma"><code class="docutils literal notranslate"><span class="pre">Aerenchyma</span></code></a><ul>
+<li><a class="reference internal" href="#ch4_process.Aerenchyma.a_ch4"><code class="docutils literal notranslate"><span class="pre">Aerenchyma.a_ch4()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ch4_process.Decomposition"><code class="docutils literal notranslate"><span class="pre">Decomposition</span></code></a><ul>
+<li><a class="reference internal" href="#ch4_process.Decomposition.actual_dr"><code class="docutils literal notranslate"><span class="pre">Decomposition.actual_dr()</span></code></a></li>
+<li><a class="reference internal" href="#ch4_process.Decomposition.decomp_rate"><code class="docutils literal notranslate"><span class="pre">Decomposition.decomp_rate()</span></code></a></li>
+<li><a class="reference internal" href="#ch4_process.Decomposition.dr_cnpool"><code class="docutils literal notranslate"><span class="pre">Decomposition.dr_cnpool()</span></code></a></li>
+<li><a class="reference internal" href="#ch4_process.Decomposition.dr_lig"><code class="docutils literal notranslate"><span class="pre">Decomposition.dr_lig</span></code></a></li>
+<li><a class="reference internal" href="#ch4_process.Decomposition.dr_moisture"><code class="docutils literal notranslate"><span class="pre">Decomposition.dr_moisture()</span></code></a></li>
+<li><a class="reference internal" href="#ch4_process.Decomposition.dr_temp"><code class="docutils literal notranslate"><span class="pre">Decomposition.dr_temp()</span></code></a></li>
+<li><a class="reference internal" href="#ch4_process.Decomposition.rel_Cdecay"><code class="docutils literal notranslate"><span class="pre">Decomposition.rel_Cdecay()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ch4_process.Ebullition"><code class="docutils literal notranslate"><span class="pre">Ebullition</span></code></a><ul>
+<li><a class="reference internal" href="#ch4_process.Ebullition.e_ch4"><code class="docutils literal notranslate"><span class="pre">Ebullition.e_ch4()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ch4_process.Oxidation"><code class="docutils literal notranslate"><span class="pre">Oxidation</span></code></a><ul>
+<li><a class="reference internal" href="#ch4_process.Oxidation.ox_ch4"><code class="docutils literal notranslate"><span class="pre">Oxidation.ox_ch4()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ch4_process.SI"><code class="docutils literal notranslate"><span class="pre">SI()</span></code></a></li>
+<li><a class="reference internal" href="#ch4_process.c_root"><code class="docutils literal notranslate"><span class="pre">c_root()</span></code></a></li>
+<li><a class="reference internal" href="#ch4_process.c_soil"><code class="docutils literal notranslate"><span class="pre">c_soil()</span></code></a></li>
+<li><a class="reference internal" href="#ch4_process.electAcceptor"><code class="docutils literal notranslate"><span class="pre">electAcceptor</span></code></a><ul>
+<li><a class="reference internal" href="#ch4_process.electAcceptor.aex_ox_meres"><code class="docutils literal notranslate"><span class="pre">electAcceptor.aex_ox_meres()</span></code></a></li>
+<li><a class="reference internal" href="#ch4_process.electAcceptor.pCH4_aex"><code class="docutils literal notranslate"><span class="pre">electAcceptor.pCH4_aex()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ch4_process.rhizoDeposit"><code class="docutils literal notranslate"><span class="pre">rhizoDeposit</span></code></a><ul>
+<li><a class="reference internal" href="#ch4_process.rhizoDeposit.root_exud_dc"><code class="docutils literal notranslate"><span class="pre">rhizoDeposit.root_exud_dc()</span></code></a></li>
+<li><a class="reference internal" href="#ch4_process.rhizoDeposit.root_exudation"><code class="docutils literal notranslate"><span class="pre">rhizoDeposit.root_exudation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">swatp-ghg documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ch4_process module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ch4_process.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-ch4_process">
+<span id="ch4-process-module"></span><h1>ch4_process module<a class="headerlink" href="#module-ch4_process" title="Link to this heading"></a></h1>
+<p>Copyright 2023 by Seonggyu Park 
+This file is part of SWAT+GHG tool.
+:author: Seonggyu Park
+This module contains a framework to summarize 
+- Decomposition</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Rhizodeposition</p></li>
+<li><p>Electron Acceptors</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Oxidation</p></li>
+<li><p>Ebullition</p></li>
+<li><p>Diffusion</p></li>
+<li><p>Aerenchyma</p></li>
+</ul>
+<p>processes.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="ch4_process.Aerenchyma">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ch4_process.</span></span><span class="sig-name descname"><span class="pre">Aerenchyma</span></span><a class="reference internal" href="_modules/ch4_process.html#Aerenchyma"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.Aerenchyma" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>MERES
+- assumes that the conductance of the plant pathway is proportional to the root length density 
+(Lv, cm root cm-3 soil) present in each soil layer, 
+such that λ= λr Lv, where λr represents the specific conductivity (units: m air (m root)-1) of 
+the root system. 
+Thus, the flux (F, mol m-3 s-1) for each substance (O2 or CH4) is given by    
+- Eq: F=lambda_r(L_v * {10}^4)D_a(y_{a0}-y_a)
+.. λ: the conductance of the pathway through the plant, m air m-3 soil
+.. λr: specific conductivity (units: m air (m root)-1) of the root system.
+.. L_v: the root length density (Lv, cm root cm-3 soil) present in each soil layer
+.. D_a: the diffusivity of the respective substance through air, m2 s^-1
+.. y_a0: concentration of the respective substance in</p>
+<blockquote>
+<div><p>the atmosphere (O2: 7.76 mol m^-3; CH4: 7.5 * 10-5 mol m^-3),</p>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="ch4_process.Aerenchyma.a_ch4">
+<span class="sig-name descname"><span class="pre">a_ch4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l_v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ch4_process.html#Aerenchyma.a_ch4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.Aerenchyma.a_ch4" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ch4_process.Decomposition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ch4_process.</span></span><span class="sig-name descname"><span class="pre">Decomposition</span></span><a class="reference internal" href="_modules/ch4_process.html#Decomposition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.Decomposition" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>FOM (crop residues, green manure, and more stable organic or humic pool (HUM))
+The CERES-Rice model requires input data (FOM): 
+.. Amount of straw added,
+.. C/N
+.. Depth of incorporation
+.. root residue from previous crop</p>
+<p>Initialization of the HUM pool is calculated from the soil organic carbon as specified in the soil data file.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ch4_process.Decomposition.actual_dr">
+<span class="sig-name descname"><span class="pre">actual_dr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Qp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ch4_process.html#Decomposition.actual_dr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.Decomposition.actual_dr" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Eq:</dt><dd><p>dQp/dt = QpRp(max) * f(Ts) * g(theta_s) * h(k_s)</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>_type_: float
+The total amount of carbon released by decay of organic matter on a given day</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ch4_process.Decomposition.decomp_rate">
+<span class="sig-name descname"><span class="pre">decomp_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ch4_process.html#Decomposition.decomp_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.Decomposition.decomp_rate" title="Link to this definition"></a></dt>
+<dd><p>DayCent model
+eq:</p>
+<blockquote>
+<div><p>sfrac{{dC}_i}{d_t}=K_i * M_d * T_d * C_i</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ch4_process.Decomposition.dr_cnpool">
+<span class="sig-name descname"><span class="pre">dr_cnpool</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ch4_process.html#Decomposition.dr_cnpool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.Decomposition.dr_cnpool" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ch4_process.Decomposition.dr_lig">
+<span class="sig-name descname"><span class="pre">dr_lig</span></span><a class="headerlink" href="#ch4_process.Decomposition.dr_lig" title="Link to this definition"></a></dt>
+<dd><p>DayCent Decomposition rate
+per week
+Ki: state variables</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ch4_process.Decomposition.dr_moisture">
+<span class="sig-name descname"><span class="pre">dr_moisture</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ch4_process.html#Decomposition.dr_moisture"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.Decomposition.dr_moisture" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ch4_process.Decomposition.dr_temp">
+<span class="sig-name descname"><span class="pre">dr_temp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ch4_process.html#Decomposition.dr_temp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.Decomposition.dr_temp" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ch4_process.Decomposition.rel_Cdecay">
+<span class="sig-name descname"><span class="pre">rel_Cdecay</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ch4_process.html#Decomposition.rel_Cdecay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.Decomposition.rel_Cdecay" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ch4_process.Ebullition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ch4_process.</span></span><span class="sig-name descname"><span class="pre">Ebullition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_wa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.23</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k_e</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">86400</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ch4_process.html#Ebullition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.Ebullition" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>MERES
+.. E: rate of ebullition, mol/(m^3*s)
+.. y_w: concentration of the substance in solution, mol/m^3
+.. y_wa: solubility of the substance in water, mol/m^3</p>
+<blockquote>
+<div><p>Values of y_wa (at 25 °C) used were 1.23 mol m^-3 and 
+1.31 mol m^-3 for O2 and CH4, respectively.</p>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Currently, there is no temperature dependence of y_wa included in the model, </dt><dd><p>but this could be incorporated in future versions.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="ch4_process.Ebullition.e_ch4">
+<span class="sig-name descname"><span class="pre">e_ch4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_w</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ch4_process.html#Ebullition.e_ch4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.Ebullition.e_ch4" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ch4_process.Oxidation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ch4_process.</span></span><span class="sig-name descname"><span class="pre">Oxidation</span></span><a class="reference internal" href="_modules/ch4_process.html#Oxidation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.Oxidation" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>MERES
+- uses the Michaelis-Menten equation to simulate the rate of CH4 oxidation (QCH4, mol m-3 s-1) by the methanotrophic bacteria.
+- Eq: Q_{CH4}=P_{CH4} * stullet[CH4](k1+[CH4])∙[O2](k1+[O2])
+.. P_ch4a: potential rate of methanogenesis defined previously, mol/(m^3*s)
+.. bracket_ch4: concentration of CH4, mol/m^3
+.. bracket_o2: concentration of O2, mol/m3
+.. k1: 0.33, Michaelis-Menten constants (units: mol m-3) for a dual-substrate reaction.
+.. k2: 0.44, Michaelis-Menten constants (units: mol m-3) for a dual-substrate reaction.
+.. k3: 0.22, Michaelis-Menten constants (units: mol m-3) for a dual-substrate reaction.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ch4_process.Oxidation.ox_ch4">
+<span class="sig-name descname"><span class="pre">ox_ch4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p_ch4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conc_ch4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conc_o2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ch4_process.html#Oxidation.ox_ch4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.Oxidation.ox_ch4" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ch4_process.SI">
+<span class="sig-prename descclassname"><span class="pre">ch4_process.</span></span><span class="sig-name descname"><span class="pre">SI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">send_cont_frac</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ch4_process.html#SI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.SI" title="Link to this definition"></a></dt>
+<dd><p>calculate soil texture index</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>send_cont_frac (float): index which is a function of the average sand content fraction 
+(sand, 0.0 - 1.0) in the top 10 cm of soil</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: soil texture index</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ch4_process.c_root">
+<span class="sig-prename descclassname"><span class="pre">ch4_process.</span></span><span class="sig-name descname"><span class="pre">c_root</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conv_fac_exudate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rootCprod</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">send_cont_frac</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ch4_process.html#c_root"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.c_root" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ch4_process.c_soil">
+<span class="sig-prename descclassname"><span class="pre">ch4_process.</span></span><span class="sig-name descname"><span class="pre">c_soil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conv_fac</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SI</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ch4_process.html#c_soil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.c_soil" title="Link to this definition"></a></dt>
+<dd><p>The first step in modeling methanogenesis is to estimate 
+the amount of carbon substrate available for CH4 production. 
+DayCent’s methanogenesis submodel includes soil organic matter degradation and 
+rhizodeposition as the sources of carbon.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>conv_fac (float): _description_
+SI (_type_): _description_
+beta_1 (float): _description_
+Rh (_type_): _description_</p>
+</dd>
+<dt>Returns:</dt><dd><p>_type_: _description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ch4_process.electAcceptor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ch4_process.</span></span><span class="sig-name descname"><span class="pre">electAcceptor</span></span><a class="reference internal" href="_modules/ch4_process.html#electAcceptor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.electAcceptor" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Unless Oxygen (O2) is depleted in the soil, O2 acts as the sole electron acceptor for microbial respiration. 
+After rice soil is flooded, dissolved O2 in the floodwater and soil is consumed rapidly. 
+The need for electron acceptors by anaerobic organisms results in 
+the reduction of a number of other oxidized species of ions in the soil. 
+Reductions of NO3- to NO2-, N2O to N2, Mn4+ to Mn2+, Fe3+ to Fe2+, SO42- to S2- all resulting in 
+the production of CO2, and finally CO2 to CH4, occur sequentially, 
+provided available carbon sources exist (Patrick and Delaune, 1977). 
+CH4 production will occur after most of the soil’s NO3-, N2O, Mn4+, Fe3+, and 
+SO42- ions have been reduced.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>object (_type_): _description_</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ch4_process.electAcceptor.aex_ox_meres">
+<span class="sig-name descname"><span class="pre">aex_ox_meres</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ch4_process.html#electAcceptor.aex_ox_meres"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.electAcceptor.aex_ox_meres" title="Link to this definition"></a></dt>
+<dd><blockquote>
+<div><p>The MERES model assumed the presence in the soil of a pool of alternative electron acceptors in 
+oxidized form ({AEX}_{ox}), which reacts with the substrate C from decomposition to form CO2, 
+becoming reduced in the process ({AEX}_{red}). 
+It specifies the quantity of AEA present in moles of C equivalents m-3, 
+assuming a 1:1 stoichiometric relationship between substrate C and the AEA, i.e.,
+left({CH}_2O</p>
+</div></blockquote>
+<p>ight)+{AEX}_{ox}
+ightarrow{CO}_2+{AEX}_{red}+{2H}^+</p>
+<blockquote>
+<div><ul class="simple">
+<li></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ch4_process.electAcceptor.pCH4_aex">
+<span class="sig-name descname"><span class="pre">pCH4_aex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aex_ox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rSC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aea_ox_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">24.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ch4_process.html#electAcceptor.pCH4_aex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.electAcceptor.pCH4_aex" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ch4_process.rhizoDeposit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ch4_process.</span></span><span class="sig-name descname"><span class="pre">rhizoDeposit</span></span><a class="reference internal" href="_modules/ch4_process.html#rhizoDeposit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.rhizoDeposit" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The contribution to CH4 production of organic matter originating from 
+living rice plants through root exudates and root death, 
+collectively referred to as rhizodeposition.</p>
+<ul class="simple">
+<li><p>The peak in emission rates commonly observed toward the end of the growing season was ascribed by</p></li>
+</ul>
+<p>these authors to be due to the increase in decaying root tissue or root exudates after flowering.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>object (_type_): _description_</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ch4_process.rhizoDeposit.root_exud_dc">
+<span class="sig-name descname"><span class="pre">root_exud_dc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">RC</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ch4_process.html#rhizoDeposit.root_exud_dc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.rhizoDeposit.root_exud_dc" title="Link to this definition"></a></dt>
+<dd><p>_summary_</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>RC (_type_): _description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ch4_process.rhizoDeposit.root_exudation">
+<span class="sig-name descname"><span class="pre">root_exudation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w_root</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ch4_process.html#rhizoDeposit.root_exudation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ch4_process.rhizoDeposit.root_exudation" title="Link to this definition"></a></dt>
+<dd><p>In MERES, the rate of root exudation (gCm^{-2}d^{-1}) is calculated as 
+the product of organic compounds per unit of root biomass (depending on the crop growth stage) and 
+the root weight in each soil layer based on results from Lu et al. (1999).</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>w_root (float, Kg DM ha^-1): existing root dry weight
+Root death is assumed to be a constant 2% of existing root dry weight</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: the rate of root exudation (g C m^{-2}d^{-1})</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Seonggyu Park.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>utils module &mdash; swatp-ghg documentation 0.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=7026087e"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            swatp-ghg documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">utils module</a><ul>
+<li><a class="reference internal" href="#utils.ObjFns"><code class="docutils literal notranslate"><span class="pre">ObjFns</span></code></a><ul>
+<li><a class="reference internal" href="#utils.ObjFns.nse"><code class="docutils literal notranslate"><span class="pre">ObjFns.nse()</span></code></a></li>
+<li><a class="reference internal" href="#utils.ObjFns.pbias"><code class="docutils literal notranslate"><span class="pre">ObjFns.pbias()</span></code></a></li>
+<li><a class="reference internal" href="#utils.ObjFns.rmse"><code class="docutils literal notranslate"><span class="pre">ObjFns.rmse()</span></code></a></li>
+<li><a class="reference internal" href="#utils.ObjFns.rsq"><code class="docutils literal notranslate"><span class="pre">ObjFns.rsq()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#utils.PostPr"><code class="docutils literal notranslate"><span class="pre">PostPr</span></code></a><ul>
+<li><a class="reference internal" href="#utils.PostPr.get_ch4_so_df"><code class="docutils literal notranslate"><span class="pre">PostPr.get_ch4_so_df()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">swatp-ghg documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">utils module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/utils.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-utils">
+<span id="utils-module"></span><h1>utils module<a class="headerlink" href="#module-utils" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="utils.ObjFns">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utils.</span></span><span class="sig-name descname"><span class="pre">ObjFns</span></span><a class="reference internal" href="_modules/utils.html#ObjFns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.ObjFns" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="utils.ObjFns.nse">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#ObjFns.nse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.ObjFns.nse" title="Link to this definition"></a></dt>
+<dd><p>Nash-Sutcliffe Efficiency (NSE) as per <a class="reference external" href="https://doi.org/10.1016/0022-1694(70)90255-6">Nash and Sutcliffe, 1970</a>.</p>
+<dl class="field-list">
+<dt class="field-odd">Calculation Details<span class="colon">:</span></dt>
+<dd class="field-odd"><div class="math notranslate nohighlight">
+\[\]</div>
+<p>E_{text{NSE}} = 1 - frac{sum_{i=1}^{N}[e_{i}-s_{i}]^2}
+{sum_{i=1}^{N}[e_{i}-mu(e)]^2}</p>
+<p>where <em>N</em> is the length of the <em>sims</em> and <em>obds</em>
+periods, <em>e</em> is the <em>obds</em> series, <em>s</em> is (one of) the
+<em>sims</em> series, and <em>μ</em> is the arithmetic mean.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utils.ObjFns.pbias">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pbias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#ObjFns.pbias"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.ObjFns.pbias" title="Link to this definition"></a></dt>
+<dd><p>Percent Bias (PBias).</p>
+<dl class="field-list">
+<dt class="field-odd">Calculation Details<span class="colon">:</span></dt>
+<dd class="field-odd"><div class="math notranslate nohighlight">
+\[\]</div>
+<p>E_{text{PBias}} = 100 × frac{sum_{i=1}^{N}(e_{i}-s_{i})}{sum_{i=1}^{N}e_{i}}</p>
+<p>where <em>N</em> is the length of the <em>sims</em> and <em>obds</em>
+periods, <em>e</em> is the <em>obds</em> series, and <em>s</em> is (one of)
+the <em>sims</em> series.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utils.ObjFns.rmse">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rmse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#ObjFns.rmse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.ObjFns.rmse" title="Link to this definition"></a></dt>
+<dd><p>Root Mean Square Error (RMSE).</p>
+<dl class="field-list">
+<dt class="field-odd">Calculation Details<span class="colon">:</span></dt>
+<dd class="field-odd"><div class="math notranslate nohighlight">
+\[\]</div>
+<p>E_{text{RMSE}} = sqrt{frac{1}{N}sum_{i=1}^{N}[e_i-s_i]^2}</p>
+<p>where <em>N</em> is the length of the <em>sims</em> and <em>obds</em>
+periods, <em>e</em> is the <em>obds</em> series, <em>s</em> is (one of) the
+<em>sims</em> series.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utils.ObjFns.rsq">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rsq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#ObjFns.rsq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.ObjFns.rsq" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="utils.PostPr">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utils.</span></span><span class="sig-name descname"><span class="pre">PostPr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#PostPr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.PostPr" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="utils.PostPr.get_ch4_so_df">
+<span class="sig-name descname"><span class="pre">get_ch4_so_df</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/utils.html#PostPr.get_ch4_so_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#utils.PostPr.get_ch4_so_df" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Seonggyu Park.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
