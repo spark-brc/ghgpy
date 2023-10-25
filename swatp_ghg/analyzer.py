@@ -1,10 +1,10 @@
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import cm
-from utils import ObjFns
+from swatp_ghg.utils import ObjFns
 import numpy as np
 import pandas as pd
 import os
-from models import DCmodel
+from swatp_ghg.models import DCmodel
 
 
 def plot_oo(df, target=None,numcols=1, fsize=8):

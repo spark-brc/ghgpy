@@ -8,13 +8,18 @@ T_{CH4}=P_{CH4}-O_{CH4}+E_{CH4}+D_{CH4}+A_{CH4}
 
 """
 
-from models import DCmodel
-from utils import ObjFns
-from utils import PostPr
+import os
+import sys
+
+sys.path.insert(0, os.path.abspath(".."))
+
+from swatp_ghg.models import DCmodel
+from swatp_ghg.utils import ObjFns
+from swatp_ghg.utils import PostPr
 import pandas as pd
 import os
-from analyzer import plot_oom
-from runs import dc_multi_run
+from swatp_ghg.analyzer import plot_oom
+from swatp_ghg.runs import dc_multi_run
 
 
 

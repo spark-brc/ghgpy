@@ -31,14 +31,63 @@ class DCparms(object):
         self.mrtblm = 1.0 # Root biomass that when exceeded starts to reduce methane bubble formation (g biomass m-2)
 
 
+# class DNDCparms_org(object):
+#     """_summary_
+
+#     :param object: _description_
+#     :type object: _type_
+#     """
+#     def __init__(self):
+#         self.c_aex = 24.0 # the critical concentration of the oxidized alternative electron acceptor pool (mol Ceq m-3)
+#         self.eta = 400 # parameter (units: m3 mol-1) representing the sensitivity of methanogenesis to 
+#                         # the concentration of O2 ([O2], mol m-3), 
+#                         # A value of 400 m3 mol-1 was used for η (Arah & Stephen, 1998).
+#         self.k1 = 0.33 # k1 and k2 are Michaelis-Menten constants (units: mol m-3) for 
+#                         # a dual-substrate reaction.
+#         self.k2 = 0.44 # k1 and k2 are Michaelis-Menten constants (units: mol m-3) for 
+#                         # a dual-substrate reaction.
+#         self.k3 = 0.22 # k1 and k2 are Michaelis-Menten constants (units: mol m-3) for 
+#                         # a dual-substrate reaction.
+#         self.sc_root = 0.1 # the specific conductivity (units: m air (m root)-1) of the root system.
+#         self.o2conc_atp = 7.76
+
+
 
 class DNDCparms(object):
-    def __init__(self):
-        self.c_aex = 24.0 # the critical concentration of the oxidized alternative electron acceptor pool (mol Ceq m-3)
-        self.eta = 400 # parameter (units: m3 mol-1) representing the sensitivity of methanogenesis to 
+    """_summary_
+
+    :param object: _description_
+    :type object: _type_
+    """
+    def __init__(
+            self,
+            c_aex=24.0,
+            eta=400,
+            k1=0.33,
+            k2=0.44,
+            k3=0.22,
+            sc_root=0.1,
+            o2conc_atp=7.76):
+        """_summary_
+
+        :param c_aex: _description_, defaults to 24.0
+        :type c_aex: float, optional
+        :param eta: _description_, defaults to 400
+        :type eta: int, optional
+        :param k1: _description_, defaults to 0.33
+        :type k1: float, optional
+        """
+
+        self.c_aex = c_aex # the critical concentration of the oxidized alternative electron acceptor pool (mol Ceq m-3)
+        self.eta = eta # parameter (units: m3 mol-1) representing the sensitivity of methanogenesis to 
                         # the concentration of O2 ([O2], mol m-3), 
                         # A value of 400 m3 mol-1 was used for η (Arah & Stephen, 1998).
-        self.k1 = 0.1 # k1 and k2 are Michaelis-Menten constants (units: mol m-3) for 
+        self.k1 = k1 # k1 and k2 are Michaelis-Menten constants (units: mol m-3) for 
                         # a dual-substrate reaction.
-
+        self.k2 = k2# k1 and k2 are Michaelis-Menten constants (units: mol m-3) for 
+                        # a dual-substrate reaction.
+        self.k3 = k3 # k1 and k2 are Michaelis-Menten constants (units: mol m-3) for 
+                        # a dual-substrate reaction.
+        self.sc_root = sc_root # the specific conductivity (units: m air (m root)-1) of the root system.
+        self.o2conc_atp = o2conc_atp
 

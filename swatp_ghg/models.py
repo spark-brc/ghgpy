@@ -16,8 +16,9 @@ at 0.5 based on the reactions.
 import os
 import math
 import numpy as np
-from parms import DCparms, DNDCparms
+from swatp_ghg.parms import DCparms, DNDCparms
 import pandas as pd
+
 
 class DCmodel(object):
     def __init__(self, model_dir):
@@ -35,7 +36,7 @@ class DCmodel(object):
             sand_cont (float):  the average sand content fraction (sand, 0.0 - 1.0) in the top 10 cm of soil
             t_soil (float, ◦C): average soil temperature in the top 10 cm of soil (◦C)
             root_c_prod (float, gC m^-2 d^-1): the previous day's fine root production estimated by 
-                                    the plant production submodel in DayCent (gC m^-2 d^-1)
+            the plant production submodel in DayCent (gC m^-2 d^-1)
 
         Returns:
             float, g CH4-C m^-2d^-1: CH4Prod is the CH4 production rate (g CH4-C m^-2d^-1)
@@ -56,8 +57,6 @@ class DCmodel(object):
     #     sand_cont= 0.5
 
     #     return beta1, Rh, fracToExduates, sand_cont
-
-    def c_soil(self, sand_cont):
         """The first step in modeling methanogenesis is to estimate 
         the amount of carbon substrate available for CH4 production. 
         DayCent's methanogenesis submodel includes soil organic matter degradation and 
@@ -74,6 +73,21 @@ class DCmodel(object):
                         (above- and below-ground structural and metabolic litter and 
                         above- and below-ground SOC pools) (g CO2^-C m^-2 d^-1)
         """
+
+    def c_soil(self, sand_cont):
+        """The first step in modeling methanogenesis is to estimate 
+        the amount of carbon substrate available for CH4 production. 
+        DayCent's methanogenesis submodel includes soil organic matter degradation and 
+        rhizodeposition as the sources of carbon.
+
+        :arg sand_cont2: test
+        :type sand_cont2: float
+        :param sand_cont: _description_
+        :type sand_cont: _type_
+        :return: _description_
+        :rtype: _type_
+        """
+
 
         c_soil_ = self.parms.cvcf_oc_to_co2 * self.parms.frToCH4 * self.soil_index(sand_cont) * self.parms.hr
         return c_soil_
@@ -308,25 +322,47 @@ class MERES(object):
             pch4prod_ = subst_c_prod
         return pch4prod_
 
-    def ch4oxid(self, phc4prod, ch4conc, o2conc):
-        """_summary_
+    def ch4oxid(self, pch4prod, ch4conc, o2conc):
+        """The rate of CH4 consumption (QCH4, mol m-3 s-1) by 
+            the methanotrophic bacteria (see equation 2) in 
+            a soil layer is given by the Michaelis-Menten equation
+        .. math:: 
+            p=f(x)
 
-        Args:
-            phc4prod (_type_): _description_
-            ch4conc (_type_): _description_
-            o2conc (_type_): _description_
 
-        Returns:
-            _type_: _description_
+        :param pch4prod: potential CH4 production
+        :type pch4prod: float, mol Ceq m-3
+        :param ch4conc: ch4 concentration
+        :type ch4conc: float, mol m-3
+        :param o2conc: o2 concentration
+        :type o2conc: float, mol m-3
+        :return: rate of CH4 consumption
+        :rtype: float, mol m-3 s-1
         """
         ch4oxid_ = (
-            phc4prod * 
+            pch4prod * 
             (ch4conc/(self.parms.k1 + ch4conc)) * 
-            (o2conc/(self.parms.k1 + o2conc))
-        ) 
+            (o2conc/(self.parms.k2 + o2conc))
+        )
+        # self.parms.
         return ch4oxid_
+    
+    def o2cons(self, o2conc, ch4oxid, pch4prod):
+        """Oxygen consumption rate (QO2, mol m-3 s-1)
 
+        :param o2conc: o2 concentration
+        :type o2conc: float, mol m-3
+        :param ch4oxid: rate of CH4 consumption
+        :type ch4oxid: float, mol m-3 s-1
+        :param pch4prod: potential CH4 production
+        :type pch4prod: float, mol C m-3 s-1
+        :return: Oxygen consumption rate
+        :rtype: float, mol C m-3 s-1
+        """
+        o2cons_ = 2*ch4oxid + 2*pch4prod * (o2conc / (self.parms.k3 + o2conc))
+        return o2cons_
 
+    # def substflux(self, )
 
 
 # class DNDC(object):
