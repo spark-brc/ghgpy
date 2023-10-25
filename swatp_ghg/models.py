@@ -16,7 +16,7 @@ at 0.5 based on the reactions.
 import os
 import math
 import numpy as np
-from swatp_ghg.parms import DCparms, DNDCparms
+from swatp_ghg.parms import DCparms, MERESparms, DNDCparms
 import pandas as pd
 
 
@@ -273,7 +273,7 @@ class DCmodel(object):
 class MERES(object):
     def __init__(self, model_dir):
         self.model_dir =  model_dir
-        self.parms = DNDCparms()
+        self.parms = MERESparms()
 
     def ch4prod(self, pch4prod, o2conc):
         """Actual CH4 production (PCH4, mol m-3 s-1) in a given soil layer
@@ -362,7 +362,147 @@ class MERES(object):
         o2cons_ = 2*ch4oxid + 2*pch4prod * (o2conc / (self.parms.k3 + o2conc))
         return o2cons_
 
-    # def substflux(self, )
+    # NOTE: Should we distinguish between O2 concentration and its concentration in the gaseous phase?
+    def o2flux(self, o2conc):
+        """the fluxes of O2
+
+        :param o2conc: o2 concentration
+        :type o2conc: float, mol m-3
+        :return: the fluxes of O2
+        :rtype: float, mol m-3 s-1
+        """
+        
+        o2flux_ = (
+            self.parms.sc_root * 
+            (self.parms.root_len_den * 10e+04) * 
+            self.parms.o2dfc *
+            (self.parms.o2conc_atm - o2conc)
+        )
+        return o2flux_
 
 
-# class DNDC(object):
+    def ch4ebl(self, ch4conc_sol):
+        """We have modified the algorithm describing ebullition rate from that in the original Arah & Kirk (2000) model by 
+        expressing the rate of ebullition (E, mol m-3 s-1) as a function of the concentration of 
+        the substance in solution (yw, mol m-3). 
+        Currently, there is no temperature dependence of yw* included in the model. 
+
+
+        :param ch4conc_sol: concentration of the substance in solution
+        :type ch4conc_sol: float, mol m-3
+        :return: rate of ebullition
+        :rtype: float, mol m-3 s-1
+        """
+
+        ch4ebl_ = max(
+            0, 
+            (ch4conc_sol - self.parms.ch4sol)/self.parms.ke
+            )
+        return ch4ebl_
+    
+
+    def o2ebl(self, o2conc_sol):
+        """We have modified the algorithm describing ebullition rate from that in the original Arah & Kirk (2000) model by 
+        expressing the rate of ebullition (E, mol m-3 s-1) as a function of the concentration of 
+        the substance in solution (yw, mol m-3). 
+        Currently, there is no temperature dependence of yw* included in the model. 
+
+
+        :param ch4conc_sol: concentration of the substance in solution
+        :type ch4conc_sol: float, mol m-3
+        :return: rate of ebullition
+        :rtype: float, mol m-3 s-1
+        """
+
+        o2ebl_ = max(
+            0, 
+            (o2conc_sol - self.parms.o2sol)/self.parms.ke
+            )
+        return o2ebl_
+    
+
+
+class DNDC(object):
+    def __init__(self, model_dir):
+        self.model_dir =  model_dir
+        self.parms = DNDCparms()
+
+    def ch4prod(self, ava_c, ft_temp):
+
+        ch4prod_ = self.parms.a * ava_c * ft_temp
+        return ch4prod_
+    
+    def ft_temp(self, temp):
+        ft_temp_ = self.parms.b * math.exp(0.2424*temp)
+        return ft_temp_
+
+    def ch4oxid(self, ch4conc, eh):
+        ch4oxid_ = ch4conc * math.exp(8.6711*eh/1000)
+        return ch4oxid_
+    
+    def ch4ep(self, ch4prod, aere):
+        ch4ep_ = 0.5 * ch4prod * aere
+        return ch4ep_
+    
+    def aere(self, pgi):
+        """ Calculate AERE (Aerobic Respiration Enhancement) based on the Polynomial Equation.
+
+        :param pgi: Plant Growth Index.
+        :type pgi: float
+        :return: The calculated AERE value.
+        :rtype: float
+        """
+        # Define coefficients for the polynomial equation
+        a = -0.0009
+        b = 0.0047
+        c = -0.883
+        d = 1.9863
+        e = -0.3795
+        f = 0.0251
+
+        # Calculate AERE using the polynomial equation
+        aere_ = a * pgi**5 + b * pgi**4 + c * pgi**3 + d * pgi**2 + e * pgi + f
+        return aere_
+    
+    def pgi(self, dsp, sds):
+        pgi_ = dsp / sds
+        return pgi_
+    
+    def ch4ebl(self, ch4prod, poro, ft_temp2, aere):
+        """Calculate CH4 emission via ebullition based on various factors.
+
+        :param ch4prod: Total methane production.
+        :type ch4prod: float
+        :param poro: Soil porosity.
+        :type poro: float
+        :param ft_temp2: Temperature-based factor.
+        :type ft_temp2: float
+        :param aere: aerenchyma factor
+        :type aere: float
+        :return: CH4 emission via ebullition.
+        :rtype: float
+        """
+
+        ch4ebl_ = 0.25 * ch4prod* poro * ft_temp2 * (1 - aere)
+        return ch4ebl_
+
+    def ft_temp2(self, t_soil):
+        """Calculate a temperature-based factor (ft_temp2) based on a polynomial equation.
+
+        :param t_soil: The average soil temperature in °C.
+        :type t_soil: float
+        :return: The calculated temperature-based factor (ft_temp2).
+        :rtype: float
+        """
+
+        # Coefficients for the polynomial equation
+        a = -0.1687
+        b = 1.167
+        c = -2.0303
+        d = 1.042
+
+        # Calculate ft_temp2 using the polynomial equation
+        t_soil_normalized = 0.1 * t_soil
+        ft_temp2_ = a * t_soil_normalized**3 + b * t_soil_normalized**2 + c * t_soil_normalized + d
+
+        return ft_temp2_
