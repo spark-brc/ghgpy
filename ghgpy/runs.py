@@ -1,4 +1,4 @@
-from models import DCmodel
+from ghgpy.models import DCmodel, DNDCdaily
 import os
 import pandas as pd
 
@@ -8,11 +8,9 @@ IFMT = lambda x: "{0:<10d} ".format(int(x))
 FFMT = lambda x: "{0:<15.10E} ".format(float(x))
 
 
-
-
-def dc_single_run(wd):
+def run_dc_single(wd):
     m1 = DCmodel(wd)
-    sand_cont = 0.3
+    sand_cont = 0.038
     root_c_prod = 6
 
     indf = m1.read_inputs()
@@ -33,11 +31,10 @@ def dc_single_run(wd):
     outdf.to_csv(os.path.join(wd,"ch4_output.csv"))
 
 
-
-def dc_multi_run(wd):
+def run_dc_multi(wd):
     m1 = DCmodel(wd)
     # read inputs
-    sand_cont = 0.8
+    sand_cont = 0.038
     root_c_prod = 500
     aglivc = 500 # the amount of above-ground live C for the crop as simulated by DayCent (g C m−2)
     bglivc = 500 # the amount of fine root C for the crop as simulated by DayCent (g C m−2)
@@ -88,4 +85,11 @@ def dc_multi_run(wd):
                                                         justify="left"))
 
     # outdf.index = outdf.index.strftime("%Y-%m-%d")
+
+
+def run_dndc_daily(wd):
+    m1 = DNDCdaily(wd)
+    ph = 7.5
+    
+
 

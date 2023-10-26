@@ -40,11 +40,18 @@ class DNDCparms(object):
     def __init__(
             self, 
             a=1,
-            b=1):
+            b=1,
+            rconst=8.314,
+            fconst=96485,
+            fr_rsi=0.5,
+            fr_root=0.5
+            ):
         self.a = a 
         self.b = b  
-
-
+        self.rconst = rconst  
+        self.fconst = fconst  
+        self.fr_rsi = fr_rsi
+        self.fr_root = fr_root
 
 class MERESparms(object):
     """_summary_

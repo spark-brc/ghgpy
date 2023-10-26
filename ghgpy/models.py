@@ -432,8 +432,8 @@ class DNDC(object):
         ch4prod_ = self.parms.a * ava_c * ft_temp
         return ch4prod_
     
-    def ft_temp(self, temp):
-        ft_temp_ = self.parms.b * math.exp(0.2424*temp)
+    def ft_temp(self, t_soil):
+        ft_temp_ = self.parms.b * math.exp(0.2424*t_soil)
         return ft_temp_
 
     def ch4oxid(self, ch4conc, eh):
@@ -506,3 +506,86 @@ class DNDC(object):
         ft_temp2_ = a * t_soil_normalized**3 + b * t_soil_normalized**2 + c * t_soil_normalized + d
 
         return ft_temp2_
+    
+    def dffs_rate(self, ch4prod, poro, t_soil):
+        dffs_rate_ = 0.01 * ch4prod * t_soil * poro
+        return dffs_rate_
+    
+
+    def eh(self, e0, t_soil, num_elect):
+        eh_ = e0 + (self.parms.rconst * t_soil / (num_elect * self.parms.fconst))
+        return eh_
+    
+class DNDCdaily(object):
+    def __init__(self, model_dir):
+        self.model_dir =  model_dir
+        self.parms = DNDCparms()
+
+    def ftm(self, t_soil):
+        ftm_ = math.exp(
+            0.33* (t_soil - 23) / 
+            (1 + math.exp(0.33*(t_soil-23)))
+            )
+        return ftm_
+    
+    def fphm(self, ph):
+        """Calculate a pH-based factor for methane production. 
+        This function computes a factor that is based on pH and 
+        can be used in methane production models.
+
+        :param ph: The pH value
+        :type ph: float
+        :return: The calculated pH-based factor.
+        :rtype: float
+        """
+        numerator = (ph - 5.5) * (ph - 9.0)
+        denominator = (ph - 5.5) * (ph - 9.0) - (ph - 7.5) ** 2
+
+        # Avoid division by zero and return 0 if the denominator is zero
+        fphm_ = numerator / denominator if denominator != 0 else 0.0
+
+        return fphm_
+    
+    def feh(self, eh):
+        if eh <= -200:
+            feh_ = 1
+        else:
+            feh_ = 0
+        return feh_
+    
+    def c_pool(self, c_sol, bm_root):
+        """Calculate the carbon pool for methane production (kg C ha-1).
+        This function computes the carbon pool available for methane production based on 
+        soluble carbon and root biomass.
+
+        :param c_sol: The soluble carbon content in the layer (kg C ha-1).
+        :type c_sol: float, kg C ha-1
+        :param bm_root: the root biomass (g m-2)
+        :type bm_root: float, g m-2)
+        :return: The calculated carbon pool for methane production (kg C ha-1).
+        :rtype: kg C ha-1
+        """
+        # Constants from parameters (consider defining them as class-level constants)
+        fr_rsi = self.parms.fr_rsi
+        fr_root = self.parms.fr_root
+
+        # Calculate the carbon pool
+        c_pool_ = c_sol + fr_rsi * fr_root * bm_root * 4
+
+        return c_pool_
+    
+    def ch4prod(self, c_pool, ftm, feh, fphm):
+        ch4prod_ = 0.47 * c_pool * ftm * feh * fphm
+        return ch4prod_
+
+    def ch4oxid(self, ch4prod, aere):
+        ch4oxid_ = ch4prod * (0.5 + 0.5 * aere)
+        return ch4oxid_
+
+    def aere(self, bm_root):
+        aere_ =  bm_root / 1000
+        return aere_
+
+    def ch4e(self, ch4prod, ch4oxid):
+        ch4e_ = ch4prod - ch4oxid
+        return ch4e

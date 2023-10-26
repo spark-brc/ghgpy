@@ -13,7 +13,6 @@ Welcome to ghgpy's documentation!
    modules
 
 
-
 Indices and tables
 ==================
 
