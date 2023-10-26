@@ -11,7 +11,7 @@ import sys
 
 sys.path.insert(0, os.path.abspath(".."))
 
-project = 'swatp-ghg documentation'
+project = 'ghgpy documentation'
 copyright = '2023, Seonggyu Park'
 author = 'Seonggyu Park'
 release = '0.0.0'

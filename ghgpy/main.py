@@ -13,13 +13,13 @@ import sys
 
 sys.path.insert(0, os.path.abspath(".."))
 
-from swatp_ghg.models import DCmodel
-from swatp_ghg.utils import ObjFns
-from swatp_ghg.utils import PostPr
+from ghgpy.models import DCmodel
+from ghgpy.utils import ObjFns
+from ghgpy.utils import PostPr
 import pandas as pd
 import os
-from swatp_ghg.analyzer import plot_oom
-from swatp_ghg.runs import dc_multi_run
+from ghgpy.analyzer import plot_oom
+from ghgpy.runs import dc_multi_run
 
 
 

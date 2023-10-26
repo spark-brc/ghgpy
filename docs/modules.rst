@@ -1,7 +1,7 @@
-swatp-ghg
-=========
+ghgpy
+=====
 
 .. toctree::
    :maxdepth: 4
 
-   swatp_ghg
+   ghgpy

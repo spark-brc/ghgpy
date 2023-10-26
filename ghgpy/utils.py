@@ -1,7 +1,7 @@
 import numpy as np
 import datetime
 import os
-from swatp_ghg.models import DCmodel
+from ghgpy.models import DCmodel
 import pandas as pd
 
 class ObjFns:

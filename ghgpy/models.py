@@ -16,7 +16,7 @@ at 0.5 based on the reactions.
 import os
 import math
 import numpy as np
-from swatp_ghg.parms import DCparms, MERESparms, DNDCparms
+from ghgpy.parms import DCparms, MERESparms, DNDCparms
 import pandas as pd
 
 
