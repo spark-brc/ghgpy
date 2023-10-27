@@ -1,20 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Copyright 2023 by Seonggyu Park 
-This file is part of SWAT+GHG tool.
-:author: Seonggyu Park
-This module contains a framework to summarize 
-- Decomposition
-    - Rhizodeposition
-    - Electron Acceptors
-- Oxidation
-- Ebullition
-- Diffusion
-- Aerenchyma
-processes.
-"""
-
-
 class Decomposition(object):
     """
     FOM (crop residues, green manure, and more stable organic or humic pool (HUM))

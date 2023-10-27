@@ -6,8 +6,6 @@
 Welcome to ghgpy's documentation!
 =================================
 
-| If you want to see how this was created, check out this article:
-| https://redandgreen.co.uk/sphinx-to-github-pages-via-github-actions/
 
 .. toctree::
    :maxdepth: 2

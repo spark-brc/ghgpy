@@ -35,9 +35,9 @@ def run_dc_multi(wd):
     m1 = DCmodel(wd)
     # read inputs
     sand_cont = 0.038
-    root_c_prod = 500
-    aglivc = 500 # the amount of above-ground live C for the crop as simulated by DayCent (g C m−2)
-    bglivc = 500 # the amount of fine root C for the crop as simulated by DayCent (g C m−2)
+    root_c_prod = 100
+    aglivc = 100 # the amount of above-ground live C for the crop as simulated by DayCent (g C m−2)
+    bglivc = 100 # the amount of fine root C for the crop as simulated by DayCent (g C m−2)
     #---------------
     indf = m1.read_inputs()
     indf.dropna(axis=0, inplace=True)

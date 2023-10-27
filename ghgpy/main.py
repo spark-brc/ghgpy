@@ -18,7 +18,7 @@ from ghgpy.utils import ObjFns
 from ghgpy.utils import PostPr
 import pandas as pd
 import os
-from ghgpy.analyzer import plot_oom
+from ghgpy.analyzer import plot_oom, plot_tseries_ch4
 from ghgpy.runs import run_dc_multi, run_dndc_daily
 
 
@@ -35,11 +35,12 @@ def run_md_viz(wd):
     run_dc_multi(wd)
     # post-processing
     m1 = PostPr(wd)
-    so_df = m1.get_ch4_so_df(outfnam="ch4_multi_dndc.out")
+    # so_df = m1.get_ch4_so_df(outfnam="ch4_multi_dndc.out")
+    so_df = m1.get_ch4_so_df(outfnam="ch4_multi.out")
     print(so_df)
 
     # viz
-    plot_oom(so_df)
+    plot_tseries_ch4(so_df)
     
 
 
@@ -47,5 +48,5 @@ def run_md_viz(wd):
 
 if __name__ == "__main__":
     wd = "D:\\Projects\\Tools\\ghgpy\\models"
-    run_dndc(wd)
+    run_md_viz(wd)
 

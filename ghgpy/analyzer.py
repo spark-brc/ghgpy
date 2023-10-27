@@ -138,13 +138,13 @@ def plot_oom(df, target=None, obdnam=None, numcols=1, fsize=8):
     plt.show()
 
 
-# def plot_tseries_ch4(
-#                     df, target=None, obdnam=None, width=10, height=4, dot=True,
-#                     ):
-#     if target is None:
-#         target = "ch4e_tot"
-#     if obdnam is None:
-#         obdnam = "ch4_obd"
+def plot_tseries_ch4(
+                    df, target=None, obdnam=None, width=10, height=4, dot=True,
+                    ):
+    if target is None:
+        target = "ch4e_tot"
+    if obdnam is None:
+        obdnam = "ch4_obd"
 
 #     fig, ax = plt.subplots()
 
@@ -160,42 +160,42 @@ def plot_oom(df, target=None, obdnam=None, numcols=1, fsize=8):
 #     # only non-zero observations
 # #     obs = obs.loc[obs.obgnme.apply(lambda x: x in pst.nnz_obs_groups),:]
 #     # make a plot
-#     ogs = obs.obgnme.unique()
-#     fig,axes = plt.subplots(len(ogs),1,figsize=(width,height*len(ogs)))
-#     ogs.sort()
-#     # for each observation group (i.e. timeseries)
-#     for ax,og in zip(axes,ogs):
-#         # get values for x axis
-#         oobs = obs.loc[obs.obgnme==og,:].copy()
-#         oobs.loc[:,"time"] = oobs.loc[:,"time"].astype(str)
-# #         oobs.sort_values(by="time",inplace=True)
-#         tvals = oobs.time.values
-#         onames = oobs.obsnme.values
-#         if dot is True:
-#             # plot prior
-#             [ax.scatter(tvals,pr_oe.loc[i,onames].values,color="gray",s=30, alpha=0.5) for i in pr_oe.index]
-#             # plot posterior
-#             [ax.scatter(tvals,pt_oe.loc[i,onames].values,color='b',s=30,alpha=0.2) for i in pt_oe.index]
-#             # plot measured+noise 
-#             oobs = oobs.loc[oobs.weight>0,:]
-#             tvals = oobs.time.values
-#             onames = oobs.obsnme.values
-#             ax.scatter(oobs.time,oobs.obsval,color='red',s=30).set_facecolor("none")
-#         if dot is False:
-#             # plot prior
-#             [ax.plot(tvals,pr_oe.loc[i,onames].values,"0.5",lw=0.5,alpha=0.5) for i in pr_oe.index]
-#             # plot posterior
-#             [ax.plot(tvals,pt_oe.loc[i,onames].values,"b",lw=0.5,alpha=0.5) for i in pt_oe.index]
-#             # plot measured+noise 
-#             oobs = oobs.loc[oobs.weight>0,:]
-#             tvals = oobs.time.values
-#             onames = oobs.obsnme.values
-#             ax.plot(oobs.time,oobs.obsval,"r-",lw=2)
-#         ax.tick_params(axis='x', labelrotation=90)
-#         ax.margins(x=0.01)
-#         ax.set_title(og,loc="left")
-#     # fig.tight_layout()
-#     plt.show()
+
+
+
+
+
+    ogs = df.cont.unique()
+    fig,axes = plt.subplots(len(ogs),1,figsize=(width,height*len(ogs)))
+    ogs.sort()
+    # for each observation group (i.e. timeseries)
+    for ax,og in zip(axes,ogs):
+        # get values for x axis
+        oobs = df.loc[df.cont==og,:].copy()
+        # oobs.loc[:,"time"] = oobs.loc[:,"time"].astype(str)
+#         oobs.sort_values(by="time",inplace=True)
+        tvals = oobs.date.values
+        # onames = oobs.obsnme.values
+        if dot is True:
+            # plot prior
+            ax.scatter(tvals, oobs.loc[:, target],color="gray",s=30, alpha=0.5)
+            # plot posterior
+            ax.scatter(tvals, oobs.loc[:, obdnam],color='red',s=30).set_facecolor("none")
+        # if dot is False:
+        #     # plot prior
+        #     [ax.plot(tvals,pr_oe.loc[i,onames].values,"0.5",lw=0.5,alpha=0.5) for i in pr_oe.index]
+        #     # plot posterior
+        #     [ax.plot(tvals,pt_oe.loc[i,onames].values,"b",lw=0.5,alpha=0.5) for i in pt_oe.index]
+        #     # plot measured+noise 
+        #     oobs = oobs.loc[oobs.weight>0,:]
+        #     tvals = oobs.time.values
+        #     onames = oobs.obsnme.values
+        #     ax.plot(oobs.time,oobs.obsval,"r-",lw=2)
+        ax.tick_params(axis='x', labelrotation=90)
+        ax.margins(x=0.01)
+        ax.set_title(og,loc="left")
+    # fig.tight_layout()
+    plt.show()
 
 
 
