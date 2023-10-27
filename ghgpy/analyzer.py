@@ -62,18 +62,20 @@ def plot_oo(df, target=None,numcols=1, fsize=8):
     plt.show()
 
 
-def plot_oom(df, target=None, numcols=1, fsize=8):
+def plot_oom(df, target=None, obdnam=None, numcols=1, fsize=8):
+    # plot one to one multi sites or scenarios
     m1 = ObjFns()
     if target is None:
         target = "ch4e_tot"
-
+    if obdnam is None:
+        obdnam = "ch4_obd"
     fig, ax = plt.subplots(figsize=(6,5))
     colors = cm.rainbow(np.linspace(0, 1, len(df.cont.unique())))
     print(df)
-    fmax = df.loc[:, [target, "ch4_obd"]].max().max()
-    fmin = df.loc[:, [target, "ch4_obd"]].min().min()
+    fmax = df.loc[:, [target, obdnam]].max().max()
+    fmin = df.loc[:, [target, obdnam]].min().min()
     x_val = df.loc[:, target].tolist()
-    y_val = df.loc[:, "ch4_obd"].tolist()
+    y_val = df.loc[:, obdnam].tolist()
     correlation_matrix = np.corrcoef(x_val, y_val)
     correlation_xy = correlation_matrix[0,1]
     r_squared = correlation_xy**2
@@ -84,7 +86,6 @@ def plot_oom(df, target=None, numcols=1, fsize=8):
     rsq_val = round(m1.rsq(df[target], df.ch4_obd), 3)
     rmse_val = round(m1.rmse(df[target].values, df.ch4_obd.values), 3)
     pbias_val = round(m1.pbias(df[target].values, df.ch4_obd.values), 3)
-    
     ax.text(
             0.05, 0.9,
             f'$R^2:$ {r_squared:.3f}',
@@ -99,7 +100,6 @@ def plot_oom(df, target=None, numcols=1, fsize=8):
             bbox=dict(facecolor='gray', alpha=0.2),
             transform=ax.transAxes
             )
-    
     ax.text(
             0.7, 0.9,
             f'$rmse:$ {rmse_val:.3f}',
@@ -107,8 +107,6 @@ def plot_oom(df, target=None, numcols=1, fsize=8):
             bbox=dict(facecolor='gray', alpha=0.2),
             transform=ax.transAxes
             )
-
-
     ax.text(
             0.95, 0.05,
             f'$y={m:.2f}x{b:.2f}$',
@@ -117,8 +115,6 @@ def plot_oom(df, target=None, numcols=1, fsize=8):
             transform=ax.transAxes
             )
     # ax.scatter(df[target], df.ch4_obd,  alpha=0.7)
-
-
     lgds = []
     for tn, c in zip(df.cont.unique(), colors):
         sdf = df.loc[df['cont'] == tn]
@@ -140,6 +136,68 @@ def plot_oom(df, target=None, numcols=1, fsize=8):
     fig.tight_layout()
     plt.savefig("plot_oom.jpg", dpi=300, bbox_inches="tight")
     plt.show()
+
+
+def plot_tseries_ch4(
+                    df, target=None, obdnam=None, width=10, height=4, dot=True,
+                    ):
+    if target is None:
+        target = "ch4e_tot"
+    if obdnam is None:
+        obdnam = "ch4_obd"
+
+    fig, ax = plt.subplots()
+
+
+    obs = pst.observation_data.copy()
+    obs = obs.loc[obs.obgnme.apply(lambda x: x in pst.nnz_obs_groups),:]
+    time_col = []
+    for i in range(len(obs)):
+        time_col.append(obs.iloc[i, 0][-6:])
+    obs['time'] = time_col
+#     # onames provided in oname argument
+#     obs = obs.loc[obs.oname.apply(lambda x: x in onames)]
+    # only non-zero observations
+#     obs = obs.loc[obs.obgnme.apply(lambda x: x in pst.nnz_obs_groups),:]
+    # make a plot
+    ogs = obs.obgnme.unique()
+    fig,axes = plt.subplots(len(ogs),1,figsize=(width,height*len(ogs)))
+    ogs.sort()
+    # for each observation group (i.e. timeseries)
+    for ax,og in zip(axes,ogs):
+        # get values for x axis
+        oobs = obs.loc[obs.obgnme==og,:].copy()
+        oobs.loc[:,"time"] = oobs.loc[:,"time"].astype(str)
+#         oobs.sort_values(by="time",inplace=True)
+        tvals = oobs.time.values
+        onames = oobs.obsnme.values
+        if dot is True:
+            # plot prior
+            [ax.scatter(tvals,pr_oe.loc[i,onames].values,color="gray",s=30, alpha=0.5) for i in pr_oe.index]
+            # plot posterior
+            [ax.scatter(tvals,pt_oe.loc[i,onames].values,color='b',s=30,alpha=0.2) for i in pt_oe.index]
+            # plot measured+noise 
+            oobs = oobs.loc[oobs.weight>0,:]
+            tvals = oobs.time.values
+            onames = oobs.obsnme.values
+            ax.scatter(oobs.time,oobs.obsval,color='red',s=30).set_facecolor("none")
+        if dot is False:
+            # plot prior
+            [ax.plot(tvals,pr_oe.loc[i,onames].values,"0.5",lw=0.5,alpha=0.5) for i in pr_oe.index]
+            # plot posterior
+            [ax.plot(tvals,pt_oe.loc[i,onames].values,"b",lw=0.5,alpha=0.5) for i in pt_oe.index]
+            # plot measured+noise 
+            oobs = oobs.loc[oobs.weight>0,:]
+            tvals = oobs.time.values
+            onames = oobs.obsnme.values
+            ax.plot(oobs.time,oobs.obsval,"r-",lw=2)
+        ax.tick_params(axis='x', labelrotation=90)
+        ax.margins(x=0.01)
+        ax.set_title(og,loc="left")
+    # fig.tight_layout()
+    plt.show()
+
+
 
 
 def viz(wd):

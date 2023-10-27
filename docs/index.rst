@@ -7,7 +7,7 @@ Welcome to ghgpy's documentation!
 =================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
    modules

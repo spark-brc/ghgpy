@@ -19,19 +19,23 @@ from ghgpy.utils import PostPr
 import pandas as pd
 import os
 from ghgpy.analyzer import plot_oom
-from ghgpy.runs import dc_multi_run
+from ghgpy.runs import run_dc_multi, run_dndc_daily
 
 
 
+def run_dndc(wd):
+    run_dndc_daily(wd)
+    so_df = PostPr(wd).get_ch4_so_df(outfnam="ch4_multi_dndc.out")
+    print(so_df)
 
 
 
 def run_md_viz(wd):
     # run model
-    dc_multi_run(wd)
+    run_dc_multi(wd)
     # post-processing
     m1 = PostPr(wd)
-    so_df = m1.get_ch4_so_df()
+    so_df = m1.get_ch4_so_df(outfnam="ch4_multi_dndc.out")
     print(so_df)
 
     # viz
@@ -42,6 +46,6 @@ def run_md_viz(wd):
 
 
 if __name__ == "__main__":
-    wd = "D:\\Projects\\Models\\swatp-ghg\\models"
-    run_md_viz(wd)
+    wd = "D:\\Projects\\Tools\\ghgpy\\models"
+    run_dndc(wd)
 

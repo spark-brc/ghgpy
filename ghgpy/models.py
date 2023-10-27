@@ -588,4 +588,11 @@ class DNDCdaily(object):
 
     def ch4e(self, ch4prod, ch4oxid):
         ch4e_ = ch4prod - ch4oxid
-        return ch4e
+        return ch4e_
+    
+    def read_inputs(self):
+        input_df = pd.read_csv(
+            os.path.join(
+                self.model_dir, "input_ghg.csv"), na_values=[-9999, ""],
+                index_col=0, parse_dates=True)
+        return input_df

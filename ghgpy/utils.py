@@ -87,7 +87,9 @@ class PostPr(object):
         self.wd = wd
         os.chdir(self.wd)
 
-    def get_ch4_so_df(self):
+    def get_ch4_so_df(self, outfnam=None):
+        if outfnam is None:
+            outfnam = "ch4_multi.out"
         # m1 = DCmodel(self.wd)
         # obd =  m1.read_inputs()
         # obd["date"] = obd.index
@@ -95,7 +97,7 @@ class PostPr(object):
         # sim = pd.read_csv(
         #     os.path.join(wd, "ch4_output.csv"), index_col=0, parse_dates=True,)
         simm = pd.read_csv(
-            os.path.join(self.wd, "ch4_multi.out"), sep=r"\s+", comment="#")
+            os.path.join(self.wd, outfnam), sep=r"\s+", comment="#")
         simm["new_idx"] = simm.loc[:, "date"] + "-"+ simm.loc[:, "cont"]
         # so_df = simm.merge(obd, how='inner', on='new_idx')
         return simm

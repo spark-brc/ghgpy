@@ -44,7 +44,7 @@ class DNDCparms(object):
             rconst=8.314,
             fconst=96485,
             fr_rsi=0.5,
-            fr_root=0.5
+            fr_root=0.1
             ):
         self.a = a 
         self.b = b  
