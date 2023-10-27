@@ -4,4 +4,9 @@ ghgpy
 .. toctree::
    :maxdepth: 4
 
-   ghgpy
+   analyzer
+   ch4_process
+   main
+   parms
+   runs
+   utils
