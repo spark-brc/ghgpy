@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 .. math::
-    \frac{ \sum_{t=0}^{N}f(t,k) }{N}
+    \\frac{ \sum_{t=0}^{N}f(t,k) }{N}
 
 """
 

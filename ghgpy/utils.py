@@ -17,8 +17,8 @@ class ObjFns:
 
         :Calculation Details:
             .. math::
-            E_{\\text{NSE}} = 1 - \\frac{\\sum_{i=1}^{N}[e_{i}-s_{i}]^2}
-            {\\sum_{i=1}^{N}[e_{i}-\\mu(e)]^2}
+                E_{\\text{NSE}} = 1 - \\frac{\\sum_{i=1}^{N}[e_{i}-s_{i}]^2}
+                {\\sum_{i=1}^{N}[e_{i}-\\mu(e)]^2}
 
             where *N* is the length of the *sims* and *obds*
             periods, *e* is the *obds* series, *s* is (one of) the
