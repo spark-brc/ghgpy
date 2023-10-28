@@ -15,14 +15,13 @@ class ObjFns:
         """Nash-Sutcliffe Efficiency (NSE) as per `Nash and Sutcliffe, 1970
         <https://doi.org/10.1016/0022-1694(70)90255-6>`_.
 
-        :Calculation Details:
-            .. math::
-                E_{\\text{NSE}} = 1 - \\frac{\\sum_{i=1}^{N}[e_{i}-s_{i}]^2}
-                {\\sum_{i=1}^{N}[e_{i}-\\mu(e)]^2}
+        .. math::
+            E_{\\text{NSE}} = 1 - \\frac{\\sum_{i=1}^{N}[e_{i}-s_{i}]^2}
+            {\\sum_{i=1}^{N}[e_{i}-\\mu(e)]^2}
 
-            where *N* is the length of the *sims* and *obds*
-            periods, *e* is the *obds* series, *s* is (one of) the
-            *sims* series, and *μ* is the arithmetic mean.
+        where *N* is the length of the *sims* and *obds*
+        periods, *e* is the *obds* series, *s* is (one of) the
+        *sims* series, and *μ* is the arithmetic mean.
 
         """
         nse_ = 1 - (
@@ -35,13 +34,12 @@ class ObjFns:
     def rmse(sims, obds):
         """Root Mean Square Error (RMSE).
 
-        :Calculation Details:
-            .. math::
+        .. math::
             E_{\\text{RMSE}} = \\sqrt{\\frac{1}{N}\\sum_{i=1}^{N}[e_i-s_i]^2}
 
-            where *N* is the length of the *sims* and *obds*
-            periods, *e* is the *obds* series, *s* is (one of) the
-            *sims* series.
+        where *N* is the length of the *sims* and *obds*
+        periods, *e* is the *obds* series, *s* is (one of) the
+        *sims* series.
 
         """
         rmse_ = np.sqrt(np.mean((obds - sims) ** 2,
@@ -53,13 +51,12 @@ class ObjFns:
     def pbias(sims, obds):
         """Percent Bias (PBias).
 
-        :Calculation Details:
-            .. math::
+        .. math::
             E_{\\text{PBias}} = 100 × \\frac{\\sum_{i=1}^{N}(e_{i}-s_{i})}{\\sum_{i=1}^{N}e_{i}}
 
-            where *N* is the length of the *sims* and *obds*
-            periods, *e* is the *obds* series, and *s* is (one of)
-            the *sims* series.
+        where *N* is the length of the *sims* and *obds*
+        periods, *e* is the *obds* series, and *s* is (one of)
+        the *sims* series.
 
         """
         pbias_ = (100 * np.sum(obds - sims, axis=0, dtype=np.float64)
