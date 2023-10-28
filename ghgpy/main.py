@@ -7,7 +7,7 @@ This module contains a framework to summarize the total CH4 flux balance from ri
 
 .. math::
 
-   \frac{ \sum_{t=0}^{N}f(t,k) }{N}
+   `\frac{ \sum_{t=0}^{N}f(t,k) }{N}`
 
 :math:`T_{CH4}=P_{CH4}-O_{CH4}+E_{CH4}+D_{CH4}+A_{CH4}`
 
