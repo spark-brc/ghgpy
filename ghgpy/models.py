@@ -433,11 +433,11 @@ class DNDC(object):
             CH_{4}p = a * AC * Ft
 
         :param ava_c: the available carbon concentration
-        :type ava_c: float, :math: `kg C/ha`
+        :type ava_c: float, :math:`kg C/ha`
         :param ft_temp: the temperature factor,
         :type ft_temp: float
         :return: CH4 production rate
-        :rtype: float, :math: `\\frac {kg C}{ha*d}`
+        :rtype: float, :math:`\\frac {kg C}{ha*d}`
         """
 
         ch4prod_ = self.parms.a * ava_c * ft_temp
