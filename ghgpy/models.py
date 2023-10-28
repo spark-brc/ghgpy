@@ -323,13 +323,12 @@ class MERES(object):
         return pch4prod_
 
     def ch4oxid(self, pch4prod, ch4conc, o2conc):
-        """The rate of CH4 consumption (QCH4, mol m-3 s-1) by 
-            the methanotrophic bacteria (see equation 2) in 
-            a soil layer is given by the Michaelis-Menten equation
+        """
+        The rate of CH4 consumption (QCH4, mol m-3 s-1) by 
+        the methanotrophic bacteria (see equation 2) in 
+        a soil layer is given by the Michaelis-Menten equation
         .. math:: 
             p=f(x)
-
-
         :param pch4prod: potential CH4 production
         :type pch4prod: float, mol Ceq m-3
         :param ch4conc: ch4 concentration
@@ -338,6 +337,7 @@ class MERES(object):
         :type o2conc: float, mol m-3
         :return: rate of CH4 consumption
         :rtype: float, mol m-3 s-1
+        
         """
         ch4oxid_ = (
             pch4prod * 
