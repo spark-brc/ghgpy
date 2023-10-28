@@ -73,9 +73,9 @@ def run_dc_multi(wd):
         getdf["ch4_obd"] = contdf.loc[:, "ch4_obd"]
         dff = pd.concat([dff, getdf], axis=0)
     dff.insert(0, "date", dff.index.date)         
-    with open(os.path.join(wd, "ch4_multi.out"), "w") as f:
+    with open(os.path.join(wd, "ch4_multi_dc.out"), "w") as f:
         fmts = [SFMT, FFMT, FFMT, FFMT, FFMT, FFMT, SFMT] 
-        f.write("# created by swatp-ghg\n")
+        f.write("# created by ghgpy\n")
         f.write(dff.loc[:, [
             "date", "ch4_obd", "ch4prods", "ch4eps", "ch4ebls", "ch4e_tot", "cont"]].to_string(
                                                         col_space=0,
