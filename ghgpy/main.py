@@ -4,7 +4,6 @@ Copyright 2023 by Seonggyu Park
 This file is part of ghgpy.
 :author: Seonggyu Park
 This module contains a framework to summarize the total CH4 flux balance from rice paddy.
-
 .. math::
     \frac{ \sum_{t=0}^{N}f(t,k) }{N}
 
