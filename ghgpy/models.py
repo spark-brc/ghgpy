@@ -337,7 +337,7 @@ class MERES(object):
         :type o2conc: float, mol m-3
         :return: rate of CH4 consumption
         :rtype: float, mol m-3 s-1
-        
+
         """
         ch4oxid_ = (
             pch4prod * 
@@ -428,6 +428,17 @@ class DNDC(object):
         self.parms = DNDCparms()
 
     def ch4prod(self, ava_c, ft_temp):
+        """
+        .. math::
+            CH_{4}p = a * AC * Ft
+
+        :param ava_c: the available carbon concentration
+        :type ava_c: float, :math: `kg C/ha`
+        :param ft_temp: the temperature factor,
+        :type ft_temp: float
+        :return: CH4 production rate
+        :rtype: float, :math: `\\frac {kg C}{ha*d}`
+        """
 
         ch4prod_ = self.parms.a * ava_c * ft_temp
         return ch4prod_
