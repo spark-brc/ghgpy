@@ -444,6 +444,17 @@ class DNDC(object):
         return ch4prod_
     
     def ft_temp(self, t_soil):
+        """the temperature factor
+        .. math::
+            Ft = b*e^{0.2424*T}
+
+        :param t_soil: the temperature (°C)
+        :type t_soil: float, °C
+        :const b: constant parameter
+        :type float
+        :return: temperature factor
+        :rtype: float
+        """
         ft_temp_ = self.parms.b * math.exp(0.2424*t_soil)
         return ft_temp_
 
