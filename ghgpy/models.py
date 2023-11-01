@@ -328,7 +328,9 @@ class MERES(object):
         the methanotrophic bacteria (see equation 2) in 
         a soil layer is given by the Michaelis-Menten equation
         .. math:: 
+
             p=f(x)
+
         :param pch4prod: potential CH4 production
         :type pch4prod: float, mol Ceq m-3
         :param ch4conc: ch4 concentration
@@ -486,7 +488,23 @@ class DNDC(object):
         aere_ = a * pgi**5 + b * pgi**4 + c * pgi**3 + d * pgi**2 + e * pgi + f
         return aere_
     
-    def pgi(self, dsp, sds):
+    def pgi(self, stdate, eddate, curdate):
+        """plant growth index
+
+        :param stdate: start date
+        :type stdate: str, dateformat
+        :param dsp: days since planting
+        :type dsp: int
+        :param sds: season days
+        :type sds: int
+        :return: plant growth index
+        :rtype: float
+        """
+        stdate =  pd.to_datetime(stdate)
+        eddate = pd.to_datetime(eddate)
+        dsp = abs((curdate - stdate).days)
+        sds = abs((eddate - stdate).days) 
+
         pgi_ = dsp / sds
         return pgi_
     
@@ -537,7 +555,18 @@ class DNDC(object):
     def eh(self, e0, t_soil, num_elect):
         eh_ = e0 + (self.parms.rconst * t_soil / (num_elect * self.parms.fconst))
         return eh_
+
+    def read_inputs(self):
+        input_df = pd.read_csv(
+            os.path.join(
+                self.model_dir, "input_ghg.csv"), na_values=[-9999, ""],
+                index_col=0, parse_dates=True)
+        return input_df
     
+
+
+
+
 class DNDCdaily(object):
     def __init__(self, model_dir):
         self.model_dir =  model_dir

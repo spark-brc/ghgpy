@@ -16,15 +16,22 @@ from ghgpy.utils import PostPr
 import pandas as pd
 import os
 from ghgpy.analyzer import plot_oom, plot_tseries_ch4
-from ghgpy.runs import run_dc_multi, run_dndc_daily
+from ghgpy.runs import run_dc_multi, run_dndc_daily, run_dndc
 
 
 
-def run_dndc(wd):
+def run_dndc_daily(wd):
     run_dndc_daily(wd)
     so_df = PostPr(wd).get_ch4_so_df(outfnam="ch4_multi_dndc.out")
     # viz
     plot_tseries_ch4(so_df, simnam="ch4es", height=3, dot=False)
+
+def run_dndc_model(wd):
+    run_dndc(wd)
+    so_df = PostPr(wd).get_ch4_so_df(outfnam="ch4_multi_dndc.out")
+    # viz
+    plot_tseries_ch4(so_df, simnam="ch4e_tot", height=3, dot=False)
+
 
 
 def run_dc(wd):
@@ -52,5 +59,5 @@ def run_md_viz(wd):
 
 if __name__ == "__main__":
     wd = "D:\\Projects\\Tools\\ghgpy\\models"
-    run_dc(wd)
+    run_dndc_model(wd)
 

@@ -1,4 +1,4 @@
-from ghgpy.models import DCmodel, DNDCdaily
+from ghgpy.models import DCmodel, DNDCdaily, DNDC
 import os
 import pandas as pd
 
@@ -137,7 +137,7 @@ def run_dndc_daily(wd):
         getdf["ch4_obd"] = contdf.loc[:, "ch4_obd"]
         dff = pd.concat([dff, getdf], axis=0)
     dff.insert(0, "date", dff.index.date)
-    with open(os.path.join(wd, "ch4_multi_dndc.out"), "w") as f:
+    with open(os.path.join(wd, "ch4_multi_dndc_daily.out"), "w") as f:
         fmts = [SFMT, FFMT, FFMT, FFMT, FFMT, SFMT] 
         f.write("# created by ghgpy\n")
         f.write(dff.loc[:, [
@@ -150,10 +150,14 @@ def run_dndc_daily(wd):
     print("run complete ...")
 
 def run_dndc(wd):
-    m1 = DNDCdaily(wd)
-    ph = 6.72
-    root_biomass =1
-    c_sol = 1
+    m1 = DNDC(wd)
+    ava_c = 0.05 
+    pgi_idx = 0.5
+    poro = 0.01
+    stdate = "5/19/2022"
+    eddate = "10/5/2022"
+    # root_biomass =1
+    # c_sol = 1
     # read inputs
     indf = m1.read_inputs()
     indf.dropna(axis=0, inplace=True)
@@ -162,52 +166,40 @@ def run_dndc(wd):
 
     for cont in conts:
         contdf = indf.loc[indf["condition"]==cont]
-        c_pools = []
-        fehs = []
+        # c_pools = []
+        # fehs = []
         ch4prods = []
         ch4oxids = []
-        ch4es = []
+        ch4eps = []
+        ch4ebls = []
         for i in contdf.index:
-
-            
-
-
-
-            # print(contdf.loc[i])
-            # calculate c_pool
-            c_pool = m1.c_pool(c_sol, root_biomass)
-            c_pools.append(c_pool)
-            # calculate feh
-            feh = m1.feh(float(contdf.loc[i, "eh"]))
-            fehs.append(feh)
-            # calculate ftm
-            ftm = m1.ftm(float(contdf.loc[i, "tsoil"]))
-            # calculate fphm
-            fphm = m1.fphm(ph)
-            # calculate ch4prod
-            ch4prod = m1.ch4prod(c_pool, ftm, feh, fphm)
+            tempf01 = m1.ft_temp(float(contdf.loc[i, "tsoil"]))
+            ch4prod = m1.ch4prod(ava_c, tempf01) * 0.1
             ch4prods.append(ch4prod)
-            # calculate aere
-            aere = m1.aere(root_biomass)
-            # calcualte ch4oxid
-            ch4oxid = m1.ch4oxid(ch4prod, aere)
+            # NOTE: use ch4p as ch4 concentration?
+            ch4oxid = m1.ch4oxid(ch4prod, float(contdf.loc[i, "eh"]))
             ch4oxids.append(ch4oxid)
-            # calcualte emission
-            ch4e = m1.ch4e(ch4prod, ch4oxid)
-            ch4es.append(ch4e)
+            pgi_idx = m1.pgi(stdate, eddate, i)
+            aere = m1.aere(pgi_idx)
+            ch4ep = m1.ch4ep(ch4prod, aere)
+            ch4eps.append(ch4ep)
+            tempf02 = m1.ft_temp2(float(contdf.loc[i, "tsoil"]))
+            ch4ebl = m1.ch4ebl(ch4prod, poro, tempf02, aere)
+            ch4ebls.append(ch4ebl)
+
         getdf = pd.DataFrame(
-            {"ch4prods":ch4prods, "ch4oxids":ch4oxids, "ch4es":ch4es}, 
+            {"ch4prods":ch4prods, "ch4eps":ch4eps, "ch4ebls":ch4ebls}, 
             index=contdf.index)
-        # getdf["ch4e_tot"] = getdf["ch4eps"] + getdf["ch4ebls"]
+        getdf["ch4e_tot"] = getdf["ch4eps"] + getdf["ch4ebls"]
         getdf['cont'] = cont
         getdf["ch4_obd"] = contdf.loc[:, "ch4_obd"]
         dff = pd.concat([dff, getdf], axis=0)
     dff.insert(0, "date", dff.index.date)
     with open(os.path.join(wd, "ch4_multi_dndc.out"), "w") as f:
-        fmts = [SFMT, FFMT, FFMT, FFMT, FFMT, SFMT] 
+        fmts = [SFMT, FFMT, FFMT, FFMT, FFMT, FFMT, SFMT]
         f.write("# created by ghgpy\n")
         f.write(dff.loc[:, [
-            "date", "ch4_obd", "ch4prods", "ch4oxids", "ch4es", "cont"]].to_string(
+            "date", "ch4_obd", "ch4prods", "ch4eps", "ch4ebls", "ch4e_tot", "cont"]].to_string(
                                                         col_space=0,
                                                         formatters=fmts,
                                                         index=False,
