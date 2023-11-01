@@ -275,7 +275,6 @@ class MERES(object):
         self.model_dir =  model_dir
         self.parms = MERESparms()
 
-    def ch4prod(self, pch4prod, o2conc):
         """Actual CH4 production (PCH4, mol m-3 s-1) in a given soil layer
 
         Args:
@@ -284,6 +283,20 @@ class MERES(object):
 
         Returns:
             float: Actual CH4 production (PCH4, mol m-3 s-1)
+            :math:`\\frac {kg C}{ha*d}`
+        """
+
+
+
+    def ch4prod(self, pch4prod, o2conc):
+        """Actual CH4 production (CH4, mol m-3 s-1) in a given soil layer
+
+        :param pch4prod: potential CH4 production
+        :type pch4prod: float, :math:`\\frac{mol C}{m^3*s}`
+        :param o2conc: concentration of O2
+        :type o2conc: float, :math:`mol m^{-3}`
+        :return: Actual CH4 production
+        :rtype: float, :math:`mol m^{-3} s^{-1}`
         """
         ch4prod_ = pch4prod / (1 + (self.parms.eta *o2conc))
         return ch4prod_

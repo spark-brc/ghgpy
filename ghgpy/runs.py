@@ -152,7 +152,7 @@ def run_dndc_daily(wd):
 def run_dndc(wd):
     m1 = DNDC(wd)
     ava_c = 0.05 
-    pgi_idx = 0.5
+    pg_idx = 0.5
     poro = 0.01
     stdate = "5/19/2022"
     eddate = "10/5/2022"
@@ -179,8 +179,8 @@ def run_dndc(wd):
             # NOTE: use ch4p as ch4 concentration?
             ch4oxid = m1.ch4oxid(ch4prod, float(contdf.loc[i, "eh"]))
             ch4oxids.append(ch4oxid)
-            pgi_idx = m1.pgi(stdate, eddate, i)
-            aere = m1.aere(pgi_idx)
+            pg_idx = m1.pgi(stdate, eddate, i)
+            aere = m1.aere(pg_idx)
             ch4ep = m1.ch4ep(ch4prod, aere)
             ch4eps.append(ch4ep)
             tempf02 = m1.ft_temp2(float(contdf.loc[i, "tsoil"]))
