@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ghgpy.main &mdash; ghgpy documentation 0.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=7026087e"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ghgpy documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">ghgpy</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ghgpy documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">ghgpy.main</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ghgpy.main</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. math::</span>
+<span class="sd">    \\frac{ \sum_{t=0}^{N}f(t,k) }{N}</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">))</span>
+
+<span class="kn">from</span> <span class="nn">ghgpy.models</span> <span class="kn">import</span> <span class="n">DCmodel</span>
+<span class="kn">from</span> <span class="nn">ghgpy.utils</span> <span class="kn">import</span> <span class="n">ObjFns</span>
+<span class="kn">from</span> <span class="nn">ghgpy.utils</span> <span class="kn">import</span> <span class="n">PostPr</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">ghgpy.analyzer</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">plot_oom</span><span class="p">,</span> <span class="n">plot_tseries_ch4</span><span class="p">,</span> <span class="n">plot_tseries_ch4_tot</span><span class="p">,</span> <span class="n">plot_violin</span><span class="p">,</span> <span class="n">plot_oot</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">ghgpy.runs</span> <span class="kn">import</span> <span class="n">run_dc_multi</span><span class="p">,</span> <span class="n">run_dndc_daily</span><span class="p">,</span> <span class="n">run_dndc</span>
+
+
+
+<div class="viewcode-block" id="run_dndc_daily_model">
+<a class="viewcode-back" href="../../ghgpy.html#ghgpy.main.run_dndc_daily_model">[docs]</a>
+<span class="k">def</span> <span class="nf">run_dndc_daily_model</span><span class="p">(</span><span class="n">wd</span><span class="p">):</span>
+    <span class="n">run_dndc_daily</span><span class="p">(</span><span class="n">wd</span><span class="p">)</span>
+    <span class="n">so_df</span> <span class="o">=</span> <span class="n">PostPr</span><span class="p">(</span><span class="n">wd</span><span class="p">)</span><span class="o">.</span><span class="n">get_ch4_so_df</span><span class="p">(</span><span class="n">outfnam</span><span class="o">=</span><span class="s2">&quot;ch4_multi_dndc_daily.out&quot;</span><span class="p">)</span>
+    <span class="c1"># viz</span>
+    <span class="n">plot_tseries_ch4</span><span class="p">(</span><span class="n">so_df</span><span class="p">,</span> <span class="n">simnam</span><span class="o">=</span><span class="s2">&quot;ch4es&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">dot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="run_dndc_model">
+<a class="viewcode-back" href="../../ghgpy.html#ghgpy.main.run_dndc_model">[docs]</a>
+<span class="k">def</span> <span class="nf">run_dndc_model</span><span class="p">(</span><span class="n">wd</span><span class="p">):</span>
+    <span class="n">run_dndc</span><span class="p">(</span><span class="n">wd</span><span class="p">)</span>
+    <span class="n">so_df</span> <span class="o">=</span> <span class="n">PostPr</span><span class="p">(</span><span class="n">wd</span><span class="p">)</span><span class="o">.</span><span class="n">get_ch4_so_df</span><span class="p">(</span><span class="n">outfnam</span><span class="o">=</span><span class="s2">&quot;ch4_multi_dndc.out&quot;</span><span class="p">)</span>
+    <span class="c1"># viz</span>
+    <span class="n">plot_tseries_ch4</span><span class="p">(</span><span class="n">so_df</span><span class="p">,</span> <span class="n">simnam</span><span class="o">=</span><span class="s2">&quot;ch4e_tot&quot;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">dot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+
+
+<div class="viewcode-block" id="run_dc_model">
+<a class="viewcode-back" href="../../ghgpy.html#ghgpy.main.run_dc_model">[docs]</a>
+<span class="k">def</span> <span class="nf">run_dc_model</span><span class="p">(</span><span class="n">wd</span><span class="p">):</span>
+    <span class="n">run_dc_multi</span><span class="p">(</span><span class="n">wd</span><span class="p">)</span>
+    <span class="n">so_df</span> <span class="o">=</span> <span class="n">PostPr</span><span class="p">(</span><span class="n">wd</span><span class="p">)</span><span class="o">.</span><span class="n">get_ch4_so_df</span><span class="p">(</span><span class="n">outfnam</span><span class="o">=</span><span class="s2">&quot;ch4_multi_dc.out&quot;</span><span class="p">)</span>
+    <span class="n">plot_tseries_ch4</span><span class="p">(</span><span class="n">so_df</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">dot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fignam</span><span class="o">=</span><span class="s2">&quot;dc_out.png&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="run_md_viz">
+<a class="viewcode-back" href="../../ghgpy.html#ghgpy.main.run_md_viz">[docs]</a>
+<span class="k">def</span> <span class="nf">run_md_viz</span><span class="p">(</span><span class="n">wd</span><span class="p">):</span>
+    <span class="c1"># run model</span>
+    <span class="n">run_dc_multi</span><span class="p">(</span><span class="n">wd</span><span class="p">)</span>
+    <span class="c1"># post-processing</span>
+    <span class="n">m1</span> <span class="o">=</span> <span class="n">PostPr</span><span class="p">(</span><span class="n">wd</span><span class="p">)</span>
+
+
+    <span class="n">so_df</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">get_ch4_so_df</span><span class="p">(</span><span class="n">outfnam</span><span class="o">=</span><span class="s2">&quot;ch4_multi_dndc.out&quot;</span><span class="p">)</span>
+    <span class="c1"># so_df = m1.get_ch4_so_df(outfnam=&quot;ch4_multi.out&quot;)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">so_df</span><span class="p">)</span>
+
+    <span class="c1"># viz</span>
+    <span class="n">plot_tseries_ch4</span><span class="p">(</span><span class="n">so_df</span><span class="p">,</span> <span class="n">dot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+    
+
+
+<div class="viewcode-block" id="viz_tot">
+<a class="viewcode-back" href="../../ghgpy.html#ghgpy.main.viz_tot">[docs]</a>
+<span class="k">def</span> <span class="nf">viz_tot</span><span class="p">(</span><span class="n">wd</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">wd</span><span class="p">,</span> <span class="s2">&quot;tot_3m.xlsx&quot;</span><span class="p">),</span>
+        <span class="c1"># index_col=0,</span>
+        <span class="c1"># parse_dates=True,</span>
+        <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;#&quot;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;cont&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;flooding&quot;</span><span class="p">]</span>
+    <span class="n">dff</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;ch4_obd&quot;</span><span class="p">,</span> <span class="s2">&quot;dc&quot;</span><span class="p">,</span> <span class="s2">&quot;dndc&quot;</span><span class="p">,</span> <span class="s2">&quot;dndc_d&quot;</span><span class="p">]]</span>
+    <span class="c1"># plot_violin(wd, dff)</span>
+    <span class="n">plot_oot</span><span class="p">(</span><span class="n">wd</span><span class="p">,</span> <span class="n">dff</span><span class="p">)</span></div>
+
+
+
+
+
+
+
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">wd</span> <span class="o">=</span> <span class="s2">&quot;D:</span><span class="se">\\</span><span class="s2">Projects</span><span class="se">\\</span><span class="s2">Tools</span><span class="se">\\</span><span class="s2">ghgpy</span><span class="se">\\</span><span class="s2">models&quot;</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">wd</span><span class="p">)</span>
+    <span class="n">viz_tot</span><span class="p">(</span><span class="n">wd</span><span class="p">)</span>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Seonggyu Park.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

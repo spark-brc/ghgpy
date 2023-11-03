@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ghgpy package &mdash; ghgpy documentation 0.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=7026087e"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="ghgpy" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ghgpy documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">ghgpy</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ghgpy package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-ghgpy.analyzer">ghgpy.analyzer module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.analyzer.plot_oo"><code class="docutils literal notranslate"><span class="pre">plot_oo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.analyzer.plot_oom"><code class="docutils literal notranslate"><span class="pre">plot_oom()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.analyzer.plot_oot"><code class="docutils literal notranslate"><span class="pre">plot_oot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.analyzer.plot_tseries_ch4"><code class="docutils literal notranslate"><span class="pre">plot_tseries_ch4()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.analyzer.plot_tseries_ch4_tot"><code class="docutils literal notranslate"><span class="pre">plot_tseries_ch4_tot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.analyzer.plot_violin"><code class="docutils literal notranslate"><span class="pre">plot_violin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.analyzer.viz"><code class="docutils literal notranslate"><span class="pre">viz()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-ghgpy.ch4_process">ghgpy.ch4_process module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.ch4_process.Aerenchyma"><code class="docutils literal notranslate"><span class="pre">Aerenchyma</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.ch4_process.Decomposition"><code class="docutils literal notranslate"><span class="pre">Decomposition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.ch4_process.Ebullition"><code class="docutils literal notranslate"><span class="pre">Ebullition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.ch4_process.Oxidation"><code class="docutils literal notranslate"><span class="pre">Oxidation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.ch4_process.SI"><code class="docutils literal notranslate"><span class="pre">SI()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.ch4_process.c_root"><code class="docutils literal notranslate"><span class="pre">c_root()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.ch4_process.c_soil"><code class="docutils literal notranslate"><span class="pre">c_soil()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.ch4_process.electAcceptor"><code class="docutils literal notranslate"><span class="pre">electAcceptor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.ch4_process.rhizoDeposit"><code class="docutils literal notranslate"><span class="pre">rhizoDeposit</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-ghgpy.main">ghgpy.main module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.main.run_dc_model"><code class="docutils literal notranslate"><span class="pre">run_dc_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.main.run_dndc_daily_model"><code class="docutils literal notranslate"><span class="pre">run_dndc_daily_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.main.run_dndc_model"><code class="docutils literal notranslate"><span class="pre">run_dndc_model()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.main.run_md_viz"><code class="docutils literal notranslate"><span class="pre">run_md_viz()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.main.viz_tot"><code class="docutils literal notranslate"><span class="pre">viz_tot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-ghgpy.models">ghgpy.models module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.models.DCmodel"><code class="docutils literal notranslate"><span class="pre">DCmodel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.models.DNDC"><code class="docutils literal notranslate"><span class="pre">DNDC</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.models.DNDCdaily"><code class="docutils literal notranslate"><span class="pre">DNDCdaily</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.models.MERES"><code class="docutils literal notranslate"><span class="pre">MERES</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-ghgpy.parms">ghgpy.parms module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.parms.DCparms"><code class="docutils literal notranslate"><span class="pre">DCparms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.parms.DNDCparms"><code class="docutils literal notranslate"><span class="pre">DNDCparms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.parms.MERESparms"><code class="docutils literal notranslate"><span class="pre">MERESparms</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-ghgpy.runs">ghgpy.runs module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.runs.FFMT"><code class="docutils literal notranslate"><span class="pre">FFMT()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.runs.IFMT"><code class="docutils literal notranslate"><span class="pre">IFMT()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.runs.SFMT"><code class="docutils literal notranslate"><span class="pre">SFMT()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.runs.run_dc_multi"><code class="docutils literal notranslate"><span class="pre">run_dc_multi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.runs.run_dc_single"><code class="docutils literal notranslate"><span class="pre">run_dc_single()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.runs.run_dndc"><code class="docutils literal notranslate"><span class="pre">run_dndc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.runs.run_dndc_daily"><code class="docutils literal notranslate"><span class="pre">run_dndc_daily()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-ghgpy.utils">ghgpy.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.utils.ObjFns"><code class="docutils literal notranslate"><span class="pre">ObjFns</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ghgpy.utils.PostPr"><code class="docutils literal notranslate"><span class="pre">PostPr</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-ghgpy">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ghgpy documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">ghgpy</a></li>
+      <li class="breadcrumb-item active">ghgpy package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ghgpy.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ghgpy-package">
+<h1>ghgpy package<a class="headerlink" href="#ghgpy-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-ghgpy.analyzer">
+<span id="ghgpy-analyzer-module"></span><h2>ghgpy.analyzer module<a class="headerlink" href="#module-ghgpy.analyzer" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.analyzer.plot_oo">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.analyzer.</span></span><span class="sig-name descname"><span class="pre">plot_oo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simnam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numcols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/analyzer.html#plot_oo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.analyzer.plot_oo" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.analyzer.plot_oom">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.analyzer.</span></span><span class="sig-name descname"><span class="pre">plot_oom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simnam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obdnam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numcols</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/analyzer.html#plot_oom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.analyzer.plot_oom" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.analyzer.plot_oot">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.analyzer.</span></span><span class="sig-name descname"><span class="pre">plot_oot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/analyzer.html#plot_oot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.analyzer.plot_oot" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.analyzer.plot_tseries_ch4">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.analyzer.</span></span><span class="sig-name descname"><span class="pre">plot_tseries_ch4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simnam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obdnam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fignam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/analyzer.html#plot_tseries_ch4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.analyzer.plot_tseries_ch4" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.analyzer.plot_tseries_ch4_tot">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.analyzer.</span></span><span class="sig-name descname"><span class="pre">plot_tseries_ch4_tot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obdnam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fignam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/analyzer.html#plot_tseries_ch4_tot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.analyzer.plot_tseries_ch4_tot" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.analyzer.plot_violin">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.analyzer.</span></span><span class="sig-name descname"><span class="pre">plot_violin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/analyzer.html#plot_violin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.analyzer.plot_violin" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.analyzer.viz">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.analyzer.</span></span><span class="sig-name descname"><span class="pre">viz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/analyzer.html#viz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.analyzer.viz" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-ghgpy.ch4_process">
+<span id="ghgpy-ch4-process-module"></span><h2>ghgpy.ch4_process module<a class="headerlink" href="#module-ghgpy.ch4_process" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.Aerenchyma">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ghgpy.ch4_process.</span></span><span class="sig-name descname"><span class="pre">Aerenchyma</span></span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#Aerenchyma"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.Aerenchyma" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>MERES
+- assumes that the conductance of the plant pathway is proportional to the root length density 
+(Lv, cm root cm-3 soil) present in each soil layer, 
+such that λ= λr Lv, where λr represents the specific conductivity (units: m air (m root)-1) of 
+the root system. 
+Thus, the flux (F, mol m-3 s-1) for each substance (O2 or CH4) is given by    
+- Eq: F=lambda_r(L_v * {10}^4)D_a(y_{a0}-y_a)
+.. λ: the conductance of the pathway through the plant, m air m-3 soil
+.. λr: specific conductivity (units: m air (m root)-1) of the root system.
+.. L_v: the root length density (Lv, cm root cm-3 soil) present in each soil layer
+.. D_a: the diffusivity of the respective substance through air, m2 s^-1
+.. y_a0: concentration of the respective substance in</p>
+<blockquote>
+<div><p>the atmosphere (O2: 7.76 mol m^-3; CH4: 7.5 * 10-5 mol m^-3),</p>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.Aerenchyma.a_ch4">
+<span class="sig-name descname"><span class="pre">a_ch4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l_v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#Aerenchyma.a_ch4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.Aerenchyma.a_ch4" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.Decomposition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ghgpy.ch4_process.</span></span><span class="sig-name descname"><span class="pre">Decomposition</span></span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#Decomposition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.Decomposition" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>FOM (crop residues, green manure, and more stable organic or humic pool (HUM))
+The CERES-Rice model requires input data (FOM): 
+.. Amount of straw added,
+.. C/N
+.. Depth of incorporation
+.. root residue from previous crop</p>
+<p>Initialization of the HUM pool is calculated from the soil organic carbon as specified in the soil data file.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.Decomposition.actual_dr">
+<span class="sig-name descname"><span class="pre">actual_dr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Qp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#Decomposition.actual_dr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.Decomposition.actual_dr" title="Link to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Eq:</dt><dd><p>dQp/dt = QpRp(max) * f(Ts) * g(theta_s) * h(k_s)</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>_type_: float
+The total amount of carbon released by decay of organic matter on a given day</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.Decomposition.decomp_rate">
+<span class="sig-name descname"><span class="pre">decomp_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#Decomposition.decomp_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.Decomposition.decomp_rate" title="Link to this definition"></a></dt>
+<dd><p>DayCent model
+eq:</p>
+<blockquote>
+<div><p>sfrac{{dC}_i}{d_t}=K_i * M_d * T_d * C_i</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.Decomposition.dr_cnpool">
+<span class="sig-name descname"><span class="pre">dr_cnpool</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#Decomposition.dr_cnpool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.Decomposition.dr_cnpool" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.Decomposition.dr_lig">
+<span class="sig-name descname"><span class="pre">dr_lig</span></span><a class="headerlink" href="#ghgpy.ch4_process.Decomposition.dr_lig" title="Link to this definition"></a></dt>
+<dd><p>DayCent Decomposition rate
+per week
+Ki: state variables</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.Decomposition.dr_moisture">
+<span class="sig-name descname"><span class="pre">dr_moisture</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#Decomposition.dr_moisture"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.Decomposition.dr_moisture" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.Decomposition.dr_temp">
+<span class="sig-name descname"><span class="pre">dr_temp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#Decomposition.dr_temp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.Decomposition.dr_temp" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.Decomposition.rel_Cdecay">
+<span class="sig-name descname"><span class="pre">rel_Cdecay</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#Decomposition.rel_Cdecay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.Decomposition.rel_Cdecay" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.Ebullition">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ghgpy.ch4_process.</span></span><span class="sig-name descname"><span class="pre">Ebullition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_wa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.23</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k_e</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">86400</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#Ebullition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.Ebullition" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>MERES
+.. E: rate of ebullition, mol/(m^3*s)
+.. y_w: concentration of the substance in solution, mol/m^3
+.. y_wa: solubility of the substance in water, mol/m^3</p>
+<blockquote>
+<div><p>Values of y_wa (at 25 °C) used were 1.23 mol m^-3 and 
+1.31 mol m^-3 for O2 and CH4, respectively.</p>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Currently, there is no temperature dependence of y_wa included in the model, </dt><dd><p>but this could be incorporated in future versions.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.Ebullition.e_ch4">
+<span class="sig-name descname"><span class="pre">e_ch4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_w</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#Ebullition.e_ch4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.Ebullition.e_ch4" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.Oxidation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ghgpy.ch4_process.</span></span><span class="sig-name descname"><span class="pre">Oxidation</span></span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#Oxidation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.Oxidation" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>MERES
+- uses the Michaelis-Menten equation to simulate the rate of CH4 oxidation (QCH4, mol m-3 s-1) by the methanotrophic bacteria.
+- Eq: Q_{CH4}=P_{CH4} * stullet[CH4](k1+[CH4])∙[O2](k1+[O2])
+.. P_ch4a: potential rate of methanogenesis defined previously, mol/(m^3*s)
+.. bracket_ch4: concentration of CH4, mol/m^3
+.. bracket_o2: concentration of O2, mol/m3
+.. k1: 0.33, Michaelis-Menten constants (units: mol m-3) for a dual-substrate reaction.
+.. k2: 0.44, Michaelis-Menten constants (units: mol m-3) for a dual-substrate reaction.
+.. k3: 0.22, Michaelis-Menten constants (units: mol m-3) for a dual-substrate reaction.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.Oxidation.ox_ch4">
+<span class="sig-name descname"><span class="pre">ox_ch4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p_ch4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conc_ch4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conc_o2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#Oxidation.ox_ch4"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.Oxidation.ox_ch4" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.SI">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.ch4_process.</span></span><span class="sig-name descname"><span class="pre">SI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">send_cont_frac</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#SI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.SI" title="Link to this definition"></a></dt>
+<dd><p>calculate soil texture index</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>send_cont_frac (float): index which is a function of the average sand content fraction 
+(sand, 0.0 - 1.0) in the top 10 cm of soil</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: soil texture index</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.c_root">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.ch4_process.</span></span><span class="sig-name descname"><span class="pre">c_root</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conv_fac_exudate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rootCprod</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">send_cont_frac</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#c_root"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.c_root" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.c_soil">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.ch4_process.</span></span><span class="sig-name descname"><span class="pre">c_soil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conv_fac</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SI</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Rh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#c_soil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.c_soil" title="Link to this definition"></a></dt>
+<dd><p>The first step in modeling methanogenesis is to estimate 
+the amount of carbon substrate available for CH4 production. 
+DayCent’s methanogenesis submodel includes soil organic matter degradation and 
+rhizodeposition as the sources of carbon.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>conv_fac (float): _description_
+SI (_type_): _description_
+beta_1 (float): _description_
+Rh (_type_): _description_</p>
+</dd>
+<dt>Returns:</dt><dd><p>_type_: _description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.electAcceptor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ghgpy.ch4_process.</span></span><span class="sig-name descname"><span class="pre">electAcceptor</span></span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#electAcceptor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.electAcceptor" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Unless Oxygen (O2) is depleted in the soil, O2 acts as the sole electron acceptor for microbial respiration. 
+After rice soil is flooded, dissolved O2 in the floodwater and soil is consumed rapidly. 
+The need for electron acceptors by anaerobic organisms results in 
+the reduction of a number of other oxidized species of ions in the soil. 
+Reductions of NO3- to NO2-, N2O to N2, Mn4+ to Mn2+, Fe3+ to Fe2+, SO42- to S2- all resulting in 
+the production of CO2, and finally CO2 to CH4, occur sequentially, 
+provided available carbon sources exist (Patrick and Delaune, 1977). 
+CH4 production will occur after most of the soil’s NO3-, N2O, Mn4+, Fe3+, and 
+SO42- ions have been reduced.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>object (_type_): _description_</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.electAcceptor.aex_ox_meres">
+<span class="sig-name descname"><span class="pre">aex_ox_meres</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#electAcceptor.aex_ox_meres"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.electAcceptor.aex_ox_meres" title="Link to this definition"></a></dt>
+<dd><blockquote>
+<div><p>The MERES model assumed the presence in the soil of a pool of alternative electron acceptors in 
+oxidized form ({AEX}_{ox}), which reacts with the substrate C from decomposition to form CO2, 
+becoming reduced in the process ({AEX}_{red}). 
+It specifies the quantity of AEA present in moles of C equivalents m-3, 
+assuming a 1:1 stoichiometric relationship between substrate C and the AEA, i.e.,
+left({CH}_2O</p>
+</div></blockquote>
+<p>ight)+{AEX}_{ox}
+ightarrow{CO}_2+{AEX}_{red}+{2H}^+</p>
+<blockquote>
+<div><ul class="simple">
+<li></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.electAcceptor.pCH4_aex">
+<span class="sig-name descname"><span class="pre">pCH4_aex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aex_ox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rSC</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aea_ox_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">24.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#electAcceptor.pCH4_aex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.electAcceptor.pCH4_aex" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.rhizoDeposit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ghgpy.ch4_process.</span></span><span class="sig-name descname"><span class="pre">rhizoDeposit</span></span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#rhizoDeposit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.rhizoDeposit" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The contribution to CH4 production of organic matter originating from 
+living rice plants through root exudates and root death, 
+collectively referred to as rhizodeposition.</p>
+<ul class="simple">
+<li><p>The peak in emission rates commonly observed toward the end of the growing season was ascribed by</p></li>
+</ul>
+<p>these authors to be due to the increase in decaying root tissue or root exudates after flowering.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>object (_type_): _description_</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.rhizoDeposit.root_exud_dc">
+<span class="sig-name descname"><span class="pre">root_exud_dc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">RC</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#rhizoDeposit.root_exud_dc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.rhizoDeposit.root_exud_dc" title="Link to this definition"></a></dt>
+<dd><p>_summary_</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>RC (_type_): _description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.ch4_process.rhizoDeposit.root_exudation">
+<span class="sig-name descname"><span class="pre">root_exudation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w_root</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/ch4_process.html#rhizoDeposit.root_exudation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.ch4_process.rhizoDeposit.root_exudation" title="Link to this definition"></a></dt>
+<dd><p>In MERES, the rate of root exudation (gCm^{-2}d^{-1}) is calculated as 
+the product of organic compounds per unit of root biomass (depending on the crop growth stage) and 
+the root weight in each soil layer based on results from Lu et al. (1999).</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>w_root (float, Kg DM ha^-1): existing root dry weight
+Root death is assumed to be a constant 2% of existing root dry weight</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: the rate of root exudation (g C m^{-2}d^{-1})</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ghgpy.main">
+<span id="ghgpy-main-module"></span><h2>ghgpy.main module<a class="headerlink" href="#module-ghgpy.main" title="Link to this heading"></a></h2>
+<div class="math notranslate nohighlight">
+\[\frac{ \sum_{t=0}^{N}f(t,k) }{N}\]</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.main.run_dc_model">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.main.</span></span><span class="sig-name descname"><span class="pre">run_dc_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/main.html#run_dc_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.main.run_dc_model" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.main.run_dndc_daily_model">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.main.</span></span><span class="sig-name descname"><span class="pre">run_dndc_daily_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/main.html#run_dndc_daily_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.main.run_dndc_daily_model" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.main.run_dndc_model">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.main.</span></span><span class="sig-name descname"><span class="pre">run_dndc_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/main.html#run_dndc_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.main.run_dndc_model" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.main.run_md_viz">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.main.</span></span><span class="sig-name descname"><span class="pre">run_md_viz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/main.html#run_md_viz"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.main.run_md_viz" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.main.viz_tot">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.main.</span></span><span class="sig-name descname"><span class="pre">viz_tot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/main.html#viz_tot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.main.viz_tot" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-ghgpy.models">
+<span id="ghgpy-models-module"></span><h2>ghgpy.models module<a class="headerlink" href="#module-ghgpy.models" title="Link to this heading"></a></h2>
+<p>Hartman, M.D., Parton, W.J., Grosso, S.J.D., Easter, M., Hendryx, J., Hilinski, T., Kelly, R., 
+Keough, C.A., Killian, K., Lutz, S., Marx, E., McKeown, R., Ogle, S., Ojima, D.S., Paustian, K., 
+Swan, A., Williams, S., n.d. 
+The Daily Century Ecosystem, Soil Organic Matter, Nutrient Cycling, Nitrogen Trace Gas, 
+and Methane Model User Manual, Scientific Basis, and Technical Documentation.</p>
+<p>Anaerobic carbohydrate fermentation and methanogenesis occur through the following reactions, 
+2(CH2O) → CO2+ CH4 (Conrad 1989, Matthews et al. 2000) or C6H12O6→ 3CO2+ 3CH4 (Huang et al. 1998). 
+Both of these equations illustrate that the carbon substrate producing CH4 also produces 
+the same carbon equivalent of CO2. 
+Hence, a conversion factor C6H12O6_to_CH4 on a mole weight basis of carbohydrate to CH4 is set 
+at 0.5 based on the reactions.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="ghgpy.models.DCmodel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ghgpy.models.</span></span><span class="sig-name descname"><span class="pre">DCmodel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DCmodel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DCmodel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DCmodel.c_root">
+<span class="sig-name descname"><span class="pre">c_root</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_c_prod</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sand_cont</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DCmodel.c_root"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DCmodel.c_root" title="Link to this definition"></a></dt>
+<dd><p>The rate of rhizodeposition (Croot, gC m^-2 d^-1) is calculated using 
+the following equation.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>frac_to_exudates (float): the fraction of root carbon production contributing to 
+rhizodeposition (range of 0.35-0.6 described in Cao et al. (1995))
+root_c_prod (_type_): the previous day’s fine root production estimated by 
+the plant production submodel in DayCent (gC m^-2 d^-1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DCmodel.c_soil">
+<span class="sig-name descname"><span class="pre">c_soil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sand_cont</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DCmodel.c_soil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DCmodel.c_soil" title="Link to this definition"></a></dt>
+<dd><p>The first step in modeling methanogenesis is to estimate 
+the amount of carbon substrate available for CH4 production. 
+DayCent’s methanogenesis submodel includes soil organic matter degradation and 
+rhizodeposition as the sources of carbon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sand_cont2</strong> (<em>float</em>) – test</p></li>
+<li><p><strong>sand_cont</strong> (<em>_type_</em>) – _description_</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DCmodel.ch4ebl">
+<span class="sig-name descname"><span class="pre">ch4ebl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tsoil</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ch4prod</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ch4ep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bglivc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DCmodel.ch4ebl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DCmodel.ch4ebl" title="Link to this definition"></a></dt>
+<dd><p>transport of CH4 via ebullition to the atmosphere (CH4Ebl) was also adopted from Huang et al. (2004)</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>methzr (float): fraction of CH4 emitted via bubbles when there is zero fine root biomass
+tsoil (_type_): 
+ch4prod (_type_): _description_
+ch4ep (_type_): _description_
+mo (float, gC m^-2d^-1): Mo was set to 0.0015 gC m^-2d^-1 (Huang et al. 2004) but is set to 0.002 in DayCent
+mrtblm (float, g biomass m-2): the root biomass that starts to reduce CH4 bubble formation (g biomass m-2)
+bglivc (float, g C m^-2): the amount of fine root C for the crop as simulated by DayCent (g C m^-2)</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: transport of CH4 via ebullition to the atmosphere (CH4Ebl)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DCmodel.ch4ep">
+<span class="sig-name descname"><span class="pre">ch4ep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ch4prod</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DCmodel.ch4ep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DCmodel.ch4ep" title="Link to this definition"></a></dt>
+<dd><p>CH4 emission rates through the rice plants (CH4EP) (g CH4-C m^-2d^-1) were simulated</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>fp (float): fraction of CH4 emitted via rice plants
+ch4prod (float): CH4Prod is total methane production (g CH4-C m^-2d^-1)</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: transport of CH4 via ebullition to the atmosphere (CH4Ebl)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DCmodel.ch4prod">
+<span class="sig-name descname"><span class="pre">ch4prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sand_cont</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eh_t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_soil</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_c_prod</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DCmodel.ch4prod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DCmodel.ch4prod" title="Link to this definition"></a></dt>
+<dd><p>CH4 production was simulated based on carbon substrate supply and 
+associated influence of Eh and temperature <a class="reference external" href="https://doi-org.srv-proxy2.library.tamu.edu/10.1046/j.1365-2486.1998.00129.x">(Huang et al., 1998)</a>.</p>
+<div class="math notranslate nohighlight">
+\[\alpha_1\times F_{Eh}\times(C_{soil}+F_T\times C_{root})\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sand_cont</strong> (<em>float</em>) – the average sand content fraction (sand, 0.0 - 1.0) in the top 10 cm of soil</p></li>
+<li><p><strong>eh_t</strong> (<em>float</em><em>, </em><em>mV</em>) – initial redox potential</p></li>
+<li><p><strong>t_soil</strong> (<em>float</em><em>, </em><em>◦C</em>) – average soil temperature in the top 10 cm of soil (◦C)</p></li>
+<li><p><strong>root_c_prod</strong> (float, <span class="math notranslate nohighlight">\(g\;C\; m^{-2}\cdot d^{-1}\)</span>) – the previous day’s fine root production estimated by
+the plant production submodel in DayCent</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>CH4Prod is the CH4 production rate.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float, <span class="math notranslate nohighlight">\(g\;CH4-C\; m^{-2}\cdot d^{-1}\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DCmodel.f_temp">
+<span class="sig-name descname"><span class="pre">f_temp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_soil</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DCmodel.f_temp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DCmodel.f_temp" title="Link to this definition"></a></dt>
+<dd><p>estimate the influence of soil temperature. To simulate CH4 production, 
+we adopted the approach by (Huang et al. 1998) and (Huang et al. 2004).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t_soil</strong> (<em>float</em>) – the average soil temperature in the top 10 cm of soil (◦C)</p></li>
+<li><p><strong>q10</strong> (<em>float</em>) – a temperature coefficient representing the change of a biological or 
+chemical system as a consequence of increasing the temperature by 10°C, 
+and was assumed to be a value of 3.0 (Huang et al. 1998). Defaults to 3.0.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the temperature factor for CH4 production</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DCmodel.feh">
+<span class="sig-name descname"><span class="pre">feh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eh_t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DCmodel.feh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DCmodel.feh" title="Link to this definition"></a></dt>
+<dd><p>FEh, a reduction factor for soil redox potential (Eh) (mV), is 
+estimated using the following equations from Huang et al. (1998) and 
+Huang et al. (2004):</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>eh_t (float, mV): Eht represents the Eh value at time t, and 
+t is the number of days after flooding began or 
+since drainage occurred in the cycle.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DCmodel.fp">
+<span class="sig-name descname"><span class="pre">fp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aglivc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DCmodel.fp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DCmodel.fp" title="Link to this definition"></a></dt>
+<dd><p>get the fraction of CH4 emitted via rice plants</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>aglivc (float, g C m^-2): the amount of above-ground live C for the crop as simulated by DayCent (g C m^-2)
+tmxbio (float, g biomass m^-2): the maximum aboveground biomass at the end of growing season
+mxch4f (float, optional): MaXimum Fraction of CH4 production emitted by plants. Defaults to 0.55.</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: the fraction of CH4 emitted via rice plants</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DCmodel.get_eh">
+<span class="sig-name descname"><span class="pre">get_eh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sand_cont</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">waterlevel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eh_init</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DCmodel.get_eh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DCmodel.get_eh" title="Link to this definition"></a></dt>
+<dd><p>DEh and AEh (DEH and AEH, fix.100) are differential coefficients that 
+were estimated as 0.16 and 0.23, respectively. 
+The BEhflood (BEHFL, fix.100) is set at a low-limit value of -250 mV, 
+and Behdrain (BEHDR, fix.100) is set to an upper-limit value of 300 mV (Cao et al. 1995, Huang et al. 2004). 
+Soil Eh is a constant value of -20 mV when intermittent irrigation is used in 
+rice paddies as discussed in Huang et al. (2004).</p>
+<dl>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>beta1 (float): A fraction (β1) is defined to quantify </dt><dd><p>the amount of substrate available for methanogens based on 
+the simulation of heterotrophic respiration by the DayCent model.
+β1 (CO2CH4, fix.100) is the fraction of Rh converted to CH4 under 
+anaerobic conditions;</p>
+</dd>
+</dl>
+<p>SI (_type_): _description_
+Rh (float): Rh is heterotrophic respiration from decomposition of organic matter</p>
+<blockquote>
+<div><p>(above- and below-ground structural and metabolic litter and 
+above- and below-ground SOC pools) (g CO2^-C m^-2 d^-1)</p>
+</div></blockquote>
+<p>waterlevel (_type_): _description_
+eh_t (_type_): _description_
+deh (float, optional): _description_. Defaults to 0.16.
+aeh (float, optional): _description_. Defaults to 0.23.
+beh_flood (int, optional): _description_. Defaults to -250.
+beh_drain (int, optional): _description_. Defaults to 300.</p>
+</dd>
+<dt>Returns:</dt><dd><p>float, mV: current eh</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DCmodel.read_inputs">
+<span class="sig-name descname"><span class="pre">read_inputs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DCmodel.read_inputs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DCmodel.read_inputs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DCmodel.soil_index">
+<span class="sig-name descname"><span class="pre">soil_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sand_cont</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DCmodel.soil_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DCmodel.soil_index" title="Link to this definition"></a></dt>
+<dd><p>calculate soil texture index</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>sand_cont (float): index which is a function of the average sand content fraction 
+(sand, 0.0 - 1.0) in the top 10 cm of soil</p>
+</dd>
+<dt>Returns:</dt><dd><p>float: soil texture index</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ghgpy.models.DNDC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ghgpy.models.</span></span><span class="sig-name descname"><span class="pre">DNDC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDC" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDC.aere">
+<span class="sig-name descname"><span class="pre">aere</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pgi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDC.aere"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDC.aere" title="Link to this definition"></a></dt>
+<dd><p>Calculate AERE (Aerobic Respiration Enhancement) based on the Polynomial Equation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pgi</strong> (<em>float</em>) – Plant Growth Index.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The calculated AERE value.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDC.ch4ebl">
+<span class="sig-name descname"><span class="pre">ch4ebl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ch4prod</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poro</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ft_temp2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aere</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDC.ch4ebl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDC.ch4ebl" title="Link to this definition"></a></dt>
+<dd><p>Calculate CH4 emission via ebullition based on various factors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ch4prod</strong> (<em>float</em>) – Total methane production.</p></li>
+<li><p><strong>poro</strong> (<em>float</em>) – Soil porosity.</p></li>
+<li><p><strong>ft_temp2</strong> (<em>float</em>) – Temperature-based factor.</p></li>
+<li><p><strong>aere</strong> (<em>float</em>) – aerenchyma factor</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>CH4 emission via ebullition.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDC.ch4ep">
+<span class="sig-name descname"><span class="pre">ch4ep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ch4prod</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aere</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDC.ch4ep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDC.ch4ep" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDC.ch4oxid">
+<span class="sig-name descname"><span class="pre">ch4oxid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ch4conc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDC.ch4oxid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDC.ch4oxid" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDC.ch4prod">
+<span class="sig-name descname"><span class="pre">ch4prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ava_c</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ft_temp</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDC.ch4prod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDC.ch4prod" title="Link to this definition"></a></dt>
+<dd><div class="math notranslate nohighlight">
+\[CH_{4}p = a * AC * Ft\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ava_c</strong> (float, <span class="math notranslate nohighlight">\(kg C/ha\)</span>) – the available carbon concentration</p></li>
+<li><p><strong>ft_temp</strong> (<em>float</em>) – the temperature factor,</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>CH4 production rate</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float, <span class="math notranslate nohighlight">\(\frac {kg C}{ha*d}\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDC.dffs_rate">
+<span class="sig-name descname"><span class="pre">dffs_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ch4prod</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poro</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_soil</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDC.dffs_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDC.dffs_rate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDC.eh">
+<span class="sig-name descname"><span class="pre">eh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_soil</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_elect</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDC.eh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDC.eh" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDC.ft_temp">
+<span class="sig-name descname"><span class="pre">ft_temp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_soil</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDC.ft_temp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDC.ft_temp" title="Link to this definition"></a></dt>
+<dd><p>the temperature factor
+.. math:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ft</span> <span class="o">=</span> <span class="n">b</span><span class="o">*</span><span class="n">e</span><span class="o">^</span><span class="p">{</span><span class="mf">0.2424</span><span class="o">*</span><span class="n">T</span><span class="p">}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t_soil</strong> (<em>float</em><em>, </em><em>°C</em>) – the temperature (°C)</p>
+</dd>
+<dt class="field-even">Const b<span class="colon">:</span></dt>
+<dd class="field-even"><p>constant parameter</p>
+</dd>
+</dl>
+<p>:type float
+:return: temperature factor
+:rtype: float</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDC.ft_temp2">
+<span class="sig-name descname"><span class="pre">ft_temp2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_soil</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDC.ft_temp2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDC.ft_temp2" title="Link to this definition"></a></dt>
+<dd><p>Calculate a temperature-based factor (ft_temp2) based on a polynomial equation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t_soil</strong> (<em>float</em>) – The average soil temperature in °C.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The calculated temperature-based factor (ft_temp2).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDC.pgi">
+<span class="sig-name descname"><span class="pre">pgi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stdate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eddate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">curdate</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDC.pgi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDC.pgi" title="Link to this definition"></a></dt>
+<dd><p>plant growth index</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stdate</strong> (<em>str</em><em>, </em><em>dateformat</em>) – start date</p></li>
+<li><p><strong>dsp</strong> (<em>int</em>) – days since planting</p></li>
+<li><p><strong>sds</strong> (<em>int</em>) – season days</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>plant growth index</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDC.read_inputs">
+<span class="sig-name descname"><span class="pre">read_inputs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDC.read_inputs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDC.read_inputs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ghgpy.models.DNDCdaily">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ghgpy.models.</span></span><span class="sig-name descname"><span class="pre">DNDCdaily</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDCdaily"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDCdaily" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDCdaily.aere">
+<span class="sig-name descname"><span class="pre">aere</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bm_root</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDCdaily.aere"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDCdaily.aere" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDCdaily.c_pool">
+<span class="sig-name descname"><span class="pre">c_pool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c_sol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bm_root</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDCdaily.c_pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDCdaily.c_pool" title="Link to this definition"></a></dt>
+<dd><p>Calculate the carbon pool for methane production (kg C ha-1).
+This function computes the carbon pool available for methane production based on 
+soluble carbon and root biomass.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>c_sol</strong> (<em>float</em><em>, </em><em>kg C ha-1</em>) – The soluble carbon content in the layer (kg C ha-1).</p></li>
+<li><p><strong>bm_root</strong> (<em>float</em><em>, </em><em>g m-2</em><em>)</em>) – the root biomass (g m-2)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The calculated carbon pool for methane production (kg C ha-1).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>kg C ha-1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDCdaily.ch4e">
+<span class="sig-name descname"><span class="pre">ch4e</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ch4prod</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ch4oxid</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDCdaily.ch4e"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDCdaily.ch4e" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDCdaily.ch4oxid">
+<span class="sig-name descname"><span class="pre">ch4oxid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ch4prod</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aere</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDCdaily.ch4oxid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDCdaily.ch4oxid" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDCdaily.ch4prod">
+<span class="sig-name descname"><span class="pre">ch4prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c_pool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ftm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fphm</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDCdaily.ch4prod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDCdaily.ch4prod" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDCdaily.feh">
+<span class="sig-name descname"><span class="pre">feh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDCdaily.feh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDCdaily.feh" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDCdaily.fphm">
+<span class="sig-name descname"><span class="pre">fphm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ph</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDCdaily.fphm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDCdaily.fphm" title="Link to this definition"></a></dt>
+<dd><p>Calculate a pH-based factor for methane production. 
+This function computes a factor that is based on pH and 
+can be used in methane production models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ph</strong> (<em>float</em>) – The pH value</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The calculated pH-based factor.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDCdaily.ftm">
+<span class="sig-name descname"><span class="pre">ftm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_soil</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDCdaily.ftm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDCdaily.ftm" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.DNDCdaily.read_inputs">
+<span class="sig-name descname"><span class="pre">read_inputs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#DNDCdaily.read_inputs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.DNDCdaily.read_inputs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ghgpy.models.MERES">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ghgpy.models.</span></span><span class="sig-name descname"><span class="pre">MERES</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#MERES"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.MERES" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.MERES.c_root">
+<span class="sig-name descname"><span class="pre">c_root</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_wt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#MERES.c_root"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.MERES.c_root" title="Link to this definition"></a></dt>
+<dd><p>the rate of root exudation is calculated as 
+the product of organic compounds per unit of root biomass 
+(depending on the crop growth stage) and 
+the root weight in each soil layer based on results from Lu et al. (1999).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>root_wt</strong> (float, :math: <cite>kg;DM; ha^{-1}</cite>) – root weight</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>rate of root exudation</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float, <span class="math notranslate nohighlight">\(g\; C\; m^{-2}d^{-1}\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.MERES.ch4ebl">
+<span class="sig-name descname"><span class="pre">ch4ebl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ch4conc_sol</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#MERES.ch4ebl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.MERES.ch4ebl" title="Link to this definition"></a></dt>
+<dd><p>We have modified the algorithm describing ebullition rate from that in the original Arah &amp; Kirk (2000) model by 
+expressing the rate of ebullition (E, mol m-3 s-1) as a function of the concentration of 
+the substance in solution (yw, mol m-3). 
+Currently, there is no temperature dependence of yw* included in the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ch4conc_sol</strong> (<em>float</em><em>, </em><em>mol m-3</em>) – concentration of the substance in solution</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>rate of ebullition</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float, mol m-3 s-1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.MERES.ch4oxid">
+<span class="sig-name descname"><span class="pre">ch4oxid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pch4prod</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ch4conc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o2conc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#MERES.ch4oxid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.MERES.ch4oxid" title="Link to this definition"></a></dt>
+<dd><p>The rate of CH4 consumption (QCH4, mol m-3 s-1) by 
+the methanotrophic bacteria (see equation 2) in 
+a soil layer is given by the Michaelis-Menten equation</p>
+<div class="math notranslate nohighlight">
+\[p=f(x)\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pch4prod</strong> (<em>float</em><em>, </em><em>mol Ceq m-3</em>) – potential CH4 production</p></li>
+<li><p><strong>ch4conc</strong> (<em>float</em><em>, </em><em>mol m-3</em>) – ch4 concentration</p></li>
+<li><p><strong>o2conc</strong> (<em>float</em><em>, </em><em>mol m-3</em>) – o2 concentration</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>rate of CH4 consumption</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float, mol m-3 s-1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.MERES.ch4prod">
+<span class="sig-name descname"><span class="pre">ch4prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pch4prod</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o2conc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#MERES.ch4prod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.MERES.ch4prod" title="Link to this definition"></a></dt>
+<dd><p>Actual CH4 production (CH4) in a given soil layer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pch4prod</strong> (float, <span class="math notranslate nohighlight">\(\frac{mol\;C}{m^3\cdot s}\)</span>) – potential CH4 production</p></li>
+<li><p><strong>o2conc</strong> (float, <span class="math notranslate nohighlight">\(mol\; m^{-3}\)</span>) – concentration of O2</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Actual CH4 production</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float, <span class="math notranslate nohighlight">\(mol\; m^{-3}\cdo s^{-1}\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.MERES.o2cons">
+<span class="sig-name descname"><span class="pre">o2cons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">o2conc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ch4oxid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pch4prod</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#MERES.o2cons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.MERES.o2cons" title="Link to this definition"></a></dt>
+<dd><p>Oxygen consumption rate (QO2, mol m-3 s-1)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>o2conc</strong> (<em>float</em><em>, </em><em>mol m-3</em>) – o2 concentration</p></li>
+<li><p><strong>ch4oxid</strong> (<em>float</em><em>, </em><em>mol m-3 s-1</em>) – rate of CH4 consumption</p></li>
+<li><p><strong>pch4prod</strong> (<em>float</em><em>, </em><em>mol C m-3 s-1</em>) – potential CH4 production</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Oxygen consumption rate</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float, mol C m-3 s-1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.MERES.o2ebl">
+<span class="sig-name descname"><span class="pre">o2ebl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">o2conc_sol</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#MERES.o2ebl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.MERES.o2ebl" title="Link to this definition"></a></dt>
+<dd><p>We have modified the algorithm describing ebullition rate from that in the original Arah &amp; Kirk (2000) model by 
+expressing the rate of ebullition (E, mol m-3 s-1) as a function of the concentration of 
+the substance in solution (yw, mol m-3). 
+Currently, there is no temperature dependence of yw* included in the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ch4conc_sol</strong> (<em>float</em><em>, </em><em>mol m-3</em>) – concentration of the substance in solution</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>rate of ebullition</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float, mol m-3 s-1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.MERES.o2flux">
+<span class="sig-name descname"><span class="pre">o2flux</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">o2conc</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#MERES.o2flux"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.MERES.o2flux" title="Link to this definition"></a></dt>
+<dd><p>the fluxes of O2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>o2conc</strong> (<em>float</em><em>, </em><em>mol m-3</em>) – o2 concentration</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the fluxes of O2</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float, mol m-3 s-1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.models.MERES.pch4prod">
+<span class="sig-name descname"><span class="pre">pch4prod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">aex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subst_c_prod</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/models.html#MERES.pch4prod"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.models.MERES.pch4prod" title="Link to this definition"></a></dt>
+<dd><p>potential CH4 production (PCH4*)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>aex</strong> (float, <span class="math notranslate nohighlight">\(mol\; Ceq\; m^{-3}\)</span>) – alternative electron acceptors in oxidized form (<span class="math notranslate nohighlight">\(AEX_{ox}\)</span>)</p></li>
+<li><p><strong>subst_c_prod</strong> (float, <span class="math notranslate nohighlight">\(mol\; Ceq\; m^{-3}s^{-1}\)</span>) – the rate of substrate-C production</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>potential CH4 production (PCH4*)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float, <span class="math notranslate nohighlight">\(mol\; C\; m^{-3}s^{-1}\)</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ghgpy.parms">
+<span id="ghgpy-parms-module"></span><h2>ghgpy.parms module<a class="headerlink" href="#module-ghgpy.parms" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ghgpy.parms.DCparms">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ghgpy.parms.</span></span><span class="sig-name descname"><span class="pre">DCparms</span></span><a class="reference internal" href="_modules/ghgpy/parms.html#DCparms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.parms.DCparms" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ghgpy.parms.DNDCparms">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ghgpy.parms.</span></span><span class="sig-name descname"><span class="pre">DNDCparms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rconst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8.314</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fconst</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">96485</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fr_rsi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fr_root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/parms.html#DNDCparms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.parms.DNDCparms" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>_summary_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>object</strong> (<em>_type_</em>) – _description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ghgpy.parms.MERESparms">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ghgpy.parms.</span></span><span class="sig-name descname"><span class="pre">MERESparms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c_aex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">24.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">400</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.33</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.44</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.22</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sc_root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0003</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o2conc_atm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7.76</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ch4conc_atm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7.5e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o2dfc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.02e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ch4dfc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.06e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">root_len_den</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ch4sol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.31</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">o2sol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.23</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ke</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">86400.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/parms.html#MERESparms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.parms.MERESparms" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>_summary_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>c_aex</strong> (<em>float</em><em>, </em><em>optional</em><em>, </em><em>mol Ceq m-3</em>) – the critical concentration of the oxidized alternative electron acceptor pool (mol Ceq m-3), defaults to 24.0</p></li>
+<li><p><strong>eta</strong> (<em>int</em><em>, </em><em>optional</em><em>, </em><em>m3 mol-1</em>) – representing the sensitivity of methanogenesis to the concentration of O2
+A value of 400 m3 mol-1 was used for η (Arah &amp; Stephen, 1998)., defaults to 400</p></li>
+<li><p><strong>k1</strong> (<em>float</em><em>, </em><em>optional</em><em>, </em><em>mol m-3</em>) – k1, k2 and k3 are Michaelis-Menten constants for a dual-substrate reaction., defaults to 0.33</p></li>
+<li><p><strong>k2</strong> (<em>float</em><em>, </em><em>optional</em><em>, </em><em>mol m-3</em>) – k1, k2 and k3 are Michaelis-Menten constants for a dual-substrate reaction., defaults to 0.44</p></li>
+<li><p><strong>k3</strong> (<em>float</em><em>, </em><em>optional</em><em>, </em><em>mol m-3</em>) – k1, k2 and k3 are Michaelis-Menten constants for a dual-substrate reaction., defaults to 0.22</p></li>
+<li><p><strong>sc_root</strong> (<em>float</em><em>, </em><em>optional</em><em>, </em><em>m air</em><em> (</em><em>m root</em><em>)</em><em>-1</em>) – the specific conductivity of the root system., defaults to 3.0e-04</p></li>
+<li><p><strong>o2conc_atm</strong> (<em>float</em><em>, </em><em>optional</em><em>, </em><em>mol m-3</em>) – the concentration of the O2 in the atmosphere, defaults to 7.76</p></li>
+<li><p><strong>ch4conc_atm</strong> (<em>float</em><em>, </em><em>optional</em><em>, </em><em>mol m-3</em>) – the concentration of the CH4 in the atmosphere, defaults to 7.5E-05</p></li>
+<li><p><strong>o2dfc</strong> (<em>float</em><em>, </em><em>optional</em><em>, </em><em>m2 s-1</em>) – Diffusion constants (Da) of O2, defaults to 2.02e-05</p></li>
+<li><p><strong>ch4dfc</strong> (<em>float</em><em>, </em><em>optional</em><em>, </em><em>m2 s-1</em>) – Diffusion constants (Da) of CH4, defaults to 1.06e-05</p></li>
+<li><p><strong>root_len_den</strong> (<em>float</em><em>, </em><em>optional</em><em>, </em><em>cm root cm-3 soil</em>) – root length density (Lv, cm root cm-3 soil), defaults to 0.1</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-ghgpy.runs">
+<span id="ghgpy-runs-module"></span><h2>ghgpy.runs module<a class="headerlink" href="#module-ghgpy.runs" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.runs.FFMT">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.runs.</span></span><span class="sig-name descname"><span class="pre">FFMT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ghgpy.runs.FFMT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.runs.IFMT">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.runs.</span></span><span class="sig-name descname"><span class="pre">IFMT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ghgpy.runs.IFMT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.runs.SFMT">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.runs.</span></span><span class="sig-name descname"><span class="pre">SFMT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ghgpy.runs.SFMT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.runs.run_dc_multi">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.runs.</span></span><span class="sig-name descname"><span class="pre">run_dc_multi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/runs.html#run_dc_multi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.runs.run_dc_multi" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.runs.run_dc_single">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.runs.</span></span><span class="sig-name descname"><span class="pre">run_dc_single</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/runs.html#run_dc_single"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.runs.run_dc_single" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.runs.run_dndc">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.runs.</span></span><span class="sig-name descname"><span class="pre">run_dndc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/runs.html#run_dndc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.runs.run_dndc" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ghgpy.runs.run_dndc_daily">
+<span class="sig-prename descclassname"><span class="pre">ghgpy.runs.</span></span><span class="sig-name descname"><span class="pre">run_dndc_daily</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/runs.html#run_dndc_daily"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.runs.run_dndc_daily" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-ghgpy.utils">
+<span id="ghgpy-utils-module"></span><h2>ghgpy.utils module<a class="headerlink" href="#module-ghgpy.utils" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ghgpy.utils.ObjFns">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ghgpy.utils.</span></span><span class="sig-name descname"><span class="pre">ObjFns</span></span><a class="reference internal" href="_modules/ghgpy/utils.html#ObjFns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.utils.ObjFns" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.utils.ObjFns.nse">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/utils.html#ObjFns.nse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.utils.ObjFns.nse" title="Link to this definition"></a></dt>
+<dd><p>Nash-Sutcliffe Efficiency (NSE) as per <a class="reference external" href="https://doi.org/10.1016/0022-1694(70)90255-6">Nash and Sutcliffe, 1970</a>.</p>
+<div class="math notranslate nohighlight">
+\[E_{\text{NSE}} = 1 - \frac{\sum_{i=1}^{N}[e_{i}-s_{i}]^2}
+{\sum_{i=1}^{N}[e_{i}-\mu(e)]^2}\]</div>
+<p>where <em>N</em> is the length of the <em>sims</em> and <em>obds</em>
+periods, <em>e</em> is the <em>obds</em> series, <em>s</em> is (one of) the
+<em>sims</em> series, and <em>μ</em> is the arithmetic mean.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>root_c_prod</strong> (float, <span class="math notranslate nohighlight">\(g\;C\; m^{-2}\cdot d^{-1}\)</span>) – the previous day’s fine root production estimated by
+the plant production submodel in DayCent</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.utils.ObjFns.pbias">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pbias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/utils.html#ObjFns.pbias"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.utils.ObjFns.pbias" title="Link to this definition"></a></dt>
+<dd><p>Percent Bias (PBias).</p>
+<div class="math notranslate nohighlight">
+\[E_{\text{PBias}} = 100 × \frac{\sum_{i=1}^{N}(e_{i}-s_{i})}{\sum_{i=1}^{N}e_{i}}\]</div>
+<p>where <em>N</em> is the length of the <em>sims</em> and <em>obds</em>
+periods, <em>e</em> is the <em>obds</em> series, and <em>s</em> is (one of)
+the <em>sims</em> series.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.utils.ObjFns.rmse">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rmse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/utils.html#ObjFns.rmse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.utils.ObjFns.rmse" title="Link to this definition"></a></dt>
+<dd><p>Root Mean Square Error (RMSE).</p>
+<div class="math notranslate nohighlight">
+\[E_{\text{RMSE}} = \sqrt{\frac{1}{N}\sum_{i=1}^{N}[e_i-s_i]^2}\]</div>
+<p>where <em>N</em> is the length of the <em>sims</em> and <em>obds</em>
+periods, <em>e</em> is the <em>obds</em> series, <em>s</em> is (one of) the
+<em>sims</em> series.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.utils.ObjFns.rsq">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rsq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/utils.html#ObjFns.rsq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.utils.ObjFns.rsq" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ghgpy.utils.PostPr">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ghgpy.utils.</span></span><span class="sig-name descname"><span class="pre">PostPr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/utils.html#PostPr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.utils.PostPr" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ghgpy.utils.PostPr.get_ch4_so_df">
+<span class="sig-name descname"><span class="pre">get_ch4_so_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outfnam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ghgpy/utils.html#PostPr.get_ch4_so_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ghgpy.utils.PostPr.get_ch4_so_df" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ghgpy">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-ghgpy" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="ghgpy" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Seonggyu Park.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
