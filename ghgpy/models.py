@@ -27,9 +27,14 @@ class DCmodel(object):
         # self.beta1, self.Rh, self.fracToExduates, self.sand_cont = self.read_parms()
         self.parms = DCparms()
 
+
     def ch4prod(self, sand_cont, eh_t, t_soil, root_c_prod):
         """CH4 production was simulated based on carbon substrate supply and 
-        associated influence of Eh and temperature
+        associated influence of Eh and temperature `(Huang et al., 1998)
+        <https://doi-org.srv-proxy2.library.tamu.edu/10.1046/j.1365-2486.1998.00129.x>`_.
+
+        .. math::
+            \\alpha_1\\times F_{Eh}\\times(C_{soil}+F_T\\times C_{root})
 
         :param sand_cont: the average sand content fraction (sand, 0.0 - 1.0) in the top 10 cm of soil
         :type sand_cont: float
@@ -39,11 +44,11 @@ class DCmodel(object):
         :type t_soil: float, ◦C
         :param root_c_prod: the previous day's fine root production estimated by
                             the plant production submodel in DayCent
-        :type root_c_prod: float, :math:`g\;C\; m^{-2}\cdot d^{-1}
-        :return: CH4Prod is the CH4 production rate ()
+        :type root_c_prod: float, :math:`g\;C\; m^{-2}\cdot d^{-1}`
+        :return: CH4Prod is the CH4 production rate.
         :rtype: float, :math:`g\;CH4-C\; m^{-2}\cdot d^{-1}`
-        """
 
+        """
         ch4prod_ = (
             self.parms.cvfr_cho_to_ch4 * 
             self.feh(eh_t) * 
@@ -96,19 +101,19 @@ class DCmodel(object):
 
         c_root_ = self.parms.frac_to_exd * si * root_c_prod
         return c_root_
-    
+
     def f_temp(self, t_soil):
         """estimate the influence of soil temperature. To simulate CH4 production, 
         we adopted the approach by (Huang et al. 1998) and (Huang et al. 2004).
 
-        Args:
-            t_soil (float): the average soil temperature in the top 10 cm of soil (◦C)
-            q10 (float, optional): a temperature coefficient representing the change of a biological or 
-            chemical system as a consequence of increasing the temperature by 10°C, 
-            and was assumed to be a value of 3.0 (Huang et al. 1998). Defaults to 3.0.
-
-        Returns:
-            _type_: _description_
+        :param t_soil: the average soil temperature in the top 10 cm of soil (◦C)
+        :type t_soil: float
+        :param q10: a temperature coefficient representing the change of a biological or 
+                chemical system as a consequence of increasing the temperature by 10°C, 
+                and was assumed to be a value of 3.0 (Huang et al. 1998). Defaults to 3.0.
+        :type q10: float
+        :return: the temperature factor for CH4 production
+        :rtype: float
         """
         q10 = self.parms.q10
 

@@ -23,6 +23,10 @@ class ObjFns:
         periods, *e* is the *obds* series, *s* is (one of) the
         *sims* series, and *μ* is the arithmetic mean.
 
+        :param root_c_prod: the previous day's fine root production estimated by
+                            the plant production submodel in DayCent
+        :type root_c_prod: float, :math:`g\;C\; m^{-2}\cdot d^{-1}`
+
         """
         nse_ = 1 - (
                 np.sum((obds - sims) ** 2, axis=0, dtype=np.float64)
