@@ -35,7 +35,7 @@ def run_dc_multi(wd):
     m1 = DCmodel(wd)
     # read inputs
     sand_cont = 0.038
-    root_c_prod = 100
+    root_c_prod = 80
     aglivc = 100 # the amount of above-ground live C for the crop as simulated by DayCent (g C m−2)
     bglivc = 100 # the amount of fine root C for the crop as simulated by DayCent (g C m−2)
     #---------------
@@ -91,8 +91,8 @@ def run_dc_multi(wd):
 def run_dndc_daily(wd):
     m1 = DNDCdaily(wd)
     ph = 6.72
-    root_biomass =1
-    c_sol = 1
+    root_biomass =2
+    c_sol = 2
     # read inputs
     indf = m1.read_inputs()
     indf.dropna(axis=0, inplace=True)
@@ -151,8 +151,8 @@ def run_dndc_daily(wd):
 
 def run_dndc(wd):
     m1 = DNDC(wd)
-    ava_c = 0.05 
-    pg_idx = 0.5
+    ava_c = 0.07
+    # pg_idx = 0.5
     poro = 0.01
     stdate = "5/19/2022"
     eddate = "10/5/2022"

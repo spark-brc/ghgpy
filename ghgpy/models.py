@@ -21,58 +21,35 @@ import pandas as pd
 
 
 class DCmodel(object):
+
     def __init__(self, model_dir):
         self.model_dir = model_dir
         # self.beta1, self.Rh, self.fracToExduates, self.sand_cont = self.read_parms()
         self.parms = DCparms()
 
-
     def ch4prod(self, sand_cont, eh_t, t_soil, root_c_prod):
         """CH4 production was simulated based on carbon substrate supply and 
         associated influence of Eh and temperature
 
-        Args:
-            eh_t (float, mV): initial redox potential
-            sand_cont (float):  the average sand content fraction (sand, 0.0 - 1.0) in the top 10 cm of soil
-            t_soil (float, ◦C): average soil temperature in the top 10 cm of soil (◦C)
-            root_c_prod (float, gC m^-2 d^-1): the previous day's fine root production estimated by 
-            the plant production submodel in DayCent (gC m^-2 d^-1)
-
-        Returns:
-            float, g CH4-C m^-2d^-1: CH4Prod is the CH4 production rate (g CH4-C m^-2d^-1)
+        :param sand_cont: the average sand content fraction (sand, 0.0 - 1.0) in the top 10 cm of soil
+        :type sand_cont: float
+        :param eh_t: initial redox potential
+        :type eh_t: float, mV
+        :param t_soil: average soil temperature in the top 10 cm of soil (◦C)
+        :type t_soil: float, ◦C
+        :param root_c_prod: the previous day's fine root production estimated by
+                            the plant production submodel in DayCent
+        :type root_c_prod: float, :math:`g\;C\; m^{-2}\cdot d^{-1}
+        :return: CH4Prod is the CH4 production rate ()
+        :rtype: float, :math:`g\;CH4-C\; m^{-2}\cdot d^{-1}`
         """
+
         ch4prod_ = (
             self.parms.cvfr_cho_to_ch4 * 
             self.feh(eh_t) * 
             (self.c_soil(sand_cont) + self.f_temp(t_soil) * self.c_root(sand_cont, root_c_prod))
             )
         return ch4prod_
-
-
-
-    # def read_parms(self):
-    #     beta1 = 1
-    #     Rh = 1
-    #     fracToExduates = 0.5
-    #     sand_cont= 0.5
-
-    #     return beta1, Rh, fracToExduates, sand_cont
-        """The first step in modeling methanogenesis is to estimate 
-        the amount of carbon substrate available for CH4 production. 
-        DayCent's methanogenesis submodel includes soil organic matter degradation and 
-        rhizodeposition as the sources of carbon.
-
-        Args:
-            beta1 (float): A fraction (β1) is defined to quantify 
-                        the amount of substrate available for methanogens based on 
-                        the simulation of heterotrophic respiration by the DayCent model.
-                        β1 (CO2CH4, fix.100) is the fraction of Rh converted to CH4 under 
-                        anaerobic conditions;
-            SI (_type_): _description_
-            Rh (float): Rh is heterotrophic respiration from decomposition of organic matter
-                        (above- and below-ground structural and metabolic litter and 
-                        above- and below-ground SOC pools) (g CO2^-C m^-2 d^-1)
-        """
 
     def c_soil(self, sand_cont):
         """The first step in modeling methanogenesis is to estimate 
@@ -87,11 +64,8 @@ class DCmodel(object):
         :return: _description_
         :rtype: _type_
         """
-
-
         c_soil_ = self.parms.cvcf_oc_to_co2 * self.parms.frToCH4 * self.soil_index(sand_cont) * self.parms.hr
         return c_soil_
-
 
     def soil_index(self, sand_cont):
         """calculate soil texture index
@@ -275,18 +249,6 @@ class MERES(object):
         self.model_dir =  model_dir
         self.parms = MERESparms()
 
-        """Actual CH4 production (PCH4, mol m-3 s-1) in a given soil layer
-
-        Args:
-            pch4prod (float, mol C m-3 s-1): potential CH4 production
-            o2conc (float, mol m-3): concentration of O2
-
-        Returns:
-            float: Actual CH4 production (PCH4, mol m-3 s-1)
-            :math:`\\frac {kg C}{ha*d}`
-        """
-
-
 
     def ch4prod(self, pch4prod, o2conc):
         """Actual CH4 production (CH4) in a given soil layer
@@ -294,39 +256,39 @@ class MERES(object):
         :param pch4prod: potential CH4 production
         :type pch4prod: float, :math:`\\frac{mol\;C}{m^3\cdot s}`
         :param o2conc: concentration of O2
-        :type o2conc: float, :math:`mol m^{-3}`
+        :type o2conc: float, :math:`mol\; m^{-3}`
         :return: Actual CH4 production
-        :rtype: float, :math:`mol m^{-3} s^{-1}`
+        :rtype: float, :math:`mol\; m^{-3}\cdo s^{-1}`
         """
         ch4prod_ = pch4prod / (1 + (self.parms.eta *o2conc))
         return ch4prod_
 
 
-
     def c_root(self, root_wt):
-        """the rate of root exudation (g\ C\ m^{-2}d^{-1}) is calculated as 
+        """the rate of root exudation is calculated as 
         the product of organic compounds per unit of root biomass 
         (depending on the crop growth stage) and 
         the root weight in each soil layer based on results from Lu et al. (1999).
 
-        Args:
-            root_wt (float, kg\ DM\ {ha}^{-1})): existing root dry weight in each soil layer per day
-
-        Returns:
-            float: the rate of root exudation
+        :param root_wt: root weight
+        :type root_wt: float, :math: `kg\;DM\; ha^{-1}`
+        :return: rate of root exudation
+        :rtype: float, :math:`g\; C\; m^{-2}d^{-1}`
         """
+
         return 0.4*0.02* root_wt
-    
+
     def pch4prod(self, aex, subst_c_prod):
-        """potential CH4 production (PCH4*, mol C m-3 s-1)
+        """potential CH4 production (PCH4*)
 
-        Args:
-            aex (float, mol Ceq m-3): alternative electron acceptors in oxidized form ({AEX}_{ox})
-            subst_c_prod (_type_): the rate of substrate-C production (mol Ceq m-3 s-1)
-
-        Returns:
-            float, mol C m-3 s-1: potential CH4 production 
+        :param aex: alternative electron acceptors in oxidized form (:math:`AEX_{ox}`)
+        :type aex: float, :math:`mol\; Ceq\; m^{-3}`
+        :param subst_c_prod: the rate of substrate-C production
+        :type subst_c_prod: float, :math:`mol\; Ceq\; m^{-3}s^{-1}`
+        :return: potential CH4 production (PCH4*)
+        :rtype: float, :math:`mol\; C\; m^{-3}s^{-1}`
         """
+
         if aex > self.parms.c_aex:
             pch4prod_ = 0.0
         elif aex > 0.0 and aex < self.parms.c_aex:
@@ -340,8 +302,8 @@ class MERES(object):
         The rate of CH4 consumption (QCH4, mol m-3 s-1) by 
         the methanotrophic bacteria (see equation 2) in 
         a soil layer is given by the Michaelis-Menten equation
+        
         .. math:: 
-
             p=f(x)
 
         :param pch4prod: potential CH4 production
